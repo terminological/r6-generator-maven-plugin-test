@@ -13,7 +13,11 @@ public class TestRApi {
 
 	String message;
 	
-	@RMethod(title = "Shows a hello world message")
+	@RMethod(title = "Shows a hello world message",
+			examples = {
+					"An example",
+					"Spans many lines"
+			})
 	public String doHelloWorld() {
 		return "Hello world from Java!";
 	}
