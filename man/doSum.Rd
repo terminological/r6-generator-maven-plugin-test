@@ -6,13 +6,13 @@
 }
 \arguments{
 \item{api}{the java api object}
-\item{a}{expects a int}
-\item{b}{expects a int}
+\item{a}{expects a java.lang.Double}
+\item{b}{expects a java.lang.Double}
 }
 \description{
 
 }
 \examples{
 }
-\value{int : }
+\value{java.lang.Double : }
 \keyword{java api}

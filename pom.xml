@@ -49,6 +49,12 @@
 		    <url>https://jitpack.io</url>
 		</pluginRepository>
 	</pluginRepositories>  -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>redhat</id>
+			<url>https://maven.repository.redhat.com/earlyaccess/all/</url>
+		</pluginRepository>
+	</pluginRepositories>
 	
 	<build>
 		<plugins>

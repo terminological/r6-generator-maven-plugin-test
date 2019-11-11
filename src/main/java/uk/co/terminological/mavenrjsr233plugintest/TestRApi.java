@@ -34,7 +34,7 @@ public class TestRApi {
 	}
 	
 	@RMethod(title = "does a sum")
-	public int doSum(int a, int b) {
+	public Double doSum(Double a, Double b) {
 		return a+b;
 	}
 }
