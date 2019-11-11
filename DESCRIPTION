@@ -1,0 +1,10 @@
+Package: "apitest"
+Title: "Some function"
+Version: "0.1"
+Description: 
+License: 
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+Imports:
+	jsr223
