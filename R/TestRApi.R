@@ -1,6 +1,6 @@
 # returns a reference to a jsr223 engine
 javaTestRApi <- function() {
-	class.path <- c("./inst/java/maven-r-jsr223-plugin-test-1.0-SNAPSHOT-jar-with-dependencies.jar")
+	class.path <- c(rprojroot::find_package_root_file("inst/java/maven-r-jsr223-plugin-test-1.0-SNAPSHOT-jar-with-dependencies.jar"))
 	api <- jsr223::ScriptEngine$new("groovy", class.path)
 	api %@% '
 		import uk.co.terminological.mavenrjsr233plugintest.TestRApi;

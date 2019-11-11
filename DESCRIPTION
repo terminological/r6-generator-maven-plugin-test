@@ -7,4 +7,5 @@ Encoding: UTF-8
 LazyData: true
 Suggests: 
 Imports:
-	jsr223
+	jsr223,
+	rprojroot
