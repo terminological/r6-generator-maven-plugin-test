@@ -1,11 +1,19 @@
-Package: apitest
-Title: Some function
-Version: 0.1
-Description: 
-License: 
+Package: testRapi
+Title: A test library
+Version: 0.01
+Authors@R: c(
+    person(given = "test forename",family = "optional surname",email = "test@example.com",role = c("aut", "cre")),
+    person(given = "r-jsr223-maven-plugin",family = "terminological",role = "aut"),
+    person(given = "given",family = "family",email = "email@example.com",comment = structure("ORCIDID", .Names = "ORCID"),role = "aut"))
+Description: An optional long description of the package
+License: MIT
 Encoding: UTF-8
 LazyData: true
 Suggests: 
+	roxygen2,
+	devtools
 Imports:
+	ggplot2,
+	dplyr,
 	jsr223,
-	rprojroot
+	R6
