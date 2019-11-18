@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>uk.co.terminological</groupId>
-	<artifactId>maven-r-jsr223-plugin-test</artifactId>
+	<artifactId>r-jsr223-maven-plugin-test</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -19,7 +19,7 @@
 		<dependency>
 			<!-- DEVELOPMENT -->
 			<groupId>uk.co.terminological</groupId>
-			<artifactId>maven-r-jsr223-runtime</artifactId>
+			<artifactId>r-jsr223-runtime</artifactId>
 			<version>1.0-SNAPSHOT</version>
 			<!-- DEPLOYMENT -->
 			<!--<groupId>com.github.terminological</groupId>
@@ -71,7 +71,7 @@
 				<groupId>uk.co.terminological</groupId>
 				<!-- DEPLOYMENT -->
 				<!-- <groupId>com.github.terminological</groupId> -->
-				<artifactId>maven-r-jsr223-plugin</artifactId>
+				<artifactId>r-jsr223-maven-plugin</artifactId>
 				<version>1.0-SNAPSHOT</version>
 				<configuration>
 					<packageData>
