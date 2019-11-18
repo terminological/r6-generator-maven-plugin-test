@@ -43,6 +43,16 @@ public class TestRApi {
 	}
 	
 	/**
+	 * A fluent method description
+	 * @param message the message is a string
+	 * @return nothing as this is a fluent method
+	 */
+	@RMethod
+	public AnotherTestRApi factoryMethod(String a, String b) {
+		return new AnotherTestRApi(a,b);
+	}
+	
+	/**
 	 * message desciption
 	 * @return A message previously set or maybe null
 	 */

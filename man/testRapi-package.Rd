@@ -7,35 +7,18 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right'}}
 An optional long description of the package
-A system for 'declaratively' creating graphics,
-    based on "The Grammar of Graphics". You provide the data, tell 'ggplot2'
-    how to map variables to aesthetics, what graphical primitives to use,
-    and it takes care of the details.
 
 Version: 0.01
 
 Classes:
 \itemize{ 
-   \item JTestRApi
-   \itemize{
-   			\item \href{#method-new}{\code{$new()}}
-   			\item \href{#method-doHelloWorld}{\code{$doHelloWorld()}}
-   			\item \href{#method-fluentSetMessage}{\code{$fluentSetMessage(message)}}
-   			\item \href{#method-getMessage}{\code{$getMessage()}}
-   			\item \href{#method-doSum}{\code{$doSum(a, b)}}
-   }
-   \item JAnotherTestRApi
-   \itemize{
-   			\item \href{#method-new}{\code{$new(message1, message2)}}
-   			\item \href{#method-throwCatchable}{\code{$throwCatchable()}}
-   			\item \href{#method-printMessage}{\code{$printMessage()}}
-   			\item \href{#method-throwRuntime}{\code{$throwRuntime()}}
-   }
+	\item \code{JavaApi}
+	\item \code{TestRApi}
+	\item \code{AnotherTestRApi}
 }
 }
 
 \author{
-Authors:
 \itemize{ 
    \item test forename optional surname test@example.com 
    \item r-jsr223-maven-plugin terminological  
