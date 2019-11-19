@@ -71,4 +71,10 @@ public class TestRApi {
 	public Double doSum(Double a, Double b) {
 		return a+b;
 	}
+	
+
+	@RMethod
+	public String objectAsParameter(AnotherTestRApi otherObj) {
+		return otherObj.toString();
+	}
 }

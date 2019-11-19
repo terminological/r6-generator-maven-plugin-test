@@ -45,6 +45,10 @@ this is a details comment
 ## Method `TestRApi$doSum`
 ## -----------------------------------
 
+## -----------------------------------
+## Method `TestRApi$objectAsParameter`
+## -----------------------------------
+
 }
 
 \keyword{java api}
@@ -66,6 +70,7 @@ this is a details comment
 			\item \href{#method-factoryMethod}{\code{instance$factoryMethod(a, b)}}
 			\item \href{#method-getMessage}{\code{instance$getMessage()}}
 			\item \href{#method-doSum}{\code{instance$doSum(a, b)}}
+			\item \href{#method-objectAsParameter}{\code{instance$objectAsParameter(otherObj)}}
 			\item \code{instance$clone()}
 			\item \code{instance$print()}
 		}
@@ -291,6 +296,44 @@ this is a details comment
 
 	\subsection{Returns}{
 		java.lang.Double: A+B of course
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-objectAsParameter"></a>}}
+	
+	\subsection{Method \code{objectAsParameter()}}{
+		
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  instance <- J$TestRApi$new(...);
+  instance$objectAsParameter(otherObj)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{otherObj}{ - (java expects a uk.co.terminological.mavenrjsr233plugintest.AnotherTestRApi)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		java.lang.String: 
 	}
 
 	\subsection{Examples}{

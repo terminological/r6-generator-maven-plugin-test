@@ -44,8 +44,8 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 		new = function(message1, message2) {
 			# constructor
 			# copy parameters
-			self$.engine$tmp_message1 = message1;
-			self$.engine$tmp_message2 = message2;
+		self$.engine$tmp_message1 = message1;
+		self$.engine$tmp_message2 = message2;
 			objId = self$.engine %~% '
 				synchronized(objs) {
 					objs[nextObjId] = new uk.co.terminological.mavenrjsr233plugintest.AnotherTestRApi(tmp_message1, tmp_message2);
@@ -72,11 +72,13 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				return nextObjId-1;
 			'
 			# wrap resulting id in R class
+			# TODO: this maybe create multiple copies of a java object in R. Possibly should maintain a lookup.
 			out = AnotherTestRApi$new(self$.engine, objId)
 			# delete parameters
 			self$.engine$remove("tmp_message1")
 			self$.engine$remove("tmp_message2")
 			return(out)
+			# TODO: fluent methods should return invisible(self) or a reference to the same object
 		},
 		concat = function(message1, message2) {
 			# copy parameters
@@ -91,6 +93,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 			self$.engine$remove("tmp_message1")
 			self$.engine$remove("tmp_message2")
 			return(out)
+			# TODO: fluent methods should return invisible(self) or a reference to the same object
 		}	)
 	}
   
@@ -106,6 +109,7 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 	},
 	doHelloWorld = function() {
 		# copy parameters
+		# TODO: do something different is param is a class - pass by id
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance _objId returning a result
 		out = self$.engine %~% '
@@ -114,9 +118,11 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
 		return(out)
+		# TODO: fluent methods should return invisible(self) or a reference to the same object
 	},
 	fluentSetMessage = function(message) {
 		# copy parameters
+		# TODO: do something different is param is a class - pass by id
 		self$.engine$tmp_message = message;
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance _objId returninf a new objId   
@@ -128,14 +134,17 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 			return nextObjId-1;
 		'
 		# wrap resulting id in R class
+		# TODO: this maybe create multiple copies of a java object in R. Possibly should maintain a lookup.
 		out = TestRApi$new(self$.engine, objId)
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
 		self$.engine$remove("tmp_message")
 		return(out)
+		# TODO: fluent methods should return invisible(self) or a reference to the same object
 	},
 	factoryMethod = function(a, b) {
 		# copy parameters
+		# TODO: do something different is param is a class - pass by id
 		self$.engine$tmp_a = a;
 		self$.engine$tmp_b = b;
 		self$.engine$tmp2_objId = self$.objId;
@@ -148,15 +157,18 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 			return nextObjId-1;
 		'
 		# wrap resulting id in R class
+		# TODO: this maybe create multiple copies of a java object in R. Possibly should maintain a lookup.
 		out = AnotherTestRApi$new(self$.engine, objId)
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
 		self$.engine$remove("tmp_a")
 		self$.engine$remove("tmp_b")
 		return(out)
+		# TODO: fluent methods should return invisible(self) or a reference to the same object
 	},
 	getMessage = function() {
 		# copy parameters
+		# TODO: do something different is param is a class - pass by id
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance _objId returning a result
 		out = self$.engine %~% '
@@ -165,9 +177,11 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
 		return(out)
+		# TODO: fluent methods should return invisible(self) or a reference to the same object
 	},
 	doSum = function(a, b) {
 		# copy parameters
+		# TODO: do something different is param is a class - pass by id
 		self$.engine$tmp_a = a;
 		self$.engine$tmp_b = b;
 		self$.engine$tmp2_objId = self$.objId;
@@ -180,6 +194,22 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 		self$.engine$remove("tmp_a")
 		self$.engine$remove("tmp_b")
 		return(out)
+		# TODO: fluent methods should return invisible(self) or a reference to the same object
+	},
+	objectAsParameter = function(otherObj) {
+		# copy parameters
+		# TODO: do something different is param is a class - pass by id
+		self$.engine %@% paste0('tmp_otherObj = objs[',otherObj$.objId,']');
+		self$.engine$tmp2_objId = self$.objId;
+		#execute call on instance _objId returning a result
+		out = self$.engine %~% '
+			return objs[tmp2_objId].objectAsParameter(tmp_otherObj);
+		'
+		# delete parameters
+		self$.engine$remove("tmp2_objId")
+		self$.engine$remove("tmp_otherObj")
+		return(out)
+		# TODO: fluent methods should return invisible(self) or a reference to the same object
 	},
 	print = function() {
 		self$.engine$tmp2_objId = self$.objId;
@@ -187,7 +217,8 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 			return objs[tmp2_objId].toString();
 		'
 		self$.engine$remove("tmp2_objId")
-		return(out)
+		print(out)
+		invisible(self)
 	}
 ))
 
@@ -200,6 +231,7 @@ AnotherTestRApi = R6::R6Class("AnotherTestRApi", public=list(
 	},
 	throwCatchable = function() {
 		# copy parameters
+		# TODO: do something different is param is a class - pass by id
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance _objId returning a result
 		out = self$.engine %~% '
@@ -208,9 +240,11 @@ AnotherTestRApi = R6::R6Class("AnotherTestRApi", public=list(
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
 		return(out)
+		# TODO: fluent methods should return invisible(self) or a reference to the same object
 	},
 	printMessage = function() {
 		# copy parameters
+		# TODO: do something different is param is a class - pass by id
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance _objId returning a result
 		out = self$.engine %~% '
@@ -219,9 +253,11 @@ AnotherTestRApi = R6::R6Class("AnotherTestRApi", public=list(
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
 		invisible(NULL)
+		# TODO: fluent methods should return invisible(self) or a reference to the same object
 	},
 	throwRuntime = function() {
 		# copy parameters
+		# TODO: do something different is param is a class - pass by id
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance _objId returning a result
 		out = self$.engine %~% '
@@ -230,6 +266,7 @@ AnotherTestRApi = R6::R6Class("AnotherTestRApi", public=list(
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
 		return(out)
+		# TODO: fluent methods should return invisible(self) or a reference to the same object
 	},
 	print = function() {
 		self$.engine$tmp2_objId = self$.objId;
@@ -237,7 +274,8 @@ AnotherTestRApi = R6::R6Class("AnotherTestRApi", public=list(
 			return objs[tmp2_objId].toString();
 		'
 		self$.engine$remove("tmp2_objId")
-		return(out)
+		print(out)
+		invisible(self)
 	}
 ))
 
