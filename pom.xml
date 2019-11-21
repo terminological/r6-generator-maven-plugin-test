@@ -18,9 +18,9 @@
 	<dependencies>
 		<dependency>
 			<!-- DEVELOPMENT -->
-			<groupId>uk.co.terminological</groupId>
+			<!--<groupId>uk.co.terminological</groupId>-->
 			<!-- DEPLOYMENT -->
-			<!--<groupId>com.github.terminological</groupId>-->
+			<groupId>com.github.terminological</groupId>
 			<artifactId>r-jsr223-runtime</artifactId>
 			<version>1.0</version>
 		</dependency>
@@ -54,11 +54,11 @@
 			</plugin>
 			<plugin>
 				<!-- DEVELOPMENT -->
-				<groupId>uk.co.terminological</groupId>
+				<!-- <groupId>uk.co.terminological</groupId>-->
 				<!-- DEPLOYMENT -->
-				<!-- <groupId>com.github.terminological</groupId> -->
+				<groupId>com.github.terminological</groupId>
 				<artifactId>r-jsr223-maven-plugin</artifactId>
-				<version>1.0</version>
+				<version>1.01</version>
 				<configuration>
 					<packageData>
 						<title>A test library</title>
