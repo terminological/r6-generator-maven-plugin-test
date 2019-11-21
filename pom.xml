@@ -4,7 +4,7 @@
 
 	<groupId>uk.co.terminological</groupId>
 	<artifactId>r-jsr223-maven-plugin-test</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>R JSR223 Maven Plugin</name>
@@ -19,18 +19,10 @@
 		<dependency>
 			<!-- DEVELOPMENT -->
 			<groupId>uk.co.terminological</groupId>
-			<artifactId>r-jsr223-runtime</artifactId>
-			<version>1.0-SNAPSHOT</version>
 			<!-- DEPLOYMENT -->
-			<!--<groupId>com.github.terminological</groupId>
-			<artifactId>maven-r-jsr223-runtime</artifactId>
-			<version>master-SNAPSHOT</version>-->
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
+			<!--<groupId>com.github.terminological</groupId>-->
+			<artifactId>r-jsr223-runtime</artifactId>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 
@@ -42,20 +34,14 @@
 		</repository>
 	</repositories>
 
-	<!-- Resolve plugin on github -->
-	<!-- <pluginRepositories>
+	<!-- Resolve maven plugin on github -->
+	<pluginRepositories>
 		<pluginRepository>
 		    <id>jitpack.io</id>
 		    <url>https://jitpack.io</url>
 		</pluginRepository>
-	</pluginRepositories>  -->
-	<pluginRepositories>
-		<pluginRepository>
-			<id>redhat</id>
-			<url>https://maven.repository.redhat.com/earlyaccess/all/</url>
-		</pluginRepository>
 	</pluginRepositories>
-	
+		
 	<build>
 		<plugins>
 			<plugin>
@@ -72,7 +58,7 @@
 				<!-- DEPLOYMENT -->
 				<!-- <groupId>com.github.terminological</groupId> -->
 				<artifactId>r-jsr223-maven-plugin</artifactId>
-				<version>1.0-SNAPSHOT</version>
+				<version>1.0</version>
 				<configuration>
 					<packageData>
 						<title>A test library</title>
@@ -83,9 +69,6 @@
 						<maintainerName>test forename</maintainerName>
 						<maintainerFamilyName>optional surname</maintainerFamilyName>
 						<maintainerEmail>test@example.com</maintainerEmail>
-						<!-- <inputFiles>
-							<inputFile></inputFile>
-						</inputFiles>-->
 					</packageData>
 				</configuration>
 				<executions>

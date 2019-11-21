@@ -49,6 +49,26 @@ this is a details comment
 ## Method `TestRApi$objectAsParameter`
 ## -----------------------------------
 
+## -----------------------------------
+## Method `TestRApi$fluentRandomObjectAsParamerer`
+## -----------------------------------
+
+## -----------------------------------
+## Method `TestRApi$doSomethingWithDataFrame`
+## -----------------------------------
+
+## -----------------------------------
+## Method `TestRApi$doSomethingWithOtherDataFrame`
+## -----------------------------------
+
+## -----------------------------------
+## Method `TestRApi$generateRowMajorDataFrame`
+## -----------------------------------
+
+## -----------------------------------
+## Method `TestRApi$generateColMajorDataFrame`
+## -----------------------------------
+
 }
 
 \keyword{java api}
@@ -71,6 +91,11 @@ this is a details comment
 			\item \href{#method-getMessage}{\code{instance$getMessage()}}
 			\item \href{#method-doSum}{\code{instance$doSum(a, b)}}
 			\item \href{#method-objectAsParameter}{\code{instance$objectAsParameter(otherObj)}}
+			\item \href{#method-fluentRandomObjectAsParamerer}{\code{instance$fluentRandomObjectAsParamerer(file)}}
+			\item \href{#method-doSomethingWithDataFrame}{\code{instance$doSomethingWithDataFrame(colMajorDf)}}
+			\item \href{#method-doSomethingWithOtherDataFrame}{\code{instance$doSomethingWithOtherDataFrame(rowMajorDf)}}
+			\item \href{#method-generateRowMajorDataFrame}{\code{instance$generateRowMajorDataFrame()}}
+			\item \href{#method-generateColMajorDataFrame}{\code{instance$generateColMajorDataFrame()}}
 			\item \code{instance$clone()}
 			\item \code{instance$print()}
 		}
@@ -334,6 +359,194 @@ this is a details comment
 
 	\subsection{Returns}{
 		java.lang.String: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-fluentRandomObjectAsParamerer"></a>}}
+	
+	\subsection{Method \code{fluentRandomObjectAsParamerer()}}{
+		Should pass and return by reference
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  instance <- J$TestRApi$new(...);
+  instance$fluentRandomObjectAsParamerer(file)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{file}{ - (java expects a java.io.File)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		java.io.File: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-doSomethingWithDataFrame"></a>}}
+	
+	\subsection{Method \code{doSomethingWithDataFrame()}}{
+		Should not pass by reference
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  instance <- J$TestRApi$new(...);
+  instance$doSomethingWithDataFrame(colMajorDf)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{colMajorDf}{ - (java expects a java.util.Map<java.lang.String,java.lang.Object[]>)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		void: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-doSomethingWithOtherDataFrame"></a>}}
+	
+	\subsection{Method \code{doSomethingWithOtherDataFrame()}}{
+		Should pass by reference unless rowMajor is allowed
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  instance <- J$TestRApi$new(...);
+  instance$doSomethingWithOtherDataFrame(rowMajorDf)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{rowMajorDf}{ - (java expects a java.util.List<java.util.Map<java.lang.String,java.lang.Object>>)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		void: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-generateRowMajorDataFrame"></a>}}
+	
+	\subsection{Method \code{generateRowMajorDataFrame()}}{
+		Should not pass by reference
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  instance <- J$TestRApi$new(...);
+  instance$generateRowMajorDataFrame()
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		java.util.List: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-generateColMajorDataFrame"></a>}}
+	
+	\subsection{Method \code{generateColMajorDataFrame()}}{
+		Should not pass by reference
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  instance <- J$TestRApi$new(...);
+  instance$generateColMajorDataFrame()
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		java.util.Map: 
 	}
 
 	\subsection{Examples}{

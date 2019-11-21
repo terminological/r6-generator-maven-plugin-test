@@ -1,8 +1,17 @@
 package uk.co.terminological.mavenrjsr233plugintest;
 
-import uk.co.terminological.jsr223.RClass;
-import uk.co.terminological.jsr223.RMethod;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
+
+import uk.co.terminological.jsr223.RClass;
+
+import uk.co.terminological.jsr223.RMethod;
+import static uk.co.terminological.jsr223.ROutput.*; 
 
 /**
  * A test of the jsr223 templating
@@ -76,5 +85,65 @@ public class TestRApi {
 	@RMethod
 	public String objectAsParameter(AnotherTestRApi otherObj) {
 		return otherObj.toString();
+	}
+	
+	/**
+	 * Should pass and return by reference
+	 * @param rowMajorDf
+	 */
+	@RMethod
+	public File fluentRandomObjectAsParamerer(File file) {
+		return file;
+	}
+	
+	/**
+	 * Should not pass by reference
+	 * @param colMajorDf
+	 */
+	@RMethod
+	public void doSomethingWithDataFrame(Map<String,Object[]> colMajorDf) {
+		
+	}
+	
+	/**
+	 * Should pass by reference unless rowMajor is allowed
+	 * @param rowMajorDf
+	 */
+	@RMethod
+	public void doSomethingWithOtherDataFrame(List<Map<String,Object>> rowMajorDf) {
+		
+	}
+	
+	/**
+	 * Should not pass by reference
+	 */
+	@RMethod
+	public List<Map<String,Object>> generateRowMajorDataFrame() {
+		List<Map<String,Object>> out = new ArrayList<Map<String,Object>>();
+		for (int i=0; i<10; i++) {
+			Map<String,Object> tmp = new LinkedHashMap<String,Object>();
+			tmp.put("index", i);
+			tmp.put("value", 10-i);
+			out.add(tmp);
+		}
+		return out;
+		
+	}
+	
+	/**
+	 * Should not pass by reference
+	 */
+	@RMethod
+	public Map<String,Object[]> generateColMajorDataFrame() {
+		return 
+			Arrays.asList("Hello","World","Stream","Support","in","Java")
+			.stream()
+			.collect(toDataframe(
+					mapping("original", s-> s),
+					mapping("lowercase", s-> s.toLowerCase()),
+					mapping("uppercase", s-> s.toUpperCase()),
+					mapping("subst", s-> s.substring(0,Math.min(3,s.length())))
+					));
+		
 	}
 }
