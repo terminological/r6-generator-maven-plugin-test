@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>uk.co.terminological</groupId>
+	<groupId>com.github.terminological</groupId>
 	<artifactId>r-jsr223-maven-plugin-test</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
@@ -22,7 +22,7 @@
 			<!-- DEPLOYMENT -->
 			<groupId>com.github.terminological</groupId>
 			<artifactId>r-jsr223-runtime</artifactId>
-			<version>1.0</version>
+			<version>1.02</version>
 		</dependency>
 	</dependencies>
 
@@ -58,7 +58,7 @@
 				<!-- DEPLOYMENT -->
 				<groupId>com.github.terminological</groupId>
 				<artifactId>r-jsr223-maven-plugin</artifactId>
-				<version>1.01</version>
+				<version>1.02</version>
 				<configuration>
 					<packageData>
 						<title>A test library</title>
@@ -70,6 +70,7 @@
 						<maintainerFamilyName>optional surname</maintainerFamilyName>
 						<maintainerEmail>test@example.com</maintainerEmail>
 					</packageData>
+					<outputDirectory>${project.basedir}/r-library</outputDirectory>
 				</configuration>
 				<executions>
 					<execution>
