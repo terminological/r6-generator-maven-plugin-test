@@ -4,7 +4,7 @@
 
 	<groupId>com.github.terminological</groupId>
 	<artifactId>r-jsr223-maven-plugin-test</artifactId>
-	<version>1.0</version>
+	<version>1.03</version>
 	<packaging>jar</packaging>
 
 	<name>R JSR223 Maven Plugin</name>
@@ -22,7 +22,7 @@
 			<!-- DEPLOYMENT -->
 			<groupId>com.github.terminological</groupId>
 			<artifactId>r-jsr223-runtime</artifactId>
-			<version>1.02</version>
+			<version>1.03</version>
 		</dependency>
 	</dependencies>
 
@@ -58,7 +58,7 @@
 				<!-- DEPLOYMENT -->
 				<groupId>com.github.terminological</groupId>
 				<artifactId>r-jsr223-maven-plugin</artifactId>
-				<version>1.02</version>
+				<version>1.03</version>
 				<configuration>
 					<packageData>
 						<title>A test library</title>

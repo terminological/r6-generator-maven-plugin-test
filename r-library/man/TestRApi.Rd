@@ -105,7 +105,7 @@ this is a details comment
 	\if{html}{\out{<a id="method-new"></a>}}
 	
 	\subsection{Method \code{new()}}{
-		the default no-args constructor
+		
 	}
 
 	\subsection{Usage}{

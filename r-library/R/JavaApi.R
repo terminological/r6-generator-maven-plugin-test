@@ -14,7 +14,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 	
 	class.path <- c(
 		system.file("java", "groovy-all-2.4.17.jar", package="testRapi"),
-		system.file("java", "r-jsr223-maven-plugin-test-1.0-jar-with-dependencies.jar", package="testRapi")
+		system.file("java", "r-jsr223-maven-plugin-test-1.03-jar-with-dependencies.jar", package="testRapi")
 	)	
 	self$.engine = jsr223::ScriptEngine$new("groovy", class.path)
 	self$.engine$setDataFrameRowMajor(FALSE)

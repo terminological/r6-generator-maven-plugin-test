@@ -28,6 +28,12 @@ public class TestRApi {
 
 	String message;
 	
+	@RMethod
+	public TestRApi() {
+		this.message = "Set by constructor";
+	}
+	
+	
 	/**
 	 * Description of a hello world function
 	 * @return this java method returns a String
@@ -142,7 +148,8 @@ public class TestRApi {
 					mapping("original", s-> s),
 					mapping("lowercase", s-> s.toLowerCase()),
 					mapping("uppercase", s-> s.toUpperCase()),
-					mapping("subst", s-> s.substring(0,Math.min(3,s.length())))
+					mapping("subst", s-> s.substring(0,Math.min(3,s.length()))),
+					mapping("length", s-> s.length())
 					));
 		
 	}

@@ -32,7 +32,7 @@ J = JavaApi$new();
 	\if{html}{\out{<a id="method-new"></a>}}
 	
 	\subsection{Method \code{TestRApi$new()}}{
-		the default no-args constructor
+		
 	}
 
 	\subsection{Usage}{
