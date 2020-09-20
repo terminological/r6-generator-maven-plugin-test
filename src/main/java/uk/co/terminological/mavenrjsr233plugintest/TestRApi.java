@@ -11,6 +11,8 @@ import java.util.Map;
 import uk.co.terminological.jsr223.RClass;
 
 import uk.co.terminological.jsr223.RMethod;
+import uk.co.terminological.jsr223.ROutput;
+
 import static uk.co.terminological.jsr223.ROutput.*; 
 
 /**
@@ -140,7 +142,7 @@ public class TestRApi {
 	 * Should not pass by reference
 	 */
 	@RMethod
-	public Map<String,Object[]> generateColMajorDataFrame() {
+	public List<Map<String,Object>> generateColMajorDataFrame() {
 		return 
 			Arrays.asList("Hello","World","Stream","Support","in","Java")
 			.stream()
@@ -152,5 +154,22 @@ public class TestRApi {
 					mapping("length", s-> s.length())
 					));
 		
+	}
+	
+	/**
+	 * Should not pass by reference
+	 */
+	@RMethod
+	public ROutput.Dataframe generateColMajorDataFrame2() {
+		return 
+				Arrays.asList("Hello","World","Stream","Support","in","Java")
+				.stream()
+				.collect(toDataframe(
+						mapping("original", s-> s),
+						mapping("lowercase", s-> s.toLowerCase()),
+						mapping("uppercase", s-> s.toUpperCase()),
+						mapping("subst", s-> s.substring(0,Math.min(3,s.length()))),
+						mapping("length", s-> s.length())
+						));
 	}
 }

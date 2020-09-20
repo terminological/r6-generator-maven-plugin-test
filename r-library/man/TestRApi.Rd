@@ -69,6 +69,10 @@ this is a details comment
 ## Method `TestRApi$generateColMajorDataFrame`
 ## -----------------------------------
 
+## -----------------------------------
+## Method `TestRApi$generateColMajorDataFrame2`
+## -----------------------------------
+
 }
 
 \keyword{java api}
@@ -96,6 +100,7 @@ this is a details comment
 			\item \href{#method-doSomethingWithOtherDataFrame}{\code{instance$doSomethingWithOtherDataFrame(rowMajorDf)}}
 			\item \href{#method-generateRowMajorDataFrame}{\code{instance$generateRowMajorDataFrame()}}
 			\item \href{#method-generateColMajorDataFrame}{\code{instance$generateColMajorDataFrame()}}
+			\item \href{#method-generateColMajorDataFrame2}{\code{instance$generateColMajorDataFrame2()}}
 			\item \code{instance$clone()}
 			\item \code{instance$print()}
 		}
@@ -546,7 +551,44 @@ this is a details comment
 	}
 
 	\subsection{Returns}{
-		java.util.Map: 
+		java.util.List: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-generateColMajorDataFrame2"></a>}}
+	
+	\subsection{Method \code{generateColMajorDataFrame2()}}{
+		Should not pass by reference
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  instance <- J$TestRApi$new(...);
+  instance$generateColMajorDataFrame2()
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		uk.co.terminological.jsr223.ROutput$Dataframe: 
 	}
 
 	\subsection{Examples}{

@@ -7,22 +7,48 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 	TestRApi = NULL,
 	AnotherTestRApi = NULL,
   
+  	changeLogLevel = function(logLevel) {
+  	self$.engine$logLevel = logLevel;
+  	self$.engine %@% '
+  	  import org.apache.log4j.Logger;
+  	  import org.apache.log4j.Level;
+  		Logger.getRootLogger().setLevel(Level.toLevel(logLevel));
+  	'
+	},
+	
  	#### constructor ----
- 	initialize = function() {
+ 	initialize = function(logLevel = "warn") {
 	
 	# initialise java engine
 	
 	class.path <- c(
 		system.file("java", "groovy-all-2.4.17.jar", package="testRapi"),
-		system.file("java", "r-jsr223-maven-plugin-test-1.03-jar-with-dependencies.jar", package="testRapi")
+		system.file("java", "slf4j-log4j12-1.7.22.jar", package="testRapi"),
+		system.file("java", "log4j-1.2.17.jar", package="testRapi"),
+		system.file("java", "slf4j-api-1.7.22.jar", package="testRapi"),
+		system.file("java", "r-jsr223-maven-plugin-test-1.04-jar-with-dependencies.jar", package="testRapi")
 	)	
 	self$.engine = jsr223::ScriptEngine$new("groovy", class.path)
-	self$.engine$setDataFrameRowMajor(FALSE)
+	self$.engine$setDataFrameRowMajor(TRUE)
+	self$.engine$logLevel = logLevel;
 	# set up engine
 	self$.engine %@% '
+		import org.slf4j.Logger;
+		import org.slf4j.LoggerFactory;
+		import org.apache.log4j.BasicConfigurator;
+		import org.apache.log4j.Logger;
+		import org.apache.log4j.Level;
+		
+		BasicConfigurator.configure();
+		Logger.getRootLogger().setLevel(Level.toLevel(logLevel));
+
+		log = LoggerFactory.getLogger("testRapi");
+		log.info("logging initialised");
+
 		objs = [];
 		nextObjId = 0;
 	'
+	
 	
 	# initialise constructor and static class definitions
 	self$TestRApi = list(
@@ -126,7 +152,7 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance .objId returning a result by value
 		out = self$.engine %~% '
-			return objs[tmp2_objId].doHelloWorld();
+			return  objs[tmp2_objId].doHelloWorld();
 		'
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
@@ -195,7 +221,7 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance .objId returning a result by value
 		out = self$.engine %~% '
-			return objs[tmp2_objId].getMessage();
+			return  objs[tmp2_objId].getMessage();
 		'
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
@@ -208,7 +234,7 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance .objId returning a result by value
 		out = self$.engine %~% '
-			return objs[tmp2_objId].doSum(tmp_a, tmp_b);
+			return  objs[tmp2_objId].doSum(tmp_a, tmp_b);
 		'
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
@@ -222,7 +248,7 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance .objId returning a result by value
 		out = self$.engine %~% '
-			return objs[tmp2_objId].objectAsParameter(tmp_otherObj);
+			return  objs[tmp2_objId].objectAsParameter(tmp_otherObj);
 		'
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
@@ -308,7 +334,7 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance .objId returning a result by value
 		out = self$.engine %~% '
-			return objs[tmp2_objId].generateRowMajorDataFrame();
+			return  objs[tmp2_objId].generateRowMajorDataFrame();
 		'
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
@@ -319,7 +345,18 @@ TestRApi = R6::R6Class("TestRApi", public=list(
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance .objId returning a result by value
 		out = self$.engine %~% '
-			return objs[tmp2_objId].generateColMajorDataFrame();
+			return  objs[tmp2_objId].generateColMajorDataFrame();
+		'
+		# delete parameters
+		self$.engine$remove("tmp2_objId")
+		return(out)
+	},
+	generateColMajorDataFrame2 = function() {
+		# copy parameters
+		self$.engine$tmp2_objId = self$.objId;
+		#execute call on instance .objId returning a result by value
+		out = self$.engine %~% '
+			return (List<Map<String,Object>>) objs[tmp2_objId].generateColMajorDataFrame2();
 		'
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
@@ -348,7 +385,7 @@ AnotherTestRApi = R6::R6Class("AnotherTestRApi", public=list(
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance .objId returning a result by value
 		out = self$.engine %~% '
-			return objs[tmp2_objId].throwCatchable();
+			return  objs[tmp2_objId].throwCatchable();
 		'
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
@@ -380,7 +417,7 @@ AnotherTestRApi = R6::R6Class("AnotherTestRApi", public=list(
 		self$.engine$tmp2_objId = self$.objId;
 		#execute call on instance .objId returning a result by value
 		out = self$.engine %~% '
-			return objs[tmp2_objId].throwRuntime();
+			return  objs[tmp2_objId].throwRuntime();
 		'
 		# delete parameters
 		self$.engine$remove("tmp2_objId")
