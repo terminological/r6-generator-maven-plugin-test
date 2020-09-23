@@ -4,7 +4,7 @@
 
 	<groupId>com.github.terminological</groupId>
 	<artifactId>r-jsr223-maven-plugin-test</artifactId>
-	<version>1.04</version>
+	<version>1.05</version>
 	<packaging>jar</packaging>
 
 	<name>R JSR223 Maven Plugin</name>
@@ -18,11 +18,11 @@
 	<dependencies>
 		<dependency>
 			<!-- DEVELOPMENT -->
-			<groupId>uk.co.terminological</groupId>
+<!-- 			<groupId>uk.co.terminological</groupId> -->
 			<!-- DEPLOYMENT -->
-<!-- 			<groupId>com.github.terminological</groupId> -->
+			<groupId>com.github.terminological</groupId>
 			<artifactId>r-jsr223-runtime</artifactId>
-			<version>1.04</version>
+			<version>1.05</version>
 		</dependency>
 	</dependencies>
 
@@ -54,11 +54,11 @@
 			</plugin>
 			<plugin>
 				<!-- DEVELOPMENT -->
-				<groupId>uk.co.terminological</groupId>
+<!-- 				<groupId>uk.co.terminological</groupId> -->
 				<!-- DEPLOYMENT -->
-<!-- 				<groupId>com.github.terminological</groupId> -->
+				<groupId>com.github.terminological</groupId>
 				<artifactId>r-jsr223-maven-plugin</artifactId>
-				<version>1.04</version>
+				<version>1.05</version>
 				<configuration>
 					<packageData>
 						<title>A test library</title>
