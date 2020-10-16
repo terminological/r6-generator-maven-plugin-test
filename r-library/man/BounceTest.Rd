@@ -206,7 +206,7 @@ instance <- J$BounceTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@221a2068: 
+		uk.co.terminological.jsr233plugin.RType@7672960e: 
 	}
 
 	\subsection{Examples}{
@@ -237,14 +237,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a49af50)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@163df259)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@5a49af50: 
+		uk.co.terminological.jsr233plugin.RType@163df259: 
 	}
 
 	\subsection{Examples}{
@@ -275,14 +275,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@4f8d86e4)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@56b751b1)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@4f8d86e4: 
+		uk.co.terminological.jsr233plugin.RType@56b751b1: 
 	}
 
 	\subsection{Examples}{
@@ -313,14 +313,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@60dd0587)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a78b52b)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@60dd0587: 
+		uk.co.terminological.jsr233plugin.RType@5a78b52b: 
 	}
 
 	\subsection{Examples}{
@@ -351,14 +351,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5f631ca0)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@2f61de04)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@5f631ca0: 
+		uk.co.terminological.jsr233plugin.RType@2f61de04: 
 	}
 
 	\subsection{Examples}{
@@ -389,14 +389,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@7930ffa9: 
+		uk.co.terminological.jsr233plugin.RType@40013051: 
 	}
 
 	\subsection{Examples}{
@@ -427,14 +427,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@1697f2b3)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5f5a33ed)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@1697f2b3: 
+		uk.co.terminological.jsr233plugin.RType@5f5a33ed: 
 	}
 
 	\subsection{Examples}{
@@ -465,14 +465,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@12ad1b2a)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5b59c3d)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@12ad1b2a: 
+		uk.co.terminological.jsr233plugin.RType@5b59c3d: 
 	}
 
 	\subsection{Examples}{
@@ -503,14 +503,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@3134153d)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@69e36fe3)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@3134153d: 
+		uk.co.terminological.jsr233plugin.RType@69e36fe3: 
 	}
 
 	\subsection{Examples}{
@@ -541,14 +541,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@767599a7)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@48d31d25)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@767599a7: 
+		uk.co.terminological.jsr233plugin.RType@48d31d25: 
 	}
 
 	\subsection{Examples}{
@@ -579,14 +579,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5f5effb0)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@46188a89)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@5f5effb0: 
+		uk.co.terminological.jsr233plugin.RType@46188a89: 
 	}
 
 	\subsection{Examples}{
@@ -617,14 +617,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@25d0cb3a)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@6f65a203)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@25d0cb3a: 
+		uk.co.terminological.jsr233plugin.RType@6f65a203: 
 	}
 
 	\subsection{Examples}{
@@ -655,14 +655,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@345cbf40)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@1d0b447b)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@345cbf40: 
+		uk.co.terminological.jsr233plugin.RType@1d0b447b: 
 	}
 
 	\subsection{Examples}{
@@ -693,14 +693,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@6e3eb0cd)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@4de158ca)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@6e3eb0cd: 
+		uk.co.terminological.jsr233plugin.RType@4de158ca: 
 	}
 
 	\subsection{Examples}{
@@ -731,14 +731,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@463561c5)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@4f2fdf3d)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@463561c5: 
+		uk.co.terminological.jsr233plugin.RType@4f2fdf3d: 
 	}
 
 	\subsection{Examples}{
@@ -769,14 +769,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@dd2856e)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@d180961)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@dd2856e: 
+		uk.co.terminological.jsr233plugin.RType@d180961: 
 	}
 
 	\subsection{Examples}{
@@ -807,14 +807,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@659feb22)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@4af7ac25)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@659feb22: 
+		uk.co.terminological.jsr233plugin.RType@4af7ac25: 
 	}
 
 	\subsection{Examples}{
@@ -845,14 +845,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@77f905e3)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@d978ab9)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@77f905e3: 
+		uk.co.terminological.jsr233plugin.RType@d978ab9: 
 	}
 
 	\subsection{Examples}{
@@ -883,14 +883,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@3468ee6e)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@3cf06a01)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@3468ee6e: 
+		uk.co.terminological.jsr233plugin.RType@3cf06a01: 
 	}
 
 	\subsection{Examples}{
@@ -921,14 +921,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@2f4b98f6)}
+				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@71ee2fff)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@2f4b98f6: 
+		uk.co.terminological.jsr233plugin.RType@71ee2fff: 
 	}
 
 	\subsection{Examples}{

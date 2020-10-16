@@ -88,6 +88,13 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 		# convert java object back to R
 		return(self$.api$.fromJava$RDataframe(tmp_out));
 	},
+	generateStreamDataFrame = function() {
+		# copy parameters
+		#execute method call
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="generateStreamDataFrame" ); 
+		# convert java object back to R
+		return(self$.api$.fromJava$RDataframe(tmp_out));
+	},
 	generateList = function() {
 		# copy parameters
 		#execute method call

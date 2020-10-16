@@ -13,10 +13,12 @@ Version: 0.01
 Classes:
 \itemize{ 
 	\item \code{JavaApi}
-	\item \code{TestRApi}
+	\item \code{MoreFeatureTest}
 	\item \code{BounceTest}
+	\item \code{FeatureTest}
 	\item \code{FactoryTest}
-	\item \code{AnotherTestRApi}
+	\item \code{MinimalExample}
+	\item \code{DataframeSerialiser}
 }
 }
 
@@ -25,6 +27,8 @@ Classes:
    \item test forename optional surname test@example.com 
    \item r-jsr223-maven-plugin terminological  
    \item given family email@example.com ORCIDID
+   \item rob challen  
+   \item terminological   
 }
 }
 

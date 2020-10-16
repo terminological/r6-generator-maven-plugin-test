@@ -7,7 +7,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<r6.version>native-rjava-SNAPSHOT</r6.version>
+		<r6.version>master-SNAPSHOT</r6.version>
 	</properties>
 
 	<groupId>com.github.terminological</groupId>

@@ -21,20 +21,23 @@ J = JavaApi$new();
 	\subsection{Public methods}{
 		\itemize{
 			\item \code{JavaApi$new()}
-	\item \href{#method-TestRApi-new}{\code{J$TestRApi$new()}}
+	\item \href{#method-MoreFeatureTest-new}{\code{J$MoreFeatureTest$new(message1, message2)}}
+			\item \href{#method-MoreFeatureTest-create}{\code{J$MoreFeatureTest$create(message1, message2)}}
+			\item \href{#method-MoreFeatureTest-concat}{\code{J$MoreFeatureTest$concat(message1, message2)}}
 	\item \href{#method-BounceTest-new}{\code{J$BounceTest$new()}}
+	\item \href{#method-FeatureTest-new}{\code{J$FeatureTest$new()}}
 	\item \href{#method-FactoryTest-new}{\code{J$FactoryTest$new()}}
-	\item \href{#method-AnotherTestRApi-new}{\code{J$AnotherTestRApi$new(message1, message2)}}
-			\item \href{#method-AnotherTestRApi-create}{\code{J$AnotherTestRApi$create(message1, message2)}}
-			\item \href{#method-AnotherTestRApi-concat}{\code{J$AnotherTestRApi$concat(message1, message2)}}
+	\item \href{#method-MinimalExample-new}{\code{J$MinimalExample$new(logMessage)}}
+			\item \href{#method-MinimalExample-demoStatic}{\code{J$MinimalExample$demoStatic(message)}}
+	\item \href{#method-DataframeSerialiser-new}{\code{J$DataframeSerialiser$new()}}
 		}
 	}
 
 	\if{html}{\out{<hr>}}
 	\if{html}{\out{<a id="method-new"></a>}}
 	
-	\subsection{Method \code{TestRApi$new()}}{
-		the default no-args constructor
+	\subsection{Method \code{MoreFeatureTest$new()}}{
+		the first constructor is used if there are none annotated
 	}
 
 	\subsection{Usage}{
@@ -42,7 +45,7 @@ J = JavaApi$new();
 		\preformatted{
   library(testRapi)
   J <- JavaApi$new()
-  J$TestRApi$new()
+  J$MoreFeatureTest$new(message1, message2)
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -51,13 +54,93 @@ J = JavaApi$new();
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
+				\item{message1 - the message to be printed}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{message2 - will be used for toString}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		R6 TestRApi object: 
+		R6 MoreFeatureTest object: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-create"></a>}}
+	
+	\subsection{Method \code{MoreFeatureTest$create()}}{
+		A static object constructor
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$MoreFeatureTest$create(message1, message2)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		R6 MoreFeatureTest object: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+  J = testRapi::JavaApi$new()
+  J$MoreFeatureTest$create('Hello,',' World')
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-concat"></a>}}
+	
+	\subsection{Method \code{MoreFeatureTest$concat()}}{
+		
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$MoreFeatureTest$concat(message1, message2)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		uk.co.terminological.jsr233plugin.RType@40013051: 
 	}
 
 	\subsection{Examples}{
@@ -105,6 +188,42 @@ J = JavaApi$new();
 	\if{html}{\out{<hr>}}
 	\if{html}{\out{<a id="method-new"></a>}}
 	
+	\subsection{Method \code{FeatureTest$new()}}{
+		the default no-args constructor
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$FeatureTest$new()
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		R6 FeatureTest object: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-new"></a>}}
+	
 	\subsection{Method \code{FactoryTest$new()}}{
 		the default no-args constructor
 	}
@@ -141,8 +260,13 @@ J = JavaApi$new();
 	\if{html}{\out{<hr>}}
 	\if{html}{\out{<a id="method-new"></a>}}
 	
-	\subsection{Method \code{AnotherTestRApi$new()}}{
-		the first constructor is used if there are none annotated
+	\subsection{Method \code{MinimalExample$new()}}{
+		A maximum of one constructor of any signature can be used. </br>
+
+If different constructors are needed then they may be used but not 
+included in the R Api (i.e. not annotated with @RMethod. </br>
+
+Static factory methods can be used instead.
 	}
 
 	\subsection{Usage}{
@@ -150,7 +274,7 @@ J = JavaApi$new();
 		\preformatted{
   library(testRapi)
   J <- JavaApi$new()
-  J$AnotherTestRApi$new(message1, message2)
+  J$MinimalExample$new(logMessage)
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -159,28 +283,31 @@ J = JavaApi$new();
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1 - the message to be printed}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
-				\item{message2 - will be used for toString}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
+				\item{logMessage - a message which will be logged}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a78b52b)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		R6 AnotherTestRApi object: 
+		R6 MinimalExample object: 
 	}
 
 	\subsection{Examples}{
 		\if{html}{\out{<div class="r example copy">}}
 		\preformatted{
+    
+		J = testRapi::JavaApi$new()
+  minExample = J$MinimalExample$new('initialising....')
 		}
 		\if{html}{\out{</div>}}
 	}
 	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-create"></a>}}
+	\if{html}{\out{<a id="method-demoStatic"></a>}}
 	
-	\subsection{Method \code{AnotherTestRApi$create()}}{
-		
+	\subsection{Method \code{MinimalExample$demoStatic()}}{
+		Static methods are also supported. These are accessed through the
+root of the R api.
 	}
 
 	\subsection{Usage}{
@@ -188,7 +315,7 @@ J = JavaApi$new();
 		\preformatted{
   library(testRapi)
   J <- JavaApi$new()
-  J$AnotherTestRApi$create(message1, message2)
+  J$MinimalExample$demoStatic(message)
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -197,28 +324,29 @@ J = JavaApi$new();
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
-				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
+				\item{message}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a78b52b)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		R6 AnotherTestRApi object: 
+		uk.co.terminological.jsr233plugin.RType@7672960e: 
 	}
 
 	\subsection{Examples}{
 		\if{html}{\out{<div class="r example copy">}}
 		\preformatted{
+  J = testRapi::JavaApi$new()
+  J$MinimalExample$demoStatic('Ola, el mundo')
 		}
 		\if{html}{\out{</div>}}
 	}
 	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-concat"></a>}}
+	\if{html}{\out{<a id="method-new"></a>}}
 	
-	\subsection{Method \code{AnotherTestRApi$concat()}}{
-		
+	\subsection{Method \code{DataframeSerialiser$new()}}{
+		the default no-args constructor
 	}
 
 	\subsection{Usage}{
@@ -226,7 +354,7 @@ J = JavaApi$new();
 		\preformatted{
   library(testRapi)
   J <- JavaApi$new()
-  J$AnotherTestRApi$concat(message1, message2)
+  J$DataframeSerialiser$new()
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -235,15 +363,13 @@ J = JavaApi$new();
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
-				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@7930ffa9: 
+		R6 DataframeSerialiser object: 
 	}
 
 	\subsection{Examples}{
