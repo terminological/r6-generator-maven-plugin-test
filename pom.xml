@@ -7,12 +7,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<rjsr223.version>native-rjava-SNAPSHOT</rjsr223.version>
+		<r6.version>native-rjava-SNAPSHOT</r6.version>
 	</properties>
 
 	<groupId>com.github.terminological</groupId>
-	<artifactId>r-jsr223-maven-plugin-test</artifactId>
-	<version>${rjsr223.version}</version>
+	<artifactId>r6-generator-maven-plugin-test</artifactId>
+	<version>${r6.version}</version>
 	<packaging>jar</packaging>
 
 	<name>R JSR223 Maven Plugin</name>
@@ -20,12 +20,9 @@
 
 	<dependencies>
 		<dependency>
-			<!-- DEVELOPMENT -->
-<!-- 			<groupId>uk.co.terminological</groupId> -->
-			<!-- DEPLOYMENT -->
 			<groupId>com.github.terminological</groupId>
-			<artifactId>r-jsr223-runtime</artifactId>
-			<version>${rjsr223.version}</version>
+			<artifactId>r6-generator-runtime</artifactId>
+			<version>${r6.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -56,12 +53,9 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<!-- DEVELOPMENT -->
-<!-- 				<groupId>uk.co.terminological</groupId> -->
-				<!-- DEPLOYMENT -->
 				<groupId>com.github.terminological</groupId>
-				<artifactId>r-jsr223-maven-plugin</artifactId>
-				<version>${rjsr223.version}</version>
+				<artifactId>r6-generator-maven-plugin</artifactId>
+				<version>${r6.version}</version>
 				<configuration>
 					<packageData>
 						<title>A test library</title>
