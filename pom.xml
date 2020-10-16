@@ -2,18 +2,21 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.github.terminological</groupId>
-	<artifactId>r-jsr223-maven-plugin-test</artifactId>
-	<version>1.05</version>
-	<packaging>jar</packaging>
-
-	<name>R JSR223 Maven Plugin</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<rjsr223.version>native-rjava-SNAPSHOT</rjsr223.version>
 	</properties>
+
+	<groupId>com.github.terminological</groupId>
+	<artifactId>r-jsr223-maven-plugin-test</artifactId>
+	<version>${rjsr223.version}</version>
+	<packaging>jar</packaging>
+
+	<name>R JSR223 Maven Plugin</name>
+
 
 	<dependencies>
 		<dependency>
@@ -22,7 +25,7 @@
 			<!-- DEPLOYMENT -->
 			<groupId>com.github.terminological</groupId>
 			<artifactId>r-jsr223-runtime</artifactId>
-			<version>1.05</version>
+			<version>${rjsr223.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -58,11 +61,15 @@
 				<!-- DEPLOYMENT -->
 				<groupId>com.github.terminological</groupId>
 				<artifactId>r-jsr223-maven-plugin</artifactId>
-				<version>1.05</version>
+				<version>${rjsr223.version}</version>
 				<configuration>
 					<packageData>
 						<title>A test library</title>
 						<version>0.01</version>
+						<debug>true</debug>
+						<rjavaOpts>
+							<rjavaOpt>-Xmx256M</rjavaOpt>
+						</rjavaOpts>
 						<packageName>testRapi</packageName>
 						<license>MIT</license>
 						<description>An optional long description of the package</description>

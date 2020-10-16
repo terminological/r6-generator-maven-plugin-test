@@ -4,7 +4,7 @@
 
 \alias{AnotherTestRApi}
 
-\title{}
+\title{AnotherTestRApi}
 
 \usage{\preformatted{
 library(testRapi)
@@ -88,8 +88,8 @@ instance <- J$AnotherTestRApi$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1 - the message to be printed}{ - (java expects a java.lang.String)}
-				\item{message2 - will be used for toString}{ - (java expects a java.lang.String)}
+				\item{message1 - the message to be printed}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
+				\item{message2 - will be used for toString}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -126,8 +126,8 @@ instance <- J$AnotherTestRApi$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1}{ - (java expects a java.lang.String)}
-				\item{message2}{ - (java expects a java.lang.String)}
+				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
+				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -164,15 +164,15 @@ instance <- J$AnotherTestRApi$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1}{ - (java expects a java.lang.String)}
-				\item{message2}{ - (java expects a java.lang.String)}
+				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
+				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		java.lang.String: 
+		uk.co.terminological.jsr233plugin.RType@7930ffa9: 
 	}
 
 	\subsection{Examples}{
@@ -209,7 +209,7 @@ instance <- J$AnotherTestRApi$new(...);
 	}
 
 	\subsection{Returns}{
-		java.lang.String: 
+		uk.co.terminological.jsr233plugin.RType@7930ffa9: 
 	}
 
 	\subsection{Examples}{
@@ -246,7 +246,7 @@ instance <- J$AnotherTestRApi$new(...);
 	}
 
 	\subsection{Returns}{
-		void: 
+		uk.co.terminological.jsr233plugin.RType@221a2068: 
 	}
 
 	\subsection{Examples}{
@@ -283,7 +283,7 @@ instance <- J$AnotherTestRApi$new(...);
 	}
 
 	\subsection{Returns}{
-		java.lang.String: 
+		uk.co.terminological.jsr233plugin.RType@7930ffa9: 
 	}
 
 	\subsection{Examples}{

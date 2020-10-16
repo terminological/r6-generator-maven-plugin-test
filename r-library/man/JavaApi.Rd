@@ -4,7 +4,7 @@
 
 \alias{JavaApi}
 
-\title{}
+\title{A test library}
 
 \usage{\preformatted{
 library(testRapi)
@@ -21,8 +21,10 @@ J = JavaApi$new();
 	\subsection{Public methods}{
 		\itemize{
 			\item \code{JavaApi$new()}
-			\item \href{#method-TestRApi-new}{\code{J$TestRApi$new()}}
-			\item \href{#method-AnotherTestRApi-new}{\code{J$AnotherTestRApi$new(message1, message2)}}
+	\item \href{#method-TestRApi-new}{\code{J$TestRApi$new()}}
+	\item \href{#method-BounceTest-new}{\code{J$BounceTest$new()}}
+	\item \href{#method-FactoryTest-new}{\code{J$FactoryTest$new()}}
+	\item \href{#method-AnotherTestRApi-new}{\code{J$AnotherTestRApi$new(message1, message2)}}
 			\item \href{#method-AnotherTestRApi-create}{\code{J$AnotherTestRApi$create(message1, message2)}}
 			\item \href{#method-AnotherTestRApi-concat}{\code{J$AnotherTestRApi$concat(message1, message2)}}
 		}
@@ -32,7 +34,7 @@ J = JavaApi$new();
 	\if{html}{\out{<a id="method-new"></a>}}
 	
 	\subsection{Method \code{TestRApi$new()}}{
-		
+		the default no-args constructor
 	}
 
 	\subsection{Usage}{
@@ -67,6 +69,78 @@ J = JavaApi$new();
 	\if{html}{\out{<hr>}}
 	\if{html}{\out{<a id="method-new"></a>}}
 	
+	\subsection{Method \code{BounceTest$new()}}{
+		the default no-args constructor
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$BounceTest$new()
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		R6 BounceTest object: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-new"></a>}}
+	
+	\subsection{Method \code{FactoryTest$new()}}{
+		the default no-args constructor
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$FactoryTest$new()
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		R6 FactoryTest object: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-new"></a>}}
+	
 	\subsection{Method \code{AnotherTestRApi$new()}}{
 		the first constructor is used if there are none annotated
 	}
@@ -85,8 +159,8 @@ J = JavaApi$new();
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1 - the message to be printed}{ - (java expects a java.lang.String)}
-				\item{message2 - will be used for toString}{ - (java expects a java.lang.String)}
+				\item{message1 - the message to be printed}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
+				\item{message2 - will be used for toString}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -123,8 +197,8 @@ J = JavaApi$new();
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1}{ - (java expects a java.lang.String)}
-				\item{message2}{ - (java expects a java.lang.String)}
+				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
+				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -161,15 +235,15 @@ J = JavaApi$new();
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1}{ - (java expects a java.lang.String)}
-				\item{message2}{ - (java expects a java.lang.String)}
+				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
+				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		java.lang.String: 
+		uk.co.terminological.jsr233plugin.RType@7930ffa9: 
 	}
 
 	\subsection{Examples}{

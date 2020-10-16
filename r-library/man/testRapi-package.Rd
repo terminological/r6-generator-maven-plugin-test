@@ -14,6 +14,8 @@ Classes:
 \itemize{ 
 	\item \code{JavaApi}
 	\item \code{TestRApi}
+	\item \code{BounceTest}
+	\item \code{FactoryTest}
 	\item \code{AnotherTestRApi}
 }
 }

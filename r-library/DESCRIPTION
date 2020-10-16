@@ -11,8 +11,10 @@ Encoding: UTF-8
 LazyData: true
 Suggests: 
 	roxygen2,
-	devtoolsImports:
+	devtools
+Imports:
 	ggplot2,
 	dplyr,
-	jsr223,
-	R6
+	rJava,
+	R6,
+	xptr

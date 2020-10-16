@@ -2,8 +2,10 @@
 
 export(JavaApi)
 export(TestRApi)
+export(BounceTest)
+export(FactoryTest)
 export(AnotherTestRApi)
 import(ggplot2)
 import(dplyr)
-import(jsr223)
+import(rJava)
 import(magrittr)

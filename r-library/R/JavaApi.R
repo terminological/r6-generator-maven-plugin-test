@@ -2,435 +2,329 @@
 # returns a reference to a java class in a jsr223 engine
 JavaApi = R6::R6Class("JavaApi", public=list( 
 	#### fields ----
-	.engine = NULL,
-	.objId = 0,
+	.log = NULL,
+	.fromJava = NULL,
+	.toJava = NULL,
+	.reg = list(),
 	TestRApi = NULL,
+	BounceTest = NULL,
+	FactoryTest = NULL,
 	AnotherTestRApi = NULL,
   
   	changeLogLevel = function(logLevel) {
-  	self$.engine$logLevel = logLevel;
-  	self$.engine %@% '
-  	  import org.apache.log4j.Logger;
-  	  import org.apache.log4j.Level;
-  		Logger.getRootLogger().setLevel(Level.toLevel(logLevel));
-  	'
+  		.jcall("uk/co/terminological/rjava/LogController", returnSig = "V", method = "changeLogLevel" , logLevel)
+    },
+	
+	reconfigureLog = function(log4jproperties) {
+  		.jcall("uk/co/terminological/rjava/LogController", returnSig = "V", method = "reconfigureLog" , log4jproperties)
+    },
+	
+	#### registration functions
+	
+	register = function(r6obj) {
+		ptr = xptr::xptr_address(r6obj$.jobj@jobj)
+		self$.reg[[ptr]] = r6obj
+	},
+	
+	isRegistered = function(jobj) {
+		ptr = xptr::xptr_address(jobj@jobj)
+		return(!is.null(self$.reg[[ptr]]))
+	},
+	
+	getRegistered = function(jobj) {
+		ptr = xptr::xptr_address(jobj@jobj)
+		return(self$.reg[[ptr]])
 	},
 	
  	#### constructor ----
- 	initialize = function(logLevel = "warn") {
+ 	initialize = function(logLevel = "INFO") {
+ 	
+ 		.jcall("uk/co/terminological/rjava/LogController", returnSig = "V", method = "configureLog" , logLevel)
+    	self$.log = .jcall("org/slf4j/LoggerFactory", returnSig = "Lorg/slf4j/Logger;", method = "getLogger", "testRapi");
+		.jcall(self$.log,returnSig = "V",method = "info","testRapi: JavaApi initialised");
 	
-	# initialise java engine
-	
-	class.path <- c(
-		system.file("java", "groovy-all-2.4.17.jar", package="testRapi"),
-		system.file("java", "slf4j-log4j12-1.7.22.jar", package="testRapi"),
-		system.file("java", "log4j-1.2.17.jar", package="testRapi"),
-		system.file("java", "slf4j-api-1.7.22.jar", package="testRapi"),
-		system.file("java", "r-jsr223-maven-plugin-test-1.04-jar-with-dependencies.jar", package="testRapi")
-	)	
-	self$.engine = jsr223::ScriptEngine$new("groovy", class.path)
-	self$.engine$setDataFrameRowMajor(TRUE)
-	self$.engine$logLevel = logLevel;
-	# set up engine
-	self$.engine %@% '
-		import org.slf4j.Logger;
-		import org.slf4j.LoggerFactory;
-		import org.apache.log4j.BasicConfigurator;
-		import org.apache.log4j.Logger;
-		import org.apache.log4j.Level;
+		# initialise type conversion functions
 		
-		BasicConfigurator.configure();
-		Logger.getRootLogger().setLevel(Level.toLevel(logLevel));
-
-		log = LoggerFactory.getLogger("testRapi");
-		log.info("logging initialised");
-
-		objs = [];
-		nextObjId = 0;
-	'
+		self$.toJava = list(
+			FactoryTest=function(rObj) return(rObj),
+			void=function(rObj) stop('no input expected'),
+			RDateVector=function(rObj) {
+				if (is.null(rObj)) return(rJava::.new('uk/co/terminological/rjava/types/RDateVector'))
+				tmp = as.character(rObj)
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RDateVector',rJava::.jarray(tmp)))
+			},
+			RDate=function(rObj) {
+				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RDate'))
+				if (length(rObj) > 1) stop('input too long')
+				tmp = as.character(rObj)[[1]]
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RDate',tmp))
+			},
+			AnotherTestRApi=function(rObj) return(rObj),
+			double=function(rObj) {
+			    if (is.na(rObj)) stop('cant use NA as input to java double')
+			    if (length(rObj) > 1) stop('input too long')
+			    if (!is.numeric(rObj)) stop('not an double')
+			    return(as.numeric(rObj[[1]]))
+			},
+			RList=function(rObj) {
+			   if (!is.list(rObj)) stop ('expecting a list ')
+			   if (!is.null(names(rObj))) warning('not expecting list to be named')
+				jout = rJava::.jnew('uk/co/terminological/rjava/types/RList')
+				lapply(rObj, function(x) {
+					if (is.null(x)) tmp = self$.toJava$RNull(x)
+					else if (is.data.frame(x)) tmp = self$.toJava$RDataframe(x)
+					else if (is.list(x) & !is.null(names(x))) tmp = self$.toJava$RNamedList(x)
+					else if (is.list(x)) tmp = self$.toJava$RList(x)
+					else if (length(x) == 1 & is.character(x)) tmp = self$.toJava$RCharacter(x)
+					else if (length(x) == 1 & is.integer(x)) tmp = self$.toJava$RInteger(x)
+					else if (length(x) == 1 & is.factor(x)) tmp = self$.toJava$RFactor(x)
+					else if (length(x) == 1 & is.logical(x)) tmp = self$.toJava$RLogical(x)
+					else if (length(x) == 1 & is.numeric(x)) tmp = self$.toJava$RNumeric(x)
+					else if (length(x) == 1 & inherits(x,c('Date','POSIXt'))) tmp = self$.toJava$RDate(x)
+					else if (is.character(x)) tmp = self$.toJava$RCharacterVector(x)
+					else if (is.integer(x)) tmp = self$.toJava$RIntegerVector(x)
+					else if (is.factor(x)) tmp = self$.toJava$RFactorVector(x)
+					else if (is.logical(x)) tmp = self$.toJava$RLogicalVector(x)
+					else if (is.numeric(x)) tmp = self$.toJava$RNumericVector(x)
+					else if (inherits(x,c('Date','POSIXt'))) tmp = self$.toJava$RDateVector(x)
+					else stop ('unrecognised type: ',class(x),' with value ',x)
+					rJava::.jcall(jout,returnSig='Z',method='add',rJava::.jcast(tmp, new.class='uk/co/terminological/rjava/types/RObject'))
+				})
+				return(jout)
+			},
+			TestRApi=function(rObj) return(rObj),
+			RCharacterVector=function(rObj) {
+				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacterVector'))
+				if (!is.character(rObj)) stop('expected a vector of characters')
+				tmp = as.character(rObj)
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacterVector',rJava::.jarray(tmp)))
+			},
+			RNumericVector=function(rObj) {
+				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RNumericVector'))
+				if (!is.numeric(rObj)) stop('expected a numeric')
+				tmp = as.numeric(rObj)
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RNumericVector',rJava::.jarray(tmp)))
+			},
+			RNumeric=function(rObj) {
+				if (length(rObj) > 1) stop('input too long')
+				if (!is.numeric(rObj)) stop('expected a numeric')
+				tmp = as.numeric(rObj)[[1]]
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RNumeric',tmp))
+			},
+			RLogical=function(rObj) {
+				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogical'))
+				if (length(rObj) > 1) stop('input too long')
+				if (!is.logical(rObj)) stop('expected a logical')
+				tmp = as.integer(rObj)[[1]]
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RLogical',tmp))
+			},
+			RFactor=function(rObj) {
+				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RFactor'))
+				if (length(rObj) > 1) stop('input too long')
+				tmp = as.integer(rObj)[[1]]
+				tmpLabel = levels(rObj)[[tmp]]
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RFactor',tmp, tmpLabel))
+			},
+			int=function(rObj) {
+			    if (is.na(rObj)) stop('cant use NA as input to java int')
+			    if (length(rObj) > 1) stop('input too long')
+			    if (as.integer(rObj)[[1]]!=rObj[[1]]) stop('not an integer')
+			    return(as.integer(rObj[[1]]))
+			},
+			RLogicalVector=function(rObj) {
+				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogicalVector'))
+				if (!is.logical(rObj)) stop('expected a vector of logicals')
+				tmp = as.integer(rObj)
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RLogicalVector',rJava::.jarray(tmp)))
+			},
+			RCharacter=function(rObj) {
+				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter'))
+				tmp = as.character(rObj)[[1]]
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter',tmp))
+			},
+			RNull=function(rObj) {
+				if (!is.null(rObj)) stop('input expected to be NULL')
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RNull'))
+			},
+			RInteger=function(rObj) {
+				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RInteger'))
+				if (length(rObj) > 1) stop('input too long')
+				tmp = as.integer(rObj)[[1]]
+				if (rObj[[1]]!=tmp) stop('cannot cast to integer: ',rObj)
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RInteger',tmp))
+			},
+			RDataframe=function(rObj) {
+				jout = rJava::.jnew('uk/co/terminological/rjava/types/RDataframe')
+				lapply(colnames(rObj), function(x) {
+					rcol = rObj[[x]]
+					if(is.character(rcol)) jvec = self$.toJava$RCharacterVector(rcol)
+					else if(is.integer(rcol)) jvec = self$.toJava$RIntegerVector(rcol)
+					else if(is.factor(rcol)) jvec = self$.toJava$RFactorVector(rcol)
+					else if(is.logical(rcol)) jvec = self$.toJava$RLogicalVector(rcol)
+					else if(is.numeric(rcol)) jvec = self$.toJava$RNumericVector(rcol)
+					else if(inherits(rcol,c('Date','POSIXt'))) jvec = self$.toJava$RDateVector(rcol)
+					else stop('unsupported data type in column: ',x)
+					rJava::.jcall(jout,returnSig='V',method='addCol',x,rJava::.jcast(jvec,new.class='uk/co/terminological/rjava/types/RVector'))
+				})
+				return(jout)
+			},
+			BounceTest=function(rObj) return(rObj),
+			String=function(rObj) return(as.character(rObj)),
+			RFactorVector=function(rObj) {
+				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RFactorVector'))
+				if (!is.factor(rObj)) stop('expected a vector of factors')
+				tmp = as.integer(rObj)
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RFactorVector', rJava::.jarray(tmp), rJava::.jarray(levels(rObj))))
+			},
+			RIntegerVector=function(rObj) {
+				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RIntegerVector'))
+				tmp = as.integer(rObj)
+				if (any(rObj!=tmp,na.rm=TRUE)) stop('cannot coerce to integer: ',rObj)
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RIntegerVector',rJava::.jarray(tmp)))
+			},
+			RNamedList=function(rObj) {
+				if (!is.list(rObj) | is.null(names(rObj))) stop ('expecting a named list')
+				jout = rJava::.jnew('uk/co/terminological/rjava/types/RNamedList')
+				lapply(names(rObj), function(name) {
+					x = rObj[[name]]
+					if (is.null(x)) tmp = self$.toJava$RNull(x)
+					else if (is.data.frame(x)) tmp = self$.toJava$RDataframe(x)
+					else if (is.list(x) & !is.null(names(x))) tmp = self$.toJava$RNamedList(x)
+					else if (is.list(x)) tmp = self$.toJava$RList(x)
+					else if (length(x) == 1 & is.character(x)) tmp = self$.toJava$RCharacter(x)
+					else if (length(x) == 1 & is.integer(x)) tmp = self$.toJava$RInteger(x)
+					else if (length(x) == 1 & is.factor(x)) tmp = self$.toJava$RFactor(x)
+					else if (length(x) == 1 & is.logical(x)) tmp = self$.toJava$RLogical(x)
+					else if (length(x) == 1 & is.numeric(x)) tmp = self$.toJava$RNumeric(x)
+					else if (length(x) == 1 & inherits(x,c('Date','POSIXt'))) tmp = self$.toJava$RDate(x)
+					else if (is.character(x)) tmp = self$.toJava$RCharacterVector(x)
+					else if (is.integer(x)) tmp = self$.toJava$RIntegerVector(x)
+					else if (is.factor(x)) tmp = self$.toJava$RFactorVector(x)
+					else if (is.logical(x)) tmp = self$.toJava$RLogicalVector(x)
+					else if (is.numeric(x)) tmp = self$.toJava$RNumericVector(x)
+					else if (inherits(x,c('Date','POSIXt'))) tmp = self$.toJava$RDateVector(x)
+					else stop ('unrecognised type: ',class(x),' with value ',x)
+					rJava::.jcall(jout,returnSig='Luk/co/terminological/rjava/types/RObject;',method='put',name,rJava::.jcast(tmp, new.class='uk/co/terminological/rjava/types/RObject'))
+				})
+				return(jout)
+			}		)
+		
+		self$.fromJava = list(
+			FactoryTest=function(jObj) return(jObj),
+			void=function(jObj) return(NULL),
+			RDateVector=function(jObj) as.Date(rJava::.jcall(jObj,returnSig='[Ljava/lang/String;',method='rPrimitive'),'%Y-%m-%d'),
+			RDate=function(jObj) as.Date(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rPrimitive'),'%Y-%m-%d'),
+			AnotherTestRApi=function(jObj) return(jObj),
+			double=function(jObj) return(as.numeric(jObj)),
+			RList=function(jObj) {
+				tmp = eval(parse(text=rJava::.jcall(jObj,'rCode', returnSig='Ljava/lang/String;')))
+				return(tmp)
+			},
+			TestRApi=function(jObj) return(jObj),
+			RCharacterVector=function(jObj) as.character(rJava::.jcall(jObj,returnSig='[Ljava/lang/String;',method='rPrimitive')),
+			RNumericVector=function(jObj) as.numeric(rJava::.jcall(jObj,returnSig='[D',method='rPrimitive')),
+			RNumeric=function(jObj) as.numeric(rJava::.jcall(jObj,returnSig='D',method='rPrimitive')),
+			RLogical=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='I',method='rPrimitive')),
+			RFactor=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rLabel')),
+			int=function(jObj) return(as.integer(jObj)),
+			RLogicalVector=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='[I',method='rPrimitive')),
+			RCharacter=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rPrimitive')),
+			RNull=function(jObj) return(NULL),
+			RInteger=function(jObj) as.integer(rJava::.jcall(jObj,returnSig='I',method='rPrimitive')),
+			RDataframe=function(jObj) {
+				convDf = eval(parse(text=rJava::.jcall(jObj,'rConversion', returnSig='Ljava/lang/String;')))
+				return(convDf(jObj))
+			},
+			BounceTest=function(jObj) return(jObj),
+			String=function(jObj) return(as.character(jObj)),
+			RFactorVector=function(jObj) ordered(
+				x = rJava::.jcall(jObj,returnSig='[I',method='rValues'),
+				labels = rJava::.jcall(jObj,returnSig='[Ljava/lang/String;',method='rLevels')
+			),
+			RIntegerVector=function(jObj) as.integer(rJava::.jcall(jObj,returnSig='[I',method='rPrimitive')),
+			RNamedList=function(jObj) {
+				tmp = eval(parse(text=rJava::.jcall(jObj,'rCode', returnSig='Ljava/lang/String;')))
+				return(tmp)
+			}		)
 	
-	
-	# initialise constructor and static class definitions
-	self$TestRApi = list(
-		new = function() {
-			# constructor
-			# copy parameters
-			objId = self$.engine %~% '
-				synchronized(objs) {
-					objs[nextObjId] = new uk.co.terminological.mavenrjsr233plugintest.TestRApi();
-					nextObjId = nextObjId+1 
-				}
-				return nextObjId-1;
-			'
-			# delete parameters
-			return(TestRApi$new(self$.engine, objId))
-		}	
+		# initialise java class constructors and static method definitions
+		
+		self$TestRApi = list(
+			new = function() {
+				# constructor
+				# convert parameters to java
+				# invoke constructor method
+				tmp_out = .jnew("uk/co/terminological/mavenrjsr233plugintest/TestRApi" ); 
+				# convert result back to R (should be a identity conversion)
+				tmp_r6 = TestRApi$new(
+					self$.fromJava$TestRApi(tmp_out),
+					self
+				);
+			}
 	)
-	self$AnotherTestRApi = list(
-		new = function(message1, message2) {
-			# constructor
-			# copy parameters
-		self$.engine$tmp_message1 = message1; # copy parameter by value
-		self$.engine$tmp_message2 = message2; # copy parameter by value
-			objId = self$.engine %~% '
-				synchronized(objs) {
-					objs[nextObjId] = new uk.co.terminological.mavenrjsr233plugintest.AnotherTestRApi(tmp_message1, tmp_message2);
-					nextObjId = nextObjId+1 
-				}
-				return nextObjId-1;
-			'
-			# delete parameters
-			self$.engine$remove("tmp_message1")
-			self$.engine$remove("tmp_message2")
-			return(AnotherTestRApi$new(self$.engine, objId))
-		}	,
-		create = function(message1, message2) {
-			# copy parameters
-			self$.engine$tmp_message1 = message1; # by value
-			self$.engine$tmp_message2 = message2; # by value
-			#execute static call
-			# execute static method and return object by reference (always creates a new instance)   
-			objId = self$.engine %~% '
-				synchronized(objs) {
-					objs[nextObjId] = uk.co.terminological.mavenrjsr233plugintest.AnotherTestRApi.create(tmp_message1, tmp_message2);
-					nextObjId = nextObjId+1 
-				}
-				return nextObjId-1;
-			'
-			# wrap resulting id in R class - static methods always create instances
-			out = AnotherTestRApi$new(self$.engine, objId)
-			# delete parameters
-			self$.engine$remove("tmp_message1")
-			self$.engine$remove("tmp_message2")
-			return(out)
-		},
-		concat = function(message1, message2) {
-			# copy parameters
-			self$.engine$tmp_message1 = message1; # by value
-			self$.engine$tmp_message2 = message2; # by value
-			#execute static call
-			# execute static method and return object by value
-			out = self$.engine %~% '
-				return uk.co.terminological.mavenrjsr233plugintest.AnotherTestRApi.concat(tmp_message1, tmp_message2);
-			'
-			# delete parameters
-			self$.engine$remove("tmp_message1")
-			self$.engine$remove("tmp_message2")
-			return(out)
-		}	)
-	}
-))
-
-## a generic catch all object reference for classes that cannot be mapped to and from Java.
-Object = R6::R6Class("Object", public=list(
-	.engine = NULL,
-	.objId = NULL,
-	initialize = function(engine,objectId){
-		self$.engine = engine;
-		self$.objId = objectId;
-	},
-	print = function() {
-		self$.engine$tmp2_objId = self$.objId;
-		out = self$.engine %~% '
-			return objs[tmp2_objId].toString();
-		'
-		self$.engine$remove("tmp2_objId")
-		print(out)
-		invisible(self)
-	}
-))
-
-TestRApi = R6::R6Class("TestRApi", public=list(
-	.engine = NULL,
-	.objId = NULL,
-	initialize = function(engine,objectId){
-		self$.engine = engine;
-		self$.objId = objectId;
-	},
-	doHelloWorld = function() {
-		# copy parameters
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a result by value
-		out = self$.engine %~% '
-			return  objs[tmp2_objId].doHelloWorld();
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		return(out)
-	},
-	fluentSetMessage = function(message) {
-		# copy parameters
-		self$.engine$tmp_message = message; # pass parameter by value
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a new (or the same) objId by reference   
-		objId = self$.engine %~% '
-			def tmp = objs[tmp2_objId].fluentSetMessage(tmp_message);
-			// if the result the same object as the original? e.g. a fluent method
-			if (tmp.is(objs[tmp2_objId])) {
-				return tmp2_objId; 
-			} else {
-				synchronized(objs) {
-					objs[nextObjId] = tmp;
-					nextObjId = nextObjId+1; 
-				}
-				return nextObjId-1;
+		self$BounceTest = list(
+			new = function() {
+				# constructor
+				# convert parameters to java
+				# invoke constructor method
+				tmp_out = .jnew("uk/co/terminological/mavenrjsr233plugintest/BounceTest" ); 
+				# convert result back to R (should be a identity conversion)
+				tmp_r6 = BounceTest$new(
+					self$.fromJava$BounceTest(tmp_out),
+					self
+				);
 			}
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		self$.engine$remove("tmp_message")
-		if (objId == self$.objId) {
-			invisible(self) # e.g. a fluent method
-		} else {
-			out = TestRApi$new(self$.engine, objId)
-			return(out)
-		}
-	},
-	factoryMethod = function(a, b) {
-		# copy parameters
-		self$.engine$tmp_a = a; # pass parameter by value
-		self$.engine$tmp_b = b; # pass parameter by value
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a new (or the same) objId by reference   
-		objId = self$.engine %~% '
-			def tmp = objs[tmp2_objId].factoryMethod(tmp_a, tmp_b);
-			// if the result the same object as the original? e.g. a fluent method
-			if (tmp.is(objs[tmp2_objId])) {
-				return tmp2_objId; 
-			} else {
-				synchronized(objs) {
-					objs[nextObjId] = tmp;
-					nextObjId = nextObjId+1; 
-				}
-				return nextObjId-1;
+	)
+		self$FactoryTest = list(
+			new = function() {
+				# constructor
+				# convert parameters to java
+				# invoke constructor method
+				tmp_out = .jnew("uk/co/terminological/mavenrjsr233plugintest/FactoryTest" ); 
+				# convert result back to R (should be a identity conversion)
+				tmp_r6 = FactoryTest$new(
+					self$.fromJava$FactoryTest(tmp_out),
+					self
+				);
 			}
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		self$.engine$remove("tmp_a")
-		self$.engine$remove("tmp_b")
-		if (objId == self$.objId) {
-			invisible(self) # e.g. a fluent method
-		} else {
-			out = AnotherTestRApi$new(self$.engine, objId)
-			return(out)
-		}
-	},
-	getMessage = function() {
-		# copy parameters
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a result by value
-		out = self$.engine %~% '
-			return  objs[tmp2_objId].getMessage();
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		return(out)
-	},
-	doSum = function(a, b) {
-		# copy parameters
-		self$.engine$tmp_a = a; # pass parameter by value
-		self$.engine$tmp_b = b; # pass parameter by value
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a result by value
-		out = self$.engine %~% '
-			return  objs[tmp2_objId].doSum(tmp_a, tmp_b);
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		self$.engine$remove("tmp_a")
-		self$.engine$remove("tmp_b")
-		return(out)
-	},
-	objectAsParameter = function(otherObj) {
-		# copy parameters
-		self$.engine %@% paste0('tmp_otherObj = objs[',otherObj$.objId,']'); # pass parameter by reference
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a result by value
-		out = self$.engine %~% '
-			return  objs[tmp2_objId].objectAsParameter(tmp_otherObj);
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		self$.engine$remove("tmp_otherObj")
-		return(out)
-	},
-	fluentRandomObjectAsParamerer = function(file) {
-		# copy parameters
-		self$.engine %@% paste0('tmp_file = objs[',file$.objId,']'); # pass parameter by reference
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a new (or the same) objId by reference   
-		objId = self$.engine %~% '
-			def tmp = objs[tmp2_objId].fluentRandomObjectAsParamerer(tmp_file);
-			// if the result the same object as the original? e.g. a fluent method
-			if (tmp.is(objs[tmp2_objId])) {
-				return tmp2_objId; 
-			} else {
-				synchronized(objs) {
-					objs[nextObjId] = tmp;
-					nextObjId = nextObjId+1; 
-				}
-				return nextObjId-1;
-			}
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		self$.engine$remove("tmp_file")
-		if (objId == self$.objId) {
-			invisible(self) # e.g. a fluent method
-		} else {
-			out = Object$new(self$.engine, objId)
-			return(out)
-		}
-	},
-	doSomethingWithDataFrame = function(colMajorDf) {
-		# copy parameters
-		self$.engine$tmp_colMajorDf = colMajorDf; # pass parameter by value
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a new (or the same) objId by reference   
-		objId = self$.engine %~% '
-			def tmp = objs[tmp2_objId].doSomethingWithDataFrame(tmp_colMajorDf);
-			// if the result the same object as the original? e.g. a fluent method
-			if (tmp.is(objs[tmp2_objId])) {
-				return tmp2_objId; 
-			} else {
-				synchronized(objs) {
-					objs[nextObjId] = tmp;
-					nextObjId = nextObjId+1; 
-				}
-				return nextObjId-1;
-			}
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		self$.engine$remove("tmp_colMajorDf")
-		invisible(NULL)
-	},
-	doSomethingWithOtherDataFrame = function(rowMajorDf) {
-		# copy parameters
-		self$.engine %@% paste0('tmp_rowMajorDf = objs[',rowMajorDf$.objId,']'); # pass parameter by reference
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a new (or the same) objId by reference   
-		objId = self$.engine %~% '
-			def tmp = objs[tmp2_objId].doSomethingWithOtherDataFrame(tmp_rowMajorDf);
-			// if the result the same object as the original? e.g. a fluent method
-			if (tmp.is(objs[tmp2_objId])) {
-				return tmp2_objId; 
-			} else {
-				synchronized(objs) {
-					objs[nextObjId] = tmp;
-					nextObjId = nextObjId+1; 
-				}
-				return nextObjId-1;
-			}
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		self$.engine$remove("tmp_rowMajorDf")
-		invisible(NULL)
-	},
-	generateRowMajorDataFrame = function() {
-		# copy parameters
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a result by value
-		out = self$.engine %~% '
-			return  objs[tmp2_objId].generateRowMajorDataFrame();
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		return(out)
-	},
-	generateColMajorDataFrame = function() {
-		# copy parameters
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a result by value
-		out = self$.engine %~% '
-			return  objs[tmp2_objId].generateColMajorDataFrame();
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		return(out)
-	},
-	generateColMajorDataFrame2 = function() {
-		# copy parameters
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a result by value
-		out = self$.engine %~% '
-			return (List<Map<String,Object>>) objs[tmp2_objId].generateColMajorDataFrame2();
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		return(out)
-	},
-	print = function() {
-		self$.engine$tmp2_objId = self$.objId;
-		out = self$.engine %~% '
-			return objs[tmp2_objId].toString();
-		'
-		self$.engine$remove("tmp2_objId")
-		print(out)
-		invisible(self)
-	}
-))
-
-AnotherTestRApi = R6::R6Class("AnotherTestRApi", public=list(
-	.engine = NULL,
-	.objId = NULL,
-	initialize = function(engine,objectId){
-		self$.engine = engine;
-		self$.objId = objectId;
-	},
-	throwCatchable = function() {
-		# copy parameters
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a result by value
-		out = self$.engine %~% '
-			return  objs[tmp2_objId].throwCatchable();
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		return(out)
-	},
-	printMessage = function() {
-		# copy parameters
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a new (or the same) objId by reference   
-		objId = self$.engine %~% '
-			def tmp = objs[tmp2_objId].printMessage();
-			// if the result the same object as the original? e.g. a fluent method
-			if (tmp.is(objs[tmp2_objId])) {
-				return tmp2_objId; 
-			} else {
-				synchronized(objs) {
-					objs[nextObjId] = tmp;
-					nextObjId = nextObjId+1; 
-				}
-				return nextObjId-1;
-			}
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		invisible(NULL)
-	},
-	throwRuntime = function() {
-		# copy parameters
-		self$.engine$tmp2_objId = self$.objId;
-		#execute call on instance .objId returning a result by value
-		out = self$.engine %~% '
-			return  objs[tmp2_objId].throwRuntime();
-		'
-		# delete parameters
-		self$.engine$remove("tmp2_objId")
-		return(out)
-	},
-	print = function() {
-		self$.engine$tmp2_objId = self$.objId;
-		out = self$.engine %~% '
-			return objs[tmp2_objId].toString();
-		'
-		self$.engine$remove("tmp2_objId")
-		print(out)
-		invisible(self)
+	)
+		self$AnotherTestRApi = list(
+			new = function(message1, message2) {
+				# constructor
+				# convert parameters to java
+				tmp_message1 = self$.toJava$RCharacter(message1);
+				tmp_message2 = self$.toJava$RCharacter(message2);
+				# invoke constructor method
+				tmp_out = .jnew("uk/co/terminological/mavenrjsr233plugintest/AnotherTestRApi" , tmp_message1, tmp_message2); 
+				# convert result back to R (should be a identity conversion)
+				tmp_r6 = AnotherTestRApi$new(
+					self$.fromJava$AnotherTestRApi(tmp_out),
+					self
+				);
+			},
+			create = function(message1, message2) {
+				# copy parameters
+				tmp_message1 = self$.toJava$RCharacter(message1);
+				tmp_message2 = self$.toJava$RCharacter(message2);
+				#execute static call
+				tmp_out = .jcall("uk/co/terminological/mavenrjsr233plugintest/AnotherTestRApi", returnSig = "Luk/co/terminological/mavenrjsr233plugintest/AnotherTestRApi;", method="create" , tmp_message1, tmp_message2); 
+				# get object if it already exists
+				if(self$isRegistered(tmp_out)) return(self$getRegistered(tmp_out))
+				# wrap return java object in R6 class 
+				return(AnotherTestRApi$new(
+					self$.fromJava$AnotherTestRApi(tmp_out),
+					self
+				));
+			},
+			concat = function(message1, message2) {
+				# copy parameters
+				tmp_message1 = self$.toJava$RCharacter(message1);
+				tmp_message2 = self$.toJava$RCharacter(message2);
+				#execute static call
+				tmp_out = .jcall("uk/co/terminological/mavenrjsr233plugintest/AnotherTestRApi", returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="concat" , tmp_message1, tmp_message2); 
+				# convert java object back to R
+				return(self$.fromJava$RCharacter(tmp_out));
+			}	)
 	}
 ))
 

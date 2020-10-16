@@ -4,7 +4,7 @@
 
 \alias{TestRApi}
 
-\title{}
+\title{TestRApi}
 
 \usage{\preformatted{
 library(testRapi)
@@ -46,11 +46,11 @@ this is a details comment
 ## -----------------------------------
 
 ## -----------------------------------
-## Method `TestRApi$objectAsParameter`
+## Method `TestRApi$doSum2`
 ## -----------------------------------
 
 ## -----------------------------------
-## Method `TestRApi$fluentRandomObjectAsParamerer`
+## Method `TestRApi$objectAsParameter`
 ## -----------------------------------
 
 ## -----------------------------------
@@ -58,19 +58,11 @@ this is a details comment
 ## -----------------------------------
 
 ## -----------------------------------
-## Method `TestRApi$doSomethingWithOtherDataFrame`
+## Method `TestRApi$generateDataFrame`
 ## -----------------------------------
 
 ## -----------------------------------
-## Method `TestRApi$generateRowMajorDataFrame`
-## -----------------------------------
-
-## -----------------------------------
-## Method `TestRApi$generateColMajorDataFrame`
-## -----------------------------------
-
-## -----------------------------------
-## Method `TestRApi$generateColMajorDataFrame2`
+## Method `TestRApi$generateStreamDataFrame`
 ## -----------------------------------
 
 }
@@ -94,13 +86,11 @@ this is a details comment
 			\item \href{#method-factoryMethod}{\code{instance$factoryMethod(a, b)}}
 			\item \href{#method-getMessage}{\code{instance$getMessage()}}
 			\item \href{#method-doSum}{\code{instance$doSum(a, b)}}
+			\item \href{#method-doSum2}{\code{instance$doSum2(a, b)}}
 			\item \href{#method-objectAsParameter}{\code{instance$objectAsParameter(otherObj)}}
-			\item \href{#method-fluentRandomObjectAsParamerer}{\code{instance$fluentRandomObjectAsParamerer(file)}}
-			\item \href{#method-doSomethingWithDataFrame}{\code{instance$doSomethingWithDataFrame(colMajorDf)}}
-			\item \href{#method-doSomethingWithOtherDataFrame}{\code{instance$doSomethingWithOtherDataFrame(rowMajorDf)}}
-			\item \href{#method-generateRowMajorDataFrame}{\code{instance$generateRowMajorDataFrame()}}
-			\item \href{#method-generateColMajorDataFrame}{\code{instance$generateColMajorDataFrame()}}
-			\item \href{#method-generateColMajorDataFrame2}{\code{instance$generateColMajorDataFrame2()}}
+			\item \href{#method-doSomethingWithDataFrame}{\code{instance$doSomethingWithDataFrame(dataframe)}}
+			\item \href{#method-generateDataFrame}{\code{instance$generateDataFrame()}}
+			\item \href{#method-generateStreamDataFrame}{\code{instance$generateStreamDataFrame()}}
 			\item \code{instance$clone()}
 			\item \code{instance$print()}
 		}
@@ -110,7 +100,7 @@ this is a details comment
 	\if{html}{\out{<a id="method-new"></a>}}
 	
 	\subsection{Method \code{new()}}{
-		
+		the default no-args constructor
 	}
 
 	\subsection{Usage}{
@@ -170,7 +160,7 @@ this is a details comment
 	}
 
 	\subsection{Returns}{
-		java.lang.String: this java method returns a String
+		uk.co.terminological.jsr233plugin.RType@7930ffa9: this java method returns a String
 	}
 
 	\subsection{Examples}{
@@ -203,7 +193,7 @@ this is a details comment
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message the message is a string}{ - (java expects a java.lang.String)}
+				\item{message the message is a string}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -241,8 +231,8 @@ this is a details comment
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{a}{ - (java expects a java.lang.String)}
-				\item{b}{ - (java expects a java.lang.String)}
+				\item{a}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
+				\item{b}{ - (java expects a uk.co.terminological.jsr233plugin.RType@7930ffa9)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -286,7 +276,7 @@ this is a details comment
 	}
 
 	\subsection{Returns}{
-		java.lang.String: A message previously set or maybe null
+		uk.co.terminological.jsr233plugin.RType@7930ffa9: A message previously set or maybe null
 	}
 
 	\subsection{Examples}{
@@ -317,15 +307,54 @@ this is a details comment
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{a the A parameter}{ - (java expects a java.lang.Double)}
-				\item{b the B parameter}{ - (java expects a java.lang.Double)}
+				\item{a the A parameter}{ - (java expects a uk.co.terminological.jsr233plugin.RType@dd2856e)}
+				\item{b the B parameter}{ - (java expects a uk.co.terminological.jsr233plugin.RType@dd2856e)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		java.lang.Double: A+B of course
+		uk.co.terminological.jsr233plugin.RType@dd2856e: A+B of course
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-doSum2"></a>}}
+	
+	\subsection{Method \code{doSum2()}}{
+		The doSum function description
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  instance <- J$TestRApi$new(...);
+  instance$doSum2(a, b)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{a the A parameter}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a49af50)}
+				\item{b the B parameter}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a49af50)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		uk.co.terminological.jsr233plugin.RType@5a49af50: A+B of course
 	}
 
 	\subsection{Examples}{
@@ -356,52 +385,14 @@ this is a details comment
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{otherObj}{ - (java expects a uk.co.terminological.mavenrjsr233plugintest.AnotherTestRApi)}
+				\item{otherObj}{ - (java expects a uk.co.terminological.jsr233plugin.RType@3b1dc579)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		java.lang.String: 
-	}
-
-	\subsection{Examples}{
-		\if{html}{\out{<div class="r example copy">}}
-		\preformatted{
-		}
-		\if{html}{\out{</div>}}
-	}
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-fluentRandomObjectAsParamerer"></a>}}
-	
-	\subsection{Method \code{fluentRandomObjectAsParamerer()}}{
-		Should pass and return by reference
-	}
-
-	\subsection{Usage}{
-		\if{html}{\out{<div class="r">}}
-		\preformatted{
-  library(testRapi)
-  J <- JavaApi$new()
-  instance <- J$TestRApi$new(...);
-  instance$fluentRandomObjectAsParamerer(file)
-		}
-		\if{html}{\out{</div>}}
-	}
-	
-	\subsection{Arguments}{
-		\if{html}{\out{<div class="arguments">}}
-		\describe{
-			\itemize{
-				\item{file}{ - (java expects a java.io.File)}
-			}
-		}
-		\if{html}{\out{</div>}}
-	}
-
-	\subsection{Returns}{
-		java.io.File: 
+		uk.co.terminological.jsr233plugin.RType@60dd0587: 
 	}
 
 	\subsection{Examples}{
@@ -423,7 +414,7 @@ this is a details comment
   library(testRapi)
   J <- JavaApi$new()
   instance <- J$TestRApi$new(...);
-  instance$doSomethingWithDataFrame(colMajorDf)
+  instance$doSomethingWithDataFrame(dataframe)
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -432,14 +423,14 @@ this is a details comment
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{colMajorDf}{ - (java expects a java.util.Map<java.lang.String,java.lang.Object[]>)}
+				\item{dataframe}{ - (java expects a uk.co.terminological.jsr233plugin.RType@77f905e3)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		void: 
+		uk.co.terminological.jsr233plugin.RType@221a2068: 
 	}
 
 	\subsection{Examples}{
@@ -449,47 +440,9 @@ this is a details comment
 		\if{html}{\out{</div>}}
 	}
 	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-doSomethingWithOtherDataFrame"></a>}}
+	\if{html}{\out{<a id="method-generateDataFrame"></a>}}
 	
-	\subsection{Method \code{doSomethingWithOtherDataFrame()}}{
-		Should pass by reference unless rowMajor is allowed
-	}
-
-	\subsection{Usage}{
-		\if{html}{\out{<div class="r">}}
-		\preformatted{
-  library(testRapi)
-  J <- JavaApi$new()
-  instance <- J$TestRApi$new(...);
-  instance$doSomethingWithOtherDataFrame(rowMajorDf)
-		}
-		\if{html}{\out{</div>}}
-	}
-	
-	\subsection{Arguments}{
-		\if{html}{\out{<div class="arguments">}}
-		\describe{
-			\itemize{
-				\item{rowMajorDf}{ - (java expects a java.util.List<java.util.Map<java.lang.String,java.lang.Object>>)}
-			}
-		}
-		\if{html}{\out{</div>}}
-	}
-
-	\subsection{Returns}{
-		void: 
-	}
-
-	\subsection{Examples}{
-		\if{html}{\out{<div class="r example copy">}}
-		\preformatted{
-		}
-		\if{html}{\out{</div>}}
-	}
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-generateRowMajorDataFrame"></a>}}
-	
-	\subsection{Method \code{generateRowMajorDataFrame()}}{
+	\subsection{Method \code{generateDataFrame()}}{
 		Should not pass by reference
 	}
 
@@ -499,7 +452,7 @@ this is a details comment
   library(testRapi)
   J <- JavaApi$new()
   instance <- J$TestRApi$new(...);
-  instance$generateRowMajorDataFrame()
+  instance$generateDataFrame()
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -514,7 +467,7 @@ this is a details comment
 	}
 
 	\subsection{Returns}{
-		java.util.List: 
+		uk.co.terminological.jsr233plugin.RType@77f905e3: 
 	}
 
 	\subsection{Examples}{
@@ -524,9 +477,9 @@ this is a details comment
 		\if{html}{\out{</div>}}
 	}
 	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-generateColMajorDataFrame"></a>}}
+	\if{html}{\out{<a id="method-generateStreamDataFrame"></a>}}
 	
-	\subsection{Method \code{generateColMajorDataFrame()}}{
+	\subsection{Method \code{generateStreamDataFrame()}}{
 		Should not pass by reference
 	}
 
@@ -536,7 +489,7 @@ this is a details comment
   library(testRapi)
   J <- JavaApi$new()
   instance <- J$TestRApi$new(...);
-  instance$generateColMajorDataFrame()
+  instance$generateStreamDataFrame()
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -551,44 +504,7 @@ this is a details comment
 	}
 
 	\subsection{Returns}{
-		java.util.List: 
-	}
-
-	\subsection{Examples}{
-		\if{html}{\out{<div class="r example copy">}}
-		\preformatted{
-		}
-		\if{html}{\out{</div>}}
-	}
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-generateColMajorDataFrame2"></a>}}
-	
-	\subsection{Method \code{generateColMajorDataFrame2()}}{
-		Should not pass by reference
-	}
-
-	\subsection{Usage}{
-		\if{html}{\out{<div class="r">}}
-		\preformatted{
-  library(testRapi)
-  J <- JavaApi$new()
-  instance <- J$TestRApi$new(...);
-  instance$generateColMajorDataFrame2()
-		}
-		\if{html}{\out{</div>}}
-	}
-	
-	\subsection{Arguments}{
-		\if{html}{\out{<div class="arguments">}}
-		\describe{
-			\itemize{
-			}
-		}
-		\if{html}{\out{</div>}}
-	}
-
-	\subsection{Returns}{
-		uk.co.terminological.jsr223.ROutput$Dataframe: 
+		uk.co.terminological.jsr233plugin.RType@77f905e3: 
 	}
 
 	\subsection{Examples}{
