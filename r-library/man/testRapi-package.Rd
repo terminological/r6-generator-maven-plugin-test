@@ -17,8 +17,8 @@ Classes:
 	\item \code{BounceTest}
 	\item \code{FeatureTest}
 	\item \code{FactoryTest}
+	\item \code{Serialiser}
 	\item \code{MinimalExample}
-	\item \code{DataframeSerialiser}
 }
 }
 
@@ -27,7 +27,6 @@ Classes:
    \item test forename optional surname test@example.com 
    \item r-jsr223-maven-plugin terminological  
    \item given family email@example.com ORCIDID
-   \item rob challen  
    \item terminological   
 }
 }

@@ -176,7 +176,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@40013051: 
+		RCharacter: 
 	}
 
 	\subsection{Examples}{
@@ -213,7 +213,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@d180961: 
+		RNumeric: 
 	}
 
 	\subsection{Examples}{
@@ -250,7 +250,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@5b59c3d: 
+		RInteger: 
 	}
 
 	\subsection{Examples}{
@@ -287,7 +287,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@6f65a203: 
+		RFactor: 
 	}
 
 	\subsection{Examples}{
@@ -324,7 +324,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@4de158ca: 
+		RLogical: 
 	}
 
 	\subsection{Examples}{
@@ -361,7 +361,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@5f5a33ed: 
+		RCharacterVector: 
 	}
 
 	\subsection{Examples}{
@@ -398,7 +398,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@4af7ac25: 
+		RNumericVector: 
 	}
 
 	\subsection{Examples}{
@@ -435,7 +435,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@69e36fe3: 
+		RIntegerVector: 
 	}
 
 	\subsection{Examples}{
@@ -472,7 +472,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@1d0b447b: 
+		RFactorVector: 
 	}
 
 	\subsection{Examples}{
@@ -509,7 +509,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@4f2fdf3d: 
+		RLogicalVector: 
 	}
 
 	\subsection{Examples}{
@@ -546,7 +546,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@d978ab9: 
+		RDataframe: 
 	}
 
 	\subsection{Examples}{
@@ -583,7 +583,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@d978ab9: 
+		RDataframe: 
 	}
 
 	\subsection{Examples}{
@@ -620,7 +620,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@3cf06a01: 
+		RList: 
 	}
 
 	\subsection{Examples}{
@@ -657,7 +657,7 @@ instance <- J$FactoryTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@71ee2fff: 
+		RNamedList: 
 	}
 
 	\subsection{Examples}{

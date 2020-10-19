@@ -10,8 +10,8 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 	BounceTest = NULL,
 	FeatureTest = NULL,
 	FactoryTest = NULL,
+	Serialiser = NULL,
 	MinimalExample = NULL,
-	DataframeSerialiser = NULL,
   
   	changeLogLevel = function(logLevel) {
   		.jcall("uk/co/terminological/rjava/LogController", returnSig = "V", method = "changeLogLevel" , logLevel)
@@ -65,19 +65,12 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp = as.character(rObj)
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacterVector',rJava::.jarray(tmp)))
 			},
-			DataframeSerialiser=function(rObj) return(rObj),
+			FeatureTest=function(rObj) return(rObj),
 			RNumeric=function(rObj) {
 				if (length(rObj) > 1) stop('input too long')
 				if (!is.numeric(rObj)) stop('expected a numeric')
 				tmp = as.numeric(rObj)[[1]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RNumeric',tmp))
-			},
-			RLogical=function(rObj) {
-				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogical'))
-				if (length(rObj) > 1) stop('input too long')
-				if (!is.logical(rObj)) stop('expected a logical')
-				tmp = as.integer(rObj)[[1]]
-				return(rJava::.jnew('uk/co/terminological/rjava/types/RLogical',tmp))
 			},
 			RFactor=function(rObj) {
 				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RFactor'))
@@ -85,6 +78,13 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp = as.integer(rObj)[[1]]
 				tmpLabel = levels(rObj)[[tmp]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RFactor',tmp, tmpLabel))
+			},
+			RLogical=function(rObj) {
+				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogical'))
+				if (length(rObj) > 1) stop('input too long')
+				if (!is.logical(rObj)) stop('expected a logical')
+				tmp = as.integer(rObj)[[1]]
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RLogical',tmp))
 			},
 			RLogicalVector=function(rObj) {
 				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogicalVector'))
@@ -101,11 +101,11 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp = as.character(rObj)[[1]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter',tmp))
 			},
-			BounceTest=function(rObj) return(rObj),
+			Serialiser=function(rObj) return(rObj),
 			String=function(rObj) return(as.character(rObj)),
+			MinimalExample=function(rObj) return(rObj),
 			FactoryTest=function(rObj) return(rObj),
 			void=function(rObj) stop('no input expected'),
-			MoreFeatureTest=function(rObj) return(rObj),
 			double=function(rObj) {
 			    if (is.na(rObj)) stop('cant use NA as input to java double')
 			    if (length(rObj) > 1) stop('input too long')
@@ -144,7 +144,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp = as.numeric(rObj)
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RNumericVector',rJava::.jarray(tmp)))
 			},
-			FeatureTest=function(rObj) return(rObj),
+			BounceTest=function(rObj) return(rObj),
 			int=function(rObj) {
 			    if (is.na(rObj)) stop('cant use NA as input to java int')
 			    if (length(rObj) > 1) stop('input too long')
@@ -164,7 +164,6 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				if (rObj[[1]]!=tmp) stop('cannot cast to integer: ',rObj)
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RInteger',tmp))
 			},
-			MinimalExample=function(rObj) return(rObj),
 			RDataframe=function(rObj) {
 				jout = rJava::.jnew('uk/co/terminological/rjava/types/RDataframe')
 				lapply(colnames(rObj), function(x) {
@@ -217,35 +216,35 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 					rJava::.jcall(jout,returnSig='Luk/co/terminological/rjava/types/RObject;',method='put',name,rJava::.jcast(tmp, new.class='uk/co/terminological/rjava/types/RObject'))
 				})
 				return(jout)
-			}		)
+			},
+			MoreFeatureTest=function(rObj) return(rObj)		)
 		
 		self$.fromJava = list(
 			RDateVector=function(jObj) as.Date(rJava::.jcall(jObj,returnSig='[Ljava/lang/String;',method='rPrimitive'),'%Y-%m-%d'),
 			RDate=function(jObj) as.Date(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rPrimitive'),'%Y-%m-%d'),
 			RCharacterVector=function(jObj) as.character(rJava::.jcall(jObj,returnSig='[Ljava/lang/String;',method='rPrimitive')),
-			DataframeSerialiser=function(jObj) return(jObj),
+			FeatureTest=function(jObj) return(jObj),
 			RNumeric=function(jObj) as.numeric(rJava::.jcall(jObj,returnSig='D',method='rPrimitive')),
-			RLogical=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='I',method='rPrimitive')),
 			RFactor=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rLabel')),
+			RLogical=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='I',method='rPrimitive')),
 			RLogicalVector=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='[I',method='rPrimitive')),
 			RNull=function(jObj) return(NULL),
 			RCharacter=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rPrimitive')),
-			BounceTest=function(jObj) return(jObj),
+			Serialiser=function(jObj) return(jObj),
 			String=function(jObj) return(as.character(jObj)),
+			MinimalExample=function(jObj) return(jObj),
 			FactoryTest=function(jObj) return(jObj),
 			void=function(jObj) return(NULL),
-			MoreFeatureTest=function(jObj) return(jObj),
 			double=function(jObj) return(as.numeric(jObj)),
 			RList=function(jObj) {
 				tmp = eval(parse(text=rJava::.jcall(jObj,'rCode', returnSig='Ljava/lang/String;')))
 				return(tmp)
 			},
 			RNumericVector=function(jObj) as.numeric(rJava::.jcall(jObj,returnSig='[D',method='rPrimitive')),
-			FeatureTest=function(jObj) return(jObj),
+			BounceTest=function(jObj) return(jObj),
 			int=function(jObj) return(as.integer(jObj)),
 			boolean=function(jObj) return(as.logical(jObj)),
 			RInteger=function(jObj) as.integer(rJava::.jcall(jObj,returnSig='I',method='rPrimitive')),
-			MinimalExample=function(jObj) return(jObj),
 			RDataframe=function(jObj) {
 				convDf = eval(parse(text=rJava::.jcall(jObj,'rConversion', returnSig='Ljava/lang/String;')))
 				return(convDf(jObj))
@@ -258,7 +257,8 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 			RNamedList=function(jObj) {
 				tmp = eval(parse(text=rJava::.jcall(jObj,'rCode', returnSig='Ljava/lang/String;')))
 				return(tmp)
-			}		)
+			},
+			MoreFeatureTest=function(jObj) return(jObj)		)
 	
 		# initialise java class constructors and static method definitions
 		
@@ -269,7 +269,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp_message1 = self$.toJava$RCharacter(message1);
 				tmp_message2 = self$.toJava$RCharacter(message2);
 				# invoke constructor method
-				tmp_out = .jnew("uk/co/terminological/mavenrjsr233plugintest/MoreFeatureTest" , tmp_message1, tmp_message2); 
+				tmp_out = .jnew("uk/co/terminological/rjava/test/MoreFeatureTest" , tmp_message1, tmp_message2); 
 				# convert result back to R (should be a identity conversion)
 				tmp_r6 = MoreFeatureTest$new(
 					self$.fromJava$MoreFeatureTest(tmp_out),
@@ -281,7 +281,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp_message1 = self$.toJava$RCharacter(message1);
 				tmp_message2 = self$.toJava$RCharacter(message2);
 				#execute static call
-				tmp_out = .jcall("uk/co/terminological/mavenrjsr233plugintest/MoreFeatureTest", returnSig = "Luk/co/terminological/mavenrjsr233plugintest/MoreFeatureTest;", method="create" , tmp_message1, tmp_message2); 
+				tmp_out = .jcall("uk/co/terminological/rjava/test/MoreFeatureTest", returnSig = "Luk/co/terminological/rjava/test/MoreFeatureTest;", method="create" , tmp_message1, tmp_message2); 
 				# get object if it already exists
 				if(self$isRegistered(tmp_out)) return(self$getRegistered(tmp_out))
 				# wrap return java object in R6 class 
@@ -295,7 +295,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp_message1 = self$.toJava$RCharacter(message1);
 				tmp_message2 = self$.toJava$RCharacter(message2);
 				#execute static call
-				tmp_out = .jcall("uk/co/terminological/mavenrjsr233plugintest/MoreFeatureTest", returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="concat" , tmp_message1, tmp_message2); 
+				tmp_out = .jcall("uk/co/terminological/rjava/test/MoreFeatureTest", returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="concat" , tmp_message1, tmp_message2); 
 				# convert java object back to R
 				return(self$.fromJava$RCharacter(tmp_out));
 			}	)
@@ -304,7 +304,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				# constructor
 				# convert parameters to java
 				# invoke constructor method
-				tmp_out = .jnew("uk/co/terminological/mavenrjsr233plugintest/BounceTest" ); 
+				tmp_out = .jnew("uk/co/terminological/rjava/test/BounceTest" ); 
 				# convert result back to R (should be a identity conversion)
 				tmp_r6 = BounceTest$new(
 					self$.fromJava$BounceTest(tmp_out),
@@ -313,41 +313,15 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 			}
 	)
 		self$FeatureTest = list(
-			new = function() {
-				# constructor
-				# convert parameters to java
-				# invoke constructor method
-				tmp_out = .jnew("uk/co/terminological/mavenrjsr233plugintest/FeatureTest" ); 
-				# convert result back to R (should be a identity conversion)
-				tmp_r6 = FeatureTest$new(
-					self$.fromJava$FeatureTest(tmp_out),
-					self
-				);
-			}
-	)
-		self$FactoryTest = list(
-			new = function() {
-				# constructor
-				# convert parameters to java
-				# invoke constructor method
-				tmp_out = .jnew("uk/co/terminological/mavenrjsr233plugintest/FactoryTest" ); 
-				# convert result back to R (should be a identity conversion)
-				tmp_r6 = FactoryTest$new(
-					self$.fromJava$FactoryTest(tmp_out),
-					self
-				);
-			}
-	)
-		self$MinimalExample = list(
 			new = function(logMessage) {
 				# constructor
 				# convert parameters to java
 				tmp_logMessage = self$.toJava$String(logMessage);
 				# invoke constructor method
-				tmp_out = .jnew("uk/co/terminological/mavenrjsr233plugintest/MinimalExample" , tmp_logMessage); 
+				tmp_out = .jnew("uk/co/terminological/rjava/test/FeatureTest" , tmp_logMessage); 
 				# convert result back to R (should be a identity conversion)
-				tmp_r6 = MinimalExample$new(
-					self$.fromJava$MinimalExample(tmp_out),
+				tmp_r6 = FeatureTest$new(
+					self$.fromJava$FeatureTest(tmp_out),
 					self
 				);
 			},
@@ -355,19 +329,78 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				# copy parameters
 				tmp_message = self$.toJava$String(message);
 				#execute static call
-				tmp_out = .jcall("uk/co/terminological/mavenrjsr233plugintest/MinimalExample", returnSig = "V", method="demoStatic" , tmp_message); 
+				tmp_out = .jcall("uk/co/terminological/rjava/test/FeatureTest", returnSig = "V", method="demoStatic" , tmp_message); 
 				# convert java object back to R
 				return(self$.fromJava$void(tmp_out));
+			},
+			diamonds = function() {
+				# copy parameters
+				#execute static call
+				tmp_out = .jcall("uk/co/terminological/rjava/test/FeatureTest", returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="diamonds" ); 
+				# convert java object back to R
+				return(self$.fromJava$RDataframe(tmp_out));
 			}	)
-		self$DataframeSerialiser = list(
+		self$FactoryTest = list(
 			new = function() {
 				# constructor
 				# convert parameters to java
 				# invoke constructor method
-				tmp_out = .jnew("uk/co/terminological/mavenrjsr233plugintest/DataframeSerialiser" ); 
+				tmp_out = .jnew("uk/co/terminological/rjava/test/FactoryTest" ); 
 				# convert result back to R (should be a identity conversion)
-				tmp_r6 = DataframeSerialiser$new(
-					self$.fromJava$DataframeSerialiser(tmp_out),
+				tmp_r6 = FactoryTest$new(
+					self$.fromJava$FactoryTest(tmp_out),
+					self
+				);
+			}
+	)
+		self$Serialiser = list(
+			new = function() {
+				# constructor
+				# convert parameters to java
+				# invoke constructor method
+				tmp_out = .jnew("uk/co/terminological/rjava/test/Serialiser" ); 
+				# convert result back to R (should be a identity conversion)
+				tmp_r6 = Serialiser$new(
+					self$.fromJava$Serialiser(tmp_out),
+					self
+				);
+			},
+			serialiseDataframe = function(dataframe, filename) {
+				# copy parameters
+				tmp_dataframe = self$.toJava$RDataframe(dataframe);
+				tmp_filename = self$.toJava$String(filename);
+				#execute static call
+				tmp_out = .jcall("uk/co/terminological/rjava/test/Serialiser", returnSig = "V", method="serialiseDataframe" , tmp_dataframe, tmp_filename); 
+				# convert java object back to R
+				return(self$.fromJava$void(tmp_out));
+			},
+			serialiseList = function(dataframe, filename) {
+				# copy parameters
+				tmp_dataframe = self$.toJava$RList(dataframe);
+				tmp_filename = self$.toJava$String(filename);
+				#execute static call
+				tmp_out = .jcall("uk/co/terminological/rjava/test/Serialiser", returnSig = "V", method="serialiseList" , tmp_dataframe, tmp_filename); 
+				# convert java object back to R
+				return(self$.fromJava$void(tmp_out));
+			},
+			serialiseNamedList = function(dataframe, filename) {
+				# copy parameters
+				tmp_dataframe = self$.toJava$RNamedList(dataframe);
+				tmp_filename = self$.toJava$String(filename);
+				#execute static call
+				tmp_out = .jcall("uk/co/terminological/rjava/test/Serialiser", returnSig = "V", method="serialiseNamedList" , tmp_dataframe, tmp_filename); 
+				# convert java object back to R
+				return(self$.fromJava$void(tmp_out));
+			}	)
+		self$MinimalExample = list(
+			new = function() {
+				# constructor
+				# convert parameters to java
+				# invoke constructor method
+				tmp_out = .jnew("uk/co/terminological/rjava/test/MinimalExample" ); 
+				# convert result back to R (should be a identity conversion)
+				tmp_r6 = MinimalExample$new(
+					self$.fromJava$MinimalExample(tmp_out),
 					self
 				);
 			}

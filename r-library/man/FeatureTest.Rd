@@ -61,6 +61,18 @@ this is a details comment
 ## Method `FeatureTest$generateDataFrame`
 ## -----------------------------------
 
+## -----------------------------------
+## Method `FeatureTest$demoStatic`
+## -----------------------------------
+  J = testRapi::JavaApi$new()
+  J$FeatureTest$demoStatic('Ola, el mundo')
+
+## -----------------------------------
+## Method `FeatureTest$diamonds`
+## -----------------------------------
+  J = testRapi::JavaApi$new()
+  J$FeatureTest$diamonds()
+
 }
 
 \keyword{java api}
@@ -68,11 +80,13 @@ this is a details comment
 \section{Methods}{
 	\subsection{Constructors}{
 		\itemize{
-			\item \href{#method-new}{\code{J$FeatureTest$new()}}
+			\item \href{#method-new}{\code{J$FeatureTest$new(logMessage)}}
 		}
 	}
 	\subsection{Static methods}{
 		\itemize{
+			\item \href{#method-demoStatic}{\code{J$FeatureTest$demoStatic(message)}}
+			\item \href{#method-diamonds}{\code{J$FeatureTest$diamonds()}}
 		}
 	}
 	\subsection{Instance methods}{
@@ -95,7 +109,12 @@ this is a details comment
 	\if{html}{\out{<a id="method-new"></a>}}
 	
 	\subsection{Method \code{new()}}{
-		the default no-args constructor
+		A maximum of one constructor of any signature can be used. </br>
+
+If different constructors are needed then they may be used but not 
+included in the R Api (i.e. not annotated with @RMethod. </br>
+
+Static factory methods can be used instead.
 	}
 
 	\subsection{Usage}{
@@ -103,7 +122,7 @@ this is a details comment
 		\preformatted{
   library(testRapi)
   J <- JavaApi$new()
-  J$FeatureTest$new()
+  J$FeatureTest$new(logMessage)
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -112,6 +131,7 @@ this is a details comment
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
+				\item{logMessage - a message which will be logged}{ - (java expects a String)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -124,6 +144,9 @@ this is a details comment
 	\subsection{Examples}{
 		\if{html}{\out{<div class="r example copy">}}
 		\preformatted{
+    
+			J = testRapi::JavaApi$new()
+  minExample = J$FeatureTest$new('Hello, java constructor!')
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -155,7 +178,7 @@ this is a details comment
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@40013051: this java method returns a String
+		RCharacter: this java method returns a String
 	}
 
 	\subsection{Examples}{
@@ -191,7 +214,7 @@ same memory location as the calling Java object.
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message the message is a string}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{message the message is a string}{ - (java expects a RCharacter)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -229,8 +252,8 @@ same memory location as the calling Java object.
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{a}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
-				\item{b}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{a}{ - (java expects a RCharacter)}
+				\item{b}{ - (java expects a RCharacter)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -274,7 +297,7 @@ same memory location as the calling Java object.
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@40013051: The message previously set or maybe null
+		RCharacter: The message previously set or maybe null
 	}
 
 	\subsection{Examples}{
@@ -305,15 +328,15 @@ same memory location as the calling Java object.
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{a the A parameter}{ - (java expects a uk.co.terminological.jsr233plugin.RType@d180961)}
-				\item{b the B parameter}{ - (java expects a uk.co.terminological.jsr233plugin.RType@d180961)}
+				\item{a the A parameter}{ - (java expects a RNumeric)}
+				\item{b the B parameter}{ - (java expects a RNumeric)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@d180961: A+B of course
+		RNumeric: A+B of course
 	}
 
 	\subsection{Examples}{
@@ -345,15 +368,15 @@ It shoudl throw an error if given something that cannot be an integer
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{a the A parameter}{ - (java expects a uk.co.terminological.jsr233plugin.RType@163df259)}
-				\item{b the B parameter}{ - (java expects a uk.co.terminological.jsr233plugin.RType@163df259)}
+				\item{a the A parameter}{ - (java expects a int)}
+				\item{b the B parameter}{ - (java expects a int)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@163df259: A+B of course
+		int: A+B of course
 	}
 
 	\subsection{Examples}{
@@ -384,14 +407,14 @@ It shoudl throw an error if given something that cannot be an integer
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{otherObj}{ - (java expects a uk.co.terminological.jsr233plugin.RType@77998ea7)}
+				\item{otherObj}{ - (java expects a MoreFeatureTest)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@5a78b52b: 
+		String: 
 	}
 
 	\subsection{Examples}{
@@ -422,14 +445,14 @@ It shoudl throw an error if given something that cannot be an integer
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{dataframe}{ - (java expects a uk.co.terminological.jsr233plugin.RType@d978ab9)}
+				\item{dataframe}{ - (java expects a RDataframe)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@7672960e: 
+		void: 
 	}
 
 	\subsection{Examples}{
@@ -466,12 +489,92 @@ It shoudl throw an error if given something that cannot be an integer
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@d978ab9: 
+		RDataframe: 
 	}
 
 	\subsection{Examples}{
 		\if{html}{\out{<div class="r example copy">}}
 		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-demoStatic"></a>}}
+	
+	\subsection{Method \code{demoStatic()}}{
+		Static methods are also supported. These are accessed through the
+root of the R api.
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$FeatureTest$demoStatic(message)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{message}{ - (java expects a String)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		void: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+  J = testRapi::JavaApi$new()
+  J$FeatureTest$demoStatic('Ola, el mundo')
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-diamonds"></a>}}
+	
+	\subsection{Method \code{diamonds()}}{
+		A copy of the ggplot2::diamonds dataframe serialised into java, using
+RObject.writeRDS, saved within the jar file of the package, and exposed here
+using RObject.readRDS.
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$FeatureTest$diamonds()
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		RDataframe: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+  J = testRapi::JavaApi$new()
+  J$FeatureTest$diamonds()
 		}
 		\if{html}{\out{</div>}}
 	}

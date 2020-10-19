@@ -18,27 +18,17 @@ instance <- J$MinimalExample$new(...);
 
 \details{
 	
-
 The class is annotated with an @RClass to identify it as part of the R API. <br/>
-
-R code and documentation will be generated to allow the use of these functions in R through 
-R6 Classes.
 }
 
 \examples{
 ## -----------------------------------
 ## Method `MinimalExample$demo`
 ## -----------------------------------
-  J = testRapi::JavaApi$new()
+    
+		J = testRapi::JavaApi$new()
   minExample = J$MinimalExample$new()
-  dfTest = tibble::tibble(input=c(1,2,3))
-  minExample$demo(dataframe=dfTest,message='Hello world')
-
-## -----------------------------------
-## Method `MinimalExample$demoStatic`
-## -----------------------------------
-  J = testRapi::JavaApi$new()
-  J$MinimalExample$demoStatic('Ola, el mundo')
+  minExample$demo(dataframe=tibble::tibble(input=c(1,2,3)), message='Hello world')
 
 }
 
@@ -47,12 +37,11 @@ R6 Classes.
 \section{Methods}{
 	\subsection{Constructors}{
 		\itemize{
-			\item \href{#method-new}{\code{J$MinimalExample$new(logMessage)}}
+			\item \href{#method-new}{\code{J$MinimalExample$new()}}
 		}
 	}
 	\subsection{Static methods}{
 		\itemize{
-			\item \href{#method-demoStatic}{\code{J$MinimalExample$demoStatic(message)}}
 		}
 	}
 	\subsection{Instance methods}{
@@ -67,12 +56,7 @@ R6 Classes.
 	\if{html}{\out{<a id="method-new"></a>}}
 	
 	\subsection{Method \code{new()}}{
-		A maximum of one constructor of any signature can be used. </br>
-
-If different constructors are needed then they may be used but not 
-included in the R Api (i.e. not annotated with @RMethod. </br>
-
-Static factory methods can be used instead.
+		the default no-args constructor
 	}
 
 	\subsection{Usage}{
@@ -80,7 +64,7 @@ Static factory methods can be used instead.
 		\preformatted{
   library(testRapi)
   J <- JavaApi$new()
-  J$MinimalExample$new(logMessage)
+  J$MinimalExample$new()
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -89,7 +73,6 @@ Static factory methods can be used instead.
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{logMessage - a message which will be logged}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a78b52b)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -102,9 +85,6 @@ Static factory methods can be used instead.
 	\subsection{Examples}{
 		\if{html}{\out{<div class="r example copy">}}
 		\preformatted{
-    
-		J = testRapi::JavaApi$new()
-  minExample = J$MinimalExample$new('initialising....')
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -112,8 +92,7 @@ Static factory methods can be used instead.
 	\if{html}{\out{<a id="method-demo"></a>}}
 	
 	\subsection{Method \code{demo()}}{
-		The majority of the documentation of the method can be done in JavaDoc
-and these will be reflected in the R documentation
+		Documentation of the method can be done in JavaDoc and these will be present in the R documentation
 	}
 
 	\subsection{Usage}{
@@ -131,64 +110,24 @@ and these will be reflected in the R documentation
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{dataframe - a dataframe with an arbitrary number of columns}{ - (java expects a uk.co.terminological.jsr233plugin.RType@d978ab9)}
-				\item{message - a message}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a78b52b)}
+				\item{dataframe - a dataframe with an arbitrary number of columns}{ - (java expects a RDataframe)}
+				\item{message - a message}{ - (java expects a String)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@d978ab9: the dataframe unchanged
+		RDataframe: the dataframe unchanged
 	}
 
 	\subsection{Examples}{
 		\if{html}{\out{<div class="r example copy">}}
 		\preformatted{
-  J = testRapi::JavaApi$new()
+    
+		J = testRapi::JavaApi$new()
   minExample = J$MinimalExample$new()
-  dfTest = tibble::tibble(input=c(1,2,3))
-  minExample$demo(dataframe=dfTest,message='Hello world')
-		}
-		\if{html}{\out{</div>}}
-	}
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-demoStatic"></a>}}
-	
-	\subsection{Method \code{demoStatic()}}{
-		Static methods are also supported. These are accessed through the
-root of the R api.
-	}
-
-	\subsection{Usage}{
-		\if{html}{\out{<div class="r">}}
-		\preformatted{
-  library(testRapi)
-  J <- JavaApi$new()
-  J$MinimalExample$demoStatic(message)
-		}
-		\if{html}{\out{</div>}}
-	}
-	
-	\subsection{Arguments}{
-		\if{html}{\out{<div class="arguments">}}
-		\describe{
-			\itemize{
-				\item{message}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a78b52b)}
-			}
-		}
-		\if{html}{\out{</div>}}
-	}
-
-	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@7672960e: 
-	}
-
-	\subsection{Examples}{
-		\if{html}{\out{<div class="r example copy">}}
-		\preformatted{
-  J = testRapi::JavaApi$new()
-  J$MinimalExample$demoStatic('Ola, el mundo')
+  minExample$demo(dataframe=tibble::tibble(input=c(1,2,3)), message='Hello world')
 		}
 		\if{html}{\out{</div>}}
 	}

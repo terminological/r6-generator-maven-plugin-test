@@ -90,8 +90,8 @@ instance <- J$MoreFeatureTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1 - the message to be printed}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
-				\item{message2 - will be used for toString}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{message1 - the message to be printed}{ - (java expects a RCharacter)}
+				\item{message2 - will be used for toString}{ - (java expects a RCharacter)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -128,8 +128,8 @@ instance <- J$MoreFeatureTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
-				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{message1}{ - (java expects a RCharacter)}
+				\item{message2}{ - (java expects a RCharacter)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -168,15 +168,15 @@ instance <- J$MoreFeatureTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
-				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{message1}{ - (java expects a RCharacter)}
+				\item{message2}{ - (java expects a RCharacter)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@40013051: 
+		RCharacter: 
 	}
 
 	\subsection{Examples}{
@@ -213,7 +213,7 @@ instance <- J$MoreFeatureTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@40013051: 
+		RCharacter: 
 	}
 
 	\subsection{Examples}{
@@ -250,7 +250,7 @@ instance <- J$MoreFeatureTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@7672960e: 
+		void: 
 	}
 
 	\subsection{Examples}{
@@ -287,7 +287,7 @@ instance <- J$MoreFeatureTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@40013051: 
+		RCharacter: 
 	}
 
 	\subsection{Examples}{

@@ -25,11 +25,15 @@ J = JavaApi$new();
 			\item \href{#method-MoreFeatureTest-create}{\code{J$MoreFeatureTest$create(message1, message2)}}
 			\item \href{#method-MoreFeatureTest-concat}{\code{J$MoreFeatureTest$concat(message1, message2)}}
 	\item \href{#method-BounceTest-new}{\code{J$BounceTest$new()}}
-	\item \href{#method-FeatureTest-new}{\code{J$FeatureTest$new()}}
+	\item \href{#method-FeatureTest-new}{\code{J$FeatureTest$new(logMessage)}}
+			\item \href{#method-FeatureTest-demoStatic}{\code{J$FeatureTest$demoStatic(message)}}
+			\item \href{#method-FeatureTest-diamonds}{\code{J$FeatureTest$diamonds()}}
 	\item \href{#method-FactoryTest-new}{\code{J$FactoryTest$new()}}
-	\item \href{#method-MinimalExample-new}{\code{J$MinimalExample$new(logMessage)}}
-			\item \href{#method-MinimalExample-demoStatic}{\code{J$MinimalExample$demoStatic(message)}}
-	\item \href{#method-DataframeSerialiser-new}{\code{J$DataframeSerialiser$new()}}
+	\item \href{#method-Serialiser-new}{\code{J$Serialiser$new()}}
+			\item \href{#method-Serialiser-serialiseDataframe}{\code{J$Serialiser$serialiseDataframe(dataframe, filename)}}
+			\item \href{#method-Serialiser-serialiseList}{\code{J$Serialiser$serialiseList(dataframe, filename)}}
+			\item \href{#method-Serialiser-serialiseNamedList}{\code{J$Serialiser$serialiseNamedList(dataframe, filename)}}
+	\item \href{#method-MinimalExample-new}{\code{J$MinimalExample$new()}}
 		}
 	}
 
@@ -54,8 +58,8 @@ J = JavaApi$new();
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1 - the message to be printed}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
-				\item{message2 - will be used for toString}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{message1 - the message to be printed}{ - (java expects a RCharacter)}
+				\item{message2 - will be used for toString}{ - (java expects a RCharacter)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -92,8 +96,8 @@ J = JavaApi$new();
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
-				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{message1}{ - (java expects a RCharacter)}
+				\item{message2}{ - (java expects a RCharacter)}
 			}
 		}
 		\if{html}{\out{</div>}}
@@ -132,15 +136,15 @@ J = JavaApi$new();
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{message1}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
-				\item{message2}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{message1}{ - (java expects a RCharacter)}
+				\item{message2}{ - (java expects a RCharacter)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@40013051: 
+		RCharacter: 
 	}
 
 	\subsection{Examples}{
@@ -189,7 +193,12 @@ J = JavaApi$new();
 	\if{html}{\out{<a id="method-new"></a>}}
 	
 	\subsection{Method \code{FeatureTest$new()}}{
-		the default no-args constructor
+		A maximum of one constructor of any signature can be used. </br>
+
+If different constructors are needed then they may be used but not 
+included in the R Api (i.e. not annotated with @RMethod. </br>
+
+Static factory methods can be used instead.
 	}
 
 	\subsection{Usage}{
@@ -197,7 +206,89 @@ J = JavaApi$new();
 		\preformatted{
   library(testRapi)
   J <- JavaApi$new()
-  J$FeatureTest$new()
+  J$FeatureTest$new(logMessage)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{logMessage - a message which will be logged}{ - (java expects a String)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		R6 FeatureTest object: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+    
+			J = testRapi::JavaApi$new()
+  minExample = J$FeatureTest$new('Hello, java constructor!')
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-demoStatic"></a>}}
+	
+	\subsection{Method \code{FeatureTest$demoStatic()}}{
+		Static methods are also supported. These are accessed through the
+root of the R api.
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$FeatureTest$demoStatic(message)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{message}{ - (java expects a String)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		void: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+  J = testRapi::JavaApi$new()
+  J$FeatureTest$demoStatic('Ola, el mundo')
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-diamonds"></a>}}
+	
+	\subsection{Method \code{FeatureTest$diamonds()}}{
+		A copy of the ggplot2::diamonds dataframe serialised into java, using
+RObject.writeRDS, saved within the jar file of the package, and exposed here
+using RObject.readRDS.
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$FeatureTest$diamonds()
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -212,12 +303,14 @@ J = JavaApi$new();
 	}
 
 	\subsection{Returns}{
-		R6 FeatureTest object: 
+		RDataframe: 
 	}
 
 	\subsection{Examples}{
 		\if{html}{\out{<div class="r example copy">}}
 		\preformatted{
+  J = testRapi::JavaApi$new()
+  J$FeatureTest$diamonds()
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -260,92 +353,7 @@ J = JavaApi$new();
 	\if{html}{\out{<hr>}}
 	\if{html}{\out{<a id="method-new"></a>}}
 	
-	\subsection{Method \code{MinimalExample$new()}}{
-		A maximum of one constructor of any signature can be used. </br>
-
-If different constructors are needed then they may be used but not 
-included in the R Api (i.e. not annotated with @RMethod. </br>
-
-Static factory methods can be used instead.
-	}
-
-	\subsection{Usage}{
-		\if{html}{\out{<div class="r">}}
-		\preformatted{
-  library(testRapi)
-  J <- JavaApi$new()
-  J$MinimalExample$new(logMessage)
-		}
-		\if{html}{\out{</div>}}
-	}
-	
-	\subsection{Arguments}{
-		\if{html}{\out{<div class="arguments">}}
-		\describe{
-			\itemize{
-				\item{logMessage - a message which will be logged}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a78b52b)}
-			}
-		}
-		\if{html}{\out{</div>}}
-	}
-
-	\subsection{Returns}{
-		R6 MinimalExample object: 
-	}
-
-	\subsection{Examples}{
-		\if{html}{\out{<div class="r example copy">}}
-		\preformatted{
-    
-		J = testRapi::JavaApi$new()
-  minExample = J$MinimalExample$new('initialising....')
-		}
-		\if{html}{\out{</div>}}
-	}
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-demoStatic"></a>}}
-	
-	\subsection{Method \code{MinimalExample$demoStatic()}}{
-		Static methods are also supported. These are accessed through the
-root of the R api.
-	}
-
-	\subsection{Usage}{
-		\if{html}{\out{<div class="r">}}
-		\preformatted{
-  library(testRapi)
-  J <- JavaApi$new()
-  J$MinimalExample$demoStatic(message)
-		}
-		\if{html}{\out{</div>}}
-	}
-	
-	\subsection{Arguments}{
-		\if{html}{\out{<div class="arguments">}}
-		\describe{
-			\itemize{
-				\item{message}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a78b52b)}
-			}
-		}
-		\if{html}{\out{</div>}}
-	}
-
-	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@7672960e: 
-	}
-
-	\subsection{Examples}{
-		\if{html}{\out{<div class="r example copy">}}
-		\preformatted{
-  J = testRapi::JavaApi$new()
-  J$MinimalExample$demoStatic('Ola, el mundo')
-		}
-		\if{html}{\out{</div>}}
-	}
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-new"></a>}}
-	
-	\subsection{Method \code{DataframeSerialiser$new()}}{
+	\subsection{Method \code{Serialiser$new()}}{
 		the default no-args constructor
 	}
 
@@ -354,7 +362,7 @@ root of the R api.
 		\preformatted{
   library(testRapi)
   J <- JavaApi$new()
-  J$DataframeSerialiser$new()
+  J$Serialiser$new()
 		}
 		\if{html}{\out{</div>}}
 	}
@@ -369,7 +377,157 @@ root of the R api.
 	}
 
 	\subsection{Returns}{
-		R6 DataframeSerialiser object: 
+		R6 Serialiser object: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-serialiseDataframe"></a>}}
+	
+	\subsection{Method \code{Serialiser$serialiseDataframe()}}{
+		
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$Serialiser$serialiseDataframe(dataframe, filename)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{dataframe}{ - (java expects a RDataframe)}
+				\item{filename}{ - (java expects a String)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		void: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-serialiseList"></a>}}
+	
+	\subsection{Method \code{Serialiser$serialiseList()}}{
+		
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$Serialiser$serialiseList(dataframe, filename)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{dataframe}{ - (java expects a RList)}
+				\item{filename}{ - (java expects a String)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		void: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-serialiseNamedList"></a>}}
+	
+	\subsection{Method \code{Serialiser$serialiseNamedList()}}{
+		
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$Serialiser$serialiseNamedList(dataframe, filename)
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+				\item{dataframe}{ - (java expects a RNamedList)}
+				\item{filename}{ - (java expects a String)}
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		void: 
+	}
+
+	\subsection{Examples}{
+		\if{html}{\out{<div class="r example copy">}}
+		\preformatted{
+		}
+		\if{html}{\out{</div>}}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-new"></a>}}
+	
+	\subsection{Method \code{MinimalExample$new()}}{
+		the default no-args constructor
+	}
+
+	\subsection{Usage}{
+		\if{html}{\out{<div class="r">}}
+		\preformatted{
+  library(testRapi)
+  J <- JavaApi$new()
+  J$MinimalExample$new()
+		}
+		\if{html}{\out{</div>}}
+	}
+	
+	\subsection{Arguments}{
+		\if{html}{\out{<div class="arguments">}}
+		\describe{
+			\itemize{
+			}
+		}
+		\if{html}{\out{</div>}}
+	}
+
+	\subsection{Returns}{
+		R6 MinimalExample object: 
 	}
 
 	\subsection{Examples}{

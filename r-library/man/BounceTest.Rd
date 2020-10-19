@@ -206,7 +206,7 @@ instance <- J$BounceTest$new(...);
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@7672960e: 
+		void: 
 	}
 
 	\subsection{Examples}{
@@ -237,14 +237,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@163df259)}
+				\item{x}{ - (java expects a int)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@163df259: 
+		int: 
 	}
 
 	\subsection{Examples}{
@@ -275,14 +275,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@56b751b1)}
+				\item{x}{ - (java expects a double)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@56b751b1: 
+		double: 
 	}
 
 	\subsection{Examples}{
@@ -313,14 +313,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5a78b52b)}
+				\item{x}{ - (java expects a String)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@5a78b52b: 
+		String: 
 	}
 
 	\subsection{Examples}{
@@ -351,14 +351,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@2f61de04)}
+				\item{x}{ - (java expects a RNull)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@2f61de04: 
+		RNull: 
 	}
 
 	\subsection{Examples}{
@@ -389,14 +389,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@40013051)}
+				\item{x}{ - (java expects a RCharacter)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@40013051: 
+		RCharacter: 
 	}
 
 	\subsection{Examples}{
@@ -427,14 +427,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5f5a33ed)}
+				\item{x}{ - (java expects a RCharacterVector)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@5f5a33ed: 
+		RCharacterVector: 
 	}
 
 	\subsection{Examples}{
@@ -465,14 +465,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@5b59c3d)}
+				\item{x}{ - (java expects a RInteger)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@5b59c3d: 
+		RInteger: 
 	}
 
 	\subsection{Examples}{
@@ -503,14 +503,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@69e36fe3)}
+				\item{x}{ - (java expects a RIntegerVector)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@69e36fe3: 
+		RIntegerVector: 
 	}
 
 	\subsection{Examples}{
@@ -541,14 +541,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@48d31d25)}
+				\item{x}{ - (java expects a RDate)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@48d31d25: 
+		RDate: 
 	}
 
 	\subsection{Examples}{
@@ -579,14 +579,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@46188a89)}
+				\item{x}{ - (java expects a RDateVector)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@46188a89: 
+		RDateVector: 
 	}
 
 	\subsection{Examples}{
@@ -617,14 +617,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@6f65a203)}
+				\item{x}{ - (java expects a RFactor)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@6f65a203: 
+		RFactor: 
 	}
 
 	\subsection{Examples}{
@@ -655,14 +655,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@1d0b447b)}
+				\item{x}{ - (java expects a RFactorVector)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@1d0b447b: 
+		RFactorVector: 
 	}
 
 	\subsection{Examples}{
@@ -693,14 +693,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@4de158ca)}
+				\item{x}{ - (java expects a RLogical)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@4de158ca: 
+		RLogical: 
 	}
 
 	\subsection{Examples}{
@@ -731,14 +731,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@4f2fdf3d)}
+				\item{x}{ - (java expects a RLogicalVector)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@4f2fdf3d: 
+		RLogicalVector: 
 	}
 
 	\subsection{Examples}{
@@ -769,14 +769,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@d180961)}
+				\item{x}{ - (java expects a RNumeric)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@d180961: 
+		RNumeric: 
 	}
 
 	\subsection{Examples}{
@@ -807,14 +807,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@4af7ac25)}
+				\item{x}{ - (java expects a RNumericVector)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@4af7ac25: 
+		RNumericVector: 
 	}
 
 	\subsection{Examples}{
@@ -845,14 +845,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@d978ab9)}
+				\item{x}{ - (java expects a RDataframe)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@d978ab9: 
+		RDataframe: 
 	}
 
 	\subsection{Examples}{
@@ -883,14 +883,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@3cf06a01)}
+				\item{x}{ - (java expects a RList)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@3cf06a01: 
+		RList: 
 	}
 
 	\subsection{Examples}{
@@ -921,14 +921,14 @@ instance <- J$BounceTest$new(...);
 		\if{html}{\out{<div class="arguments">}}
 		\describe{
 			\itemize{
-				\item{x}{ - (java expects a uk.co.terminological.jsr233plugin.RType@71ee2fff)}
+				\item{x}{ - (java expects a RNamedList)}
 			}
 		}
 		\if{html}{\out{</div>}}
 	}
 
 	\subsection{Returns}{
-		uk.co.terminological.jsr233plugin.RType@71ee2fff: 
+		RNamedList: 
 	}
 
 	\subsection{Examples}{

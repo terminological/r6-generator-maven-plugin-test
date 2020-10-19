@@ -22,7 +22,7 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 		# copy parameters
 		tmp_message = self$.api$.toJava$RCharacter(message);
 		#execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/mavenrjsr233plugintest/FeatureTest;", method="fluentSetMessage" , tmp_message); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/test/FeatureTest;", method="fluentSetMessage" , tmp_message); 
 		# get object if it already exists
 		if(self$.api$isRegistered(tmp_out)) return(self$.api$getRegistered(tmp_out))
 		# wrap return java object in R6 class  
@@ -36,7 +36,7 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 		tmp_a = self$.api$.toJava$RCharacter(a);
 		tmp_b = self$.api$.toJava$RCharacter(b);
 		#execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/mavenrjsr233plugintest/MoreFeatureTest;", method="factoryMethod" , tmp_a, tmp_b); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/test/MoreFeatureTest;", method="factoryMethod" , tmp_a, tmp_b); 
 		# get object if it already exists
 		if(self$.api$isRegistered(tmp_out)) return(self$.api$getRegistered(tmp_out))
 		# wrap return java object in R6 class  

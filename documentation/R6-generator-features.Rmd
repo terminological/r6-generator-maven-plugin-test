@@ -1,0 +1,35 @@
+---
+title: "R6-generator-features"
+author: "Rob Challen"
+date: "19/10/2020"
+output: html_document
+header-includes:
+  \usepackage{amsmath}
+  \usepackage{minted}
+  \usemintedstyle{emacs}
+  \setminted[java]{fontsize=\footnotesize,tabsize=3}
+  \setminted[xml]{fontsize=\footnotesize,tabsize=3}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("./codeSnip.R")
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+```{r results='asis'}
+codeSnip("java",filename="/home/terminological/Git/r6-generator-maven-plugin-test/src/main/java/uk/co/terminological/rjava/test/FeatureTest.java",19) #,35,51)
+```
+
+```{r results='asis'}
+codeSnip("java",filename="/home/terminological/Git/r6-generator-maven-plugin-test/src/main/java/uk/co/terminological/rjava/test/MoreFeatureTest.java",16) #,35,51)
+```
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+
