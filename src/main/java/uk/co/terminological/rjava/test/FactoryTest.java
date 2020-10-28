@@ -1,6 +1,7 @@
 package uk.co.terminological.rjava.test;
 
 import java.util.Arrays;
+import java.util.stream.DoubleStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,8 @@ public class FactoryTest {
 	public FactoryTest() {
 		log.info("Tests the java creation of supported datatypes");
 	}
+	
+	//SECTION_01
 	
 	@RMethod
 	public RCharacter generateCharacter() {
@@ -50,6 +53,8 @@ public class FactoryTest {
 		return RPrimitive.of(true);
 	}
 	
+	//SECTION_02
+	
 	@RMethod
 	public RCharacterVector generateCharacterVec() {
 		return RVector.with("Hello world","Ola el mundo","Bonjour le monde", null);
@@ -57,7 +62,9 @@ public class FactoryTest {
 	
 	@RMethod
 	public RNumericVector generateNumericVec() {
-		return RVector.with(3.0, 4.3, 2.1, null);
+		return (RNumericVector) 
+				DoubleStream.of(3.0, 4.3, 2.1, 2.3).boxed()
+				.collect(RConverter.doubleCollector());
 	}
 	
 	@RMethod
@@ -75,6 +82,8 @@ public class FactoryTest {
 		return RVector.with(true,false,null);
 	}
 	
+	//SECTION_03
+	
 	@RMethod
 	public RDataframe generateDataframe() {
 		return RDataframe.create()
@@ -84,7 +93,7 @@ public class FactoryTest {
 	}
 	
 	@RMethod
-	public RDataframe generateStreamDataFrame() {
+	public RDataframe generateStreamDataframe() {
 		return 
 			Arrays.asList("Hello","World","Stream","Support","in","Java")
 			.stream()
@@ -98,6 +107,8 @@ public class FactoryTest {
 		
 	}
 	
+	//SECTION_04
+	
 	@RMethod
 	public RList generateList() {
 		return RList.with("one", Test.TWO, 3.0);
@@ -110,4 +121,6 @@ public class FactoryTest {
 				.and("B", Test.TWO)
 				.and("C", RVector.with(3.0, 4.3, 2.1));
 	}
+	
+	//SECTION_05
 }

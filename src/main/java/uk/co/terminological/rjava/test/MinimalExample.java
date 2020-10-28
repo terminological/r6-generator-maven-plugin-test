@@ -1,5 +1,5 @@
 package uk.co.terminological.rjava.test;
-
+//START
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,8 +8,8 @@ import uk.co.terminological.rjava.RMethod;
 import uk.co.terminological.rjava.types.RDataframe;
 
 /**
- * This class is a very basic example of the features of the rJava maven plugin. <br/>
- * The class is annotated with an @RClass to identify it as part of the R API. <br/>
+ * This class is a very basic example of the features of the rJava maven plugin. <br>
+ * The class is annotated with an @RClass to identify it as part of the R API. <br>
  */
 @RClass
 public class MinimalExample {
@@ -17,7 +17,6 @@ public class MinimalExample {
 	static Logger log = LoggerFactory.getLogger(MinimalExample.class);
 	
 	@RMethod(examples = {
-		"J = testRapi::JavaApi$new()",
 		"minExample = J$MinimalExample$new()",
 		"minExample$demo(dataframe=tibble::tibble(input=c(1,2,3)), message='Hello world')"
 	})
@@ -35,3 +34,4 @@ public class MinimalExample {
 	}
 	
 }
+//END

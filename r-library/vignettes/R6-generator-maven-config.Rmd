@@ -1,0 +1,42 @@
+---
+title: "R6-generator-maven-config"
+author: "Rob Challen"
+date: "26/10/2020"
+output: html_document
+header-includes:
+  \usepackage{amsmath}
+  \usepackage{minted}
+  \usemintedstyle{emacs}
+  \setminted[java]{fontsize=\footnotesize,tabsize=3}
+  \setminted[xml]{fontsize=\footnotesize,tabsize=3}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+source("./codeSnip.R")
+```
+
+## Maven pom.xml options
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+```{r results='asis'}
+codeSnipByLine(type="xml",filename="/home/terminological/Git/r6-generator-maven-plugin-test/pom.xml",
+         starts = c(5,19,27,53),
+         ends = c(10,25,41,82), 
+         sep = "\n...\n")
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

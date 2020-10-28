@@ -1,0 +1,151 @@
+---
+title: "R6 Generator Maven Plugin: Bridging Java and R6 for Package Development"
+author:
+  # see ?rjournal_article for more information
+  - name: Robert Challen
+    affiliation: University of Exeter
+    address:
+    - EPSRC Centre for Predictive Modelling in Healthcare, 
+    - University of Exeter, 
+    - Exeter, 
+    - Devon, UK.
+    url: https://github.com/terminological/r6-generator-maven-plugin
+    orcid: 0000-0002-5504-7768
+    email:  rc538@exeter.ac.uk
+abstract: >
+  This article introduces a novel approach to integrating Java code into R, that offers distinct advantages in terms of ease of development and maintenance to Java programmers wishing to expose their libraries as R packages. It builds on the low level interface provided by the <em>rJava</em>\CRANpkg{rJava} package, Java code analysis tools, and the Maven compiler framework, to programmatically generate R package code. The R6 Generator Maven Plugin provides a Java annotation processor and R code generator that creates an R package exposing an <em>R6</em>\CRANpkg{R6} based interface to Java code. By working at compile time it ensures the bi-directional transfer of data between R and Java is type-safe and fast, it allows a simple route to maintainence of R ports of Java libraries, and it automates package documentation.
+preamble: |
+  % Any extra LaTeX you need in the preamble
+bibliography: R6-generator-intro.bib
+# knit: (function(inputFile, encoding,...) {
+#   rmarkdown::render(inputFile,  
+#     output_format = rticles::rjournal_article(), 
+output: 
+  html_document: default
+  rticles::rjournal_article: default
+header-includes:
+  \usepackage{amsmath}
+  \usepackage{minted}
+  \usemintedstyle{emacs}
+  \setminted[java]{fontsize=\footnotesize,tabsize=3}
+  \setminted[xml]{fontsize=\footnotesize,tabsize=3}
+  \let\proglang=\textsf
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+source("./codeSnip.R")
+```
+
+# Introduction
+
+The R6 Generator Maven Plugin provides a low friction route to integrating Java code into R programs. <em>rJava</em>\CRANpkg{rJava} is a low level interface for using Java libraries in R via the Java Native Interface (JNI). However use of this low level interface has a steep learning curve for both R and Java programmers, as it requires an in-depth understanding of the limitations of the JNI interface between R and Java. The <em>rjs223</em>\CRANpkg{jsr223} package aims to made to reduce this friction in the situation where dynamic interaction between R and Java is needed, by integration of Java based scripting languages, such as Kotlin or Groovy, and a ancilliary package that manages dynamic data-type translation - <em>jdx</em>\CRANpkg{jdx}. Although simplifying data type conversion this is still a relatively complex solution for the situation where a developer wishes to package Java based functions for use in R programs, for native R use as a library. 
+
+Strengths and weaknesses of Java and R
+R ease of data import and integration, spatial support
+R visualisation
+R data wrangling
+R REPL
+Java ease of multithreaded processing. 
+Java dependency and classpath management.
+Java VM debugging versus R debugging
+
+The existing approaches - 
+Integration between Java and R has existed since the release of <em>rJava</em>\CRANpkg{rJava} in 2003, however successful use of Java libraries within R has remained complex and 
+
+rJava, rjsr223
+jsr223 reference - review of Java integration
+JNI & rJava features and limitations
+rJava 2 level api
+jsr223 benefits and limitations
+Data only integration e.g. Apache Arrow.
+
+# Use cases
+
+* Java library development for R use
+* Adaption of java library for R use
+
+# Desiderata / Design rationale
+
+* R as REPL, java as backend 
+* No knowledge of JNI, rJava or intermediate languages required.
+* High performance - minimise interpretation, Compile time - strongly typed inputs to R - minimise data transfer overhead. minimise use of reflection
+* Accurate data transformations and round trip
+* Dependency management - 
+* Separation of concerns & isolation - java based API layer to isolate Java changes from R API changes
+* Predictability  - Runtime library  - predictable R data in Java code isolating java from R type system
+* Seamless R use of library - R6 class hierarchy - native R facade to Java code
+* CRAN ready submission from Java library
+
+# Terminology and concepts
+
+Maven plugin - 
+Runtime dependency - R types for java
+
+# Feature documentation
+
+## Minimal example
+
+```{r results='asis',echo=FALSE}
+codeSnip("java",filename="/home/terminological/Git/r6-generator-maven-plugin-test/src/main/java/uk/co/terminological/rjava/test/MinimalExample.java")
+```
+
+
+
+```{r results='asis',echo=FALSE}
+codeSnipByLine(type="xml",filename="/home/terminological/Git/r6-generator-maven-plugin-test/pom.xml",
+         starts = c(5,19,27,43,53),
+         ends = c(10,25,41,44,91), 
+         sep = "\n...\n")
+```
+
+
+## R6 class generation
+
+```{r, include=FALSE}
+fs::dir_tree(path = "/home/terminological/Git/r6-generator-maven-plugin-test/r-library/", recurse = TRUE)
+```
+## Maven packaging
+## Generated R6 documentation
+## Datatype transformation
+### Java to R
+### R to Java - runtime library
+## Debugging Java code
+* Datasets for testing Java code / serialisation of inputs
+* Debugging flag
+
+
+# Benefits
+
+* Low friction
+* Minimal dependencies introduced.
+* Java Library dependency packaging
+* Accurate bidirectional transfer of data between R and Java
+* Type safety
+* Code completion and type hinting in R
+* Fluent use of R data in java 
+* R Documentation
+* Separation of concerns
+* Maintenance
+
+# Limitations
+
+* Fat Jar bloat
+* Recompilation and iterative development
+* Naming collisions
+* Concurrent use of Multiple rJava libraries
+* Java class caching 
+
+# Future development
+
+* Tighter integration of multithreading and promises.
+* Matrix support
+* Named rows in dataframes
+* R test case generation
+* Java object bindings
+* Purrr style lists in data frames
+
+# Introduction
+
+# References

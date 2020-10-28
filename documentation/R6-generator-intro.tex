@@ -1,91 +1,50 @@
-\documentclass[
-]{jss}
+% !TeX root = RJwrapper.tex
+\title{R6 Generator Maven Plugin: Bridging Java and R6 for Package Development}
+\author{by Robert Challen}
 
-\usepackage[utf8]{inputenc}
+\maketitle
 
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
-\author{
-Robert Challen\\University of Exeter
+\abstract{%
+This article introduces a novel approach to integrating Java code into
+R, that offers distinct advantages in terms of ease of development and
+maintenance to Java programmers wishing to expose their libraries as R
+packages. It builds on the low level interface provided by the
+\CRANpkg{rJava} package, Java code analysis tools, and the Maven
+compiler framework, to programmatically generate R package code. The R6
+Generator Maven Plugin provides a Java annotation processor and R code
+generator that creates an R package exposing an \CRANpkg{R6} based
+interface to Java code. By working at compile time it ensures the
+bi-directional transfer of data between R and Java is type-safe and
+fast, it allows a simple route to maintainence of R ports of Java
+libraries, and it automates package documentation.
 }
-\title{R6 Generator Maven Plugin: Bridging \proglang{Java} and \proglang{R6}
-for Package Development}
-
-\Plainauthor{Robert Challen}
-\Plaintitle{R6 Generator Maven Plugin: Bridging Java and R6 for Package Development}
-\Shorttitle{\proglang{Java} and \proglang{R6}: Compile time integration}
-
-\Abstract{
-This article introduces a novel approach to integrating \proglang{Java}
-code into \proglang{R}, that offers distinct advantages in terms of ease
-of development and maintenance to \proglang{Java} programmers wishing to
-expose their libraries as \proglang{R} packages. It builds on the low
-level interface provided by the \pkg{rJava} package, \proglang{Java}
-code analysis tools, and the \proglang{Maven} compiler framework, to
-programmatically generate \proglang{R} package code. The R6 Generator
-Maven Plugin provides a Java annotation processor and \proglang{R} code
-generator that creates an \proglang{R} package exposing an \pkg{R6}
-based interface to \proglang{Java} code. By working at compile time it
-ensures the bi-directional transfer of data between R and
-\proglang{Java} is type-safe and fast, it allows a simple route to
-maintainence of \proglang{R} ports of \proglang{Java} libraries, and it
-facilitates package documentation.
-}
-
-\Keywords{\proglang{Java}, \proglang{R6}, \proglang{Maven}}
-\Plainkeywords{Java, R6, Maven}
-
-%% publication information
-%% \Volume{50}
-%% \Issue{9}
-%% \Month{June}
-%% \Year{2012}
-%% \Submitdate{}
-%% \Acceptdate{2012-06-04}
-
-\Address{
-    Robert Challen\\
-    University of Exeter\\
-    EPSRC Centre for Predictive Modelling in Healthcare, University of
-Exeter, Exeter, Devon, UK.\\
-  E-mail: \email{rc538@exeter.ac.uk}\\
-  URL: \url{https://github.com/terminological/r6-generator-maven-plugin}\\~\\
-  }
-
-
-% Pandoc header
-\usepackage{amsmath} \usepackage{minted} \usemintedstyle{emacs} \setminted[java]{fontsize=\footnotesize,tabsize=3} \setminted[xml]{fontsize=\footnotesize,tabsize=3}
-
-
-
-\begin{document}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
 The R6 Generator Maven Plugin provides a low friction route to
-integrating \proglang{Java} code into \proglang{R} programs. \pkg{rJava}
-is a low level interface for using \proglang{Java} libraries in
-\proglang{R} via the Java Native Interface (JNI). However use of this
-low level interface has a steep learning curve for both \proglang{R} and
-\proglang{Java} programmers. The \pkg{jsr223} package aims to made to
-reduce this friction in the situation where dynamic interaction between
-\proglang{R} and \proglang{Java} is needed, by integration of
-\proglang{Java} based scripting languages, such as \proglang{Kotlin} or
-\proglang{Groovy}. This is a relatively complex solution for the simpler
-situation where a developer wishes to package \proglang{Java} based
-functions for use in \proglang{R} programs.
+integrating Java code into R programs. \CRANpkg{rJava} is a low level
+interface for using Java libraries in R via the Java Native Interface
+(JNI). However use of this low level interface has a steep learning
+curve for both R and Java programmers, as it requires an in-depth
+understanding of the limitations of the JNI interface between R and
+Java. The \CRANpkg{jsr223} package aims to made to reduce this friction
+in the situation where dynamic interaction between R and Java is needed,
+by integration of Java based scripting languages, such as Kotlin or
+Groovy, and a ancilliary package that manages dynamic data-type
+translation - \CRANpkg{jdx}. Although simplifying data type conversion
+this is still a relatively complex solution for the situation where a
+developer wishes to package Java based functions for use in R programs,
+for native R use as a library.
 
 Strengths and weaknesses of Java and R R ease of data import and
 integration, spatial support R visualisation R data wrangling R REPL
 Java ease of multithreaded processing. Java dependency and classpath
 management. Java VM debugging versus R debugging
 
-The existing approaches - Integration between \proglang{Java} and
-\proglang{R} has existed since the release of \pkg{rJava} in 2003,
-however successful use of Java libraries within R has remained complex
-and
+The existing approaches - Integration between Java and R has existed
+since the release of \CRANpkg{rJava} in 2003, however successful use of
+Java libraries within R has remained complex and
 
 rJava, rjsr223 jsr223 reference - review of Java integration JNI \&
 rJava features and limitations rJava 2 level api jsr223 benefits and
@@ -106,17 +65,32 @@ limitations Data only integration e.g.~Apache Arrow.
 \section{Desiderata / Design
 rationale}\label{desiderata-design-rationale}}
 
-R as REPL, java as backend
-
-No knowledge of JNI, rJava or intermediate languages required. High
-performance - minimise interpretation, Compile time - strongly typed
-inputs to R - minimise data transfer overhead. minimise use of
-reflection Accurate data transformations and round trip Dependency
-management - Separation of concerns \& isolation - java based API layer
-to isolate Java changes from R API changes Predictability - Runtime
-library - predictable R data in Java code isolating java from R type
-system Seamless R use of library - R6 class hierarchy - native R facade
-to Java code
+\begin{itemize}
+\tightlist
+\item
+  R as REPL, java as backend
+\item
+  No knowledge of JNI, rJava or intermediate languages required.
+\item
+  High performance - minimise interpretation, Compile time - strongly
+  typed inputs to R - minimise data transfer overhead. minimise use of
+  reflection
+\item
+  Accurate data transformations and round trip
+\item
+  Dependency management -
+\item
+  Separation of concerns \& isolation - java based API layer to isolate
+  Java changes from R API changes
+\item
+  Predictability - Runtime library - predictable R data in Java code
+  isolating java from R type system
+\item
+  Seamless R use of library - R6 class hierarchy - native R facade to
+  Java code
+\item
+  CRAN ready submission from Java library
+\end{itemize}
 
 \hypertarget{terminology-and-concepts}{%
 \section{Terminology and concepts}\label{terminology-and-concepts}}
@@ -130,8 +104,6 @@ Maven plugin - Runtime dependency - R types for java
 \subsection{Minimal example}\label{minimal-example}}
 
 \begin{minted}[linenos]{java}
-package uk.co.terminological.rjava.test;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -149,7 +121,6 @@ public class MinimalExample {
     static Logger log = LoggerFactory.getLogger(MinimalExample.class);
     
     @RMethod(examples = {
-        "J = testRapi::JavaApi$new()",
         "minExample = J$MinimalExample$new()",
         "minExample$demo(dataframe=tibble::tibble(input=c(1,2,3)), message='Hello world')"
     })
@@ -209,16 +180,17 @@ public class MinimalExample {
                     <packageData>
                         <title>A test library</title>
                         <version>0.01</version>
-                        <debug>true</debug>
+<!--                        <debug>true</debug> -->
                         <rjavaOpts>
                             <rjavaOpt>-Xmx256M</rjavaOpt>
                         </rjavaOpts>
                         <packageName>testRapi</packageName>
                         <license>MIT</license>
-                        <description>An optional long description of the package</description>
+                        <description>A long description of the package.</description>
                         <maintainerName>test forename</maintainerName>
-                        <maintainerFamilyName>optional surname</maintainerFamilyName>
+                        <maintainerFamilyName>optional-surname</maintainerFamilyName>
                         <maintainerEmail>test@example.com</maintainerEmail>
+                        <maintainerOrganisation>University of Examples</maintainerOrganisation>
                     </packageData>
                     <outputDirectory>${project.basedir}/r-library</outputDirectory>
                 </configuration>
@@ -230,7 +202,6 @@ public class MinimalExample {
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
 \end{minted}
 
 \hypertarget{r6-class-generation}{%
@@ -257,9 +228,11 @@ library}\label{r-to-java---runtime-library}}
 \subsection{Debugging Java code}\label{debugging-java-code}}
 
 \begin{itemize}
+\tightlist
 \item
   Datasets for testing Java code / serialisation of inputs
 \item
+  Debugging flag
 \end{itemize}
 
 \hypertarget{benefits}{%
@@ -325,10 +298,18 @@ library}\label{r-to-java---runtime-library}}
   Purrr style lists in data frames
 \end{itemize}
 
-\hypertarget{conclusion}{%
-\section{Conclusion}\label{conclusion}}
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
 
+\bibliography{R6-generator-intro.bib}
 
-
-\end{document}
+\address{%
+Robert Challen\\
+University of Exeter\\%
+EPSRC Centre for Predictive Modelling in Healthcare,\\ University of Exeter,\\ Exeter,\\ Devon, UK.\\
+%
+\url{https://github.com/terminological/r6-generator-maven-plugin}%
+\\\textit{ORCiD: \href{https://orcid.org/0000-0002-5504-7768}{0000-0002-5504-7768}}%
+\\\href{mailto:rc538@exeter.ac.uk}{\nolinkurl{rc538@exeter.ac.uk}}
+}
 
