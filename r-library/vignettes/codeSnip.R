@@ -1,5 +1,10 @@
 options(tinytex.engine_args = '-shell-escape')
 
+cran = function(pkg) {
+  if(knitr::is_html_output()) return(paste0("<em>",pkg,"</em>")) 
+  else return(knitr::asis_output(paste0("\\CRANpkg{",pkg,"}")))
+}
+
 codeSnipByLine = function(type,filename,starts=1,ends=Inf,sep="\n...\n") {
   
   lines = readLines(filename)
@@ -38,7 +43,7 @@ codeSnip = function(type,filename,startMatches="START",endMatches="END", include
   if (!includeEnd) ends = ends-1
   
   if (length(starts) == 0) starts=c(1)
-  if (length(ends) == 0) starts=c(Inf)
+  if (length(ends) == 0) ends=c(Inf)
   if (length(starts) != length(ends)) stop("Mismatch in start and end markers, start:{}, end:{}",starts,ends)
   
   if (isTRUE(getOption("knitr.in.progress")) && knitr::opts_knit$get('rmarkdown.pandoc.to')=="html") {

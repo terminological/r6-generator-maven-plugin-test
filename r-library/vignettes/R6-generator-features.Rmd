@@ -1,8 +1,10 @@
 ---
-title: "R6-generator-features"
+title: "R6 Generator Maven Plugin: Key features"
 author: "Rob Challen"
 date: "19/10/2020"
-output: html_document
+output: 
+  html_document: 
+    css: draft.css
 header-includes:
   \usepackage{amsmath}
   \usepackage{minted}
@@ -18,21 +20,22 @@ library(tidyverse)
 source("./codeSnip.R")
 ```
 
+<div class="watermark">DRAFT</div>
+
 ## Features
 
-The feature test Java class is designed to showcase the main aspects of the R6 Generator Maven Plugin, and serves as a quick guide to Java programmers wishing to use the plugin. The source of the FeatureTest class is shown below, where the use of the Java annotations `@RClass` and `@RMethod` tag a class, and specific methods in that class for use in R. The code structure, parameters and return values or the tagged classes and methods are used to create an equivalent R6 class structure in an R library. In general javadoc comments and tags are used to document the library, and where there are no applicable tags specific fields in the `@RClass` and `@RMethod` annotations can been used to specify needed imports, suggested R package dependencies and provide specific example code if needed. 
-
-When Maven is used to install the project containing this Java class, it is compiled into a jar with all required dependencies and an R6 class structure created that mirrors the Java classes is generated in a specified sub-directory of the Maven Java project (in this case "r-library"). This sub-directory contains all of the components of a R package, including a set of R source files defining a set of R6 classes, DESCRIPTION and NAMESCAPE files, LICENSE and CITATION files and a set of Rd documentation files. 
-
-The package name (in this case "testRapi"), and other metadata such as author and license details are defined in the Maven plugin configuration and this is described in detail elsewhere.
+The `FeatureTest` Java class is designed to showcase the main aspects of the R6 Generator Maven Plugin, and serves as a quick guide to Java programmers wishing to use the plugin. The source of the `FeatureTest` class is shown below, where the use of the Java annotations `@RClass` and `@RMethod` tag a class, and specific methods in that class for use in R. The code structure, parameters and return values or the tagged classes and methods are used to create an equivalent R6 class structure in an R library. In general Javadoc comments and tags are used to document the library, and where there are no applicable tags specific fields in the `@RClass` and `@RMethod` annotations can been used to specify needed imports, suggested R package dependencies and provide specific example code if needed. 
 
 ```{r results='asis', echo=FALSE}
 codeSnip("java",
          filename="/home/terminological/Git/r6-generator-maven-plugin-test/src/main/java/uk/co/terminological/rjava/test/FeatureTest.java","START_SNIP_1","END_SNIP_1") #,35,51)
 ```
+
+The packaging of this class into an R library is described [elsewhere](./R6-generator-intro). The package name (in this case `testRapi`), the directory of the library (in this example `~/Git/r6-generator-maven-plugin-test/r-library/`) and other metadata such as author and license details are defined in the Maven plugin configuration (in a file named `pom.xml`). This configuration is described in detail [elsewhere](./R6-generator-maven-config). For the purposes of this we assume the Java code has been compiled, generating the `testRapi` R package which is ready for installation.
+
 ## Installation and instantiation
 
-The generated R package can be installed into R in more or less the same way as any other R library, depending on how it is deployed. Typical scenarios would be pushing the whole Java project to Github and installing to R from Github using `devtools`, installing directly from the local filesystem, again with `devtools`, or submitting the R library sub-directory as a project to CRAN and installing from there, using `install.packages`. 
+The generated R package can be installed into R in more or less the same way as any other R library, depending on how it is deployed. Typical scenarios would be pushing the whole Java project to Github and installing to R from Github using `devtools::install_github()`, installing directly from the local filesystem, with `devtools::install()`, or submitting the R library sub-directory as a project to CRAN and installing from there, using `install.packages()`. 
 
 ```{r echo=TRUE, eval=FALSE}
 # not run
@@ -53,7 +56,7 @@ devtools::install("~/Git/r6-generator-maven-plugin-test/r-library/", upgrade = "
 source("./codeSnip.R")
 ```
 
-The R6 api to the Java classes requires a running instance of the Java Virtual Machine and JNI bridge provided by rJava. It also requires Java classpath dependencies to be loaded and application logging to be initialised. This is all managed by a specific generated R6 class called JavaApi and creating a singleton instance of this is the first step to using the library in R. In these examples the singleton instance `J` is referred to as the "root" of the api, as all the functions of the API stem from it.
+The R6 api to the Java classes requires a running instance of the Java Virtual Machine and JNI bridge provided by `r cran("rJava")`. It also requires Java classpath dependencies to be loaded and application logging to be initialised. This is all managed by a specific generated R6 class called `JavaApi` and creating a singleton instance of this is the first step to using the library in R. In these examples the singleton instance `J` is referred to as the "root" of the api, as all the functions of the API stem from it.
 
 ```{r message=TRUE}
 J = testRapi::JavaApi$get(logLevel = "WARN")
@@ -75,9 +78,9 @@ codeSnip("java",
          filename="/home/terminological/Git/r6-generator-maven-plugin-test/src/main/java/uk/co/terminological/rjava/test/FeatureTest.java","START_SNIP_2","END_SNIP_2")
 ```
 
-The `FeatureClass.doHelloWorld()` method takes no arguments and returns a value to R. A detailed discussion of R and Java data types is to be found elsewhere but our approach has involved developing a specific set of Java datatypes that have close relationships to the native R datatypes. This enables lossless round tripping of data from R to Java and back again, but requires the mapping of Java data types to R. This is handled by the `uk.co.terminological.rjava.RConverter` class which provides a range of datatype transformers, and the `uk.co.terminological.rjava.types.*` classes which specify Java equivalents to R data types. These are needed as R's dynamic datatypes contain concepts which are not readily represented in the primitive java datatypes that are transferred across the JNI. Thus some marshaling is required on both sides to ensure translation is 100% accurate, including for example, conversion of R logical vectors containing NA values, to java `List<Boolean>` via JNI primitive arrays, or support for typed NA values (e.g. `NA_int_` versus `NA_logical_`). 
+The `FeatureClass.doHelloWorld()` method takes no arguments and returns a value to R. A detailed discussion of R and Java data types is to be found elsewhere but our approach has involved developing a specific set of Java datatypes that have close relationships to the native R datatypes. This enables loss-less round tripping of data from R to Java and back again, but requires the mapping of Java data types to R. This is handled by the `uk.co.terminological.rjava.RConverter` class which provides a range of datatype transformers, and the `uk.co.terminological.rjava.types.*` classes which specify Java equivalents to R data types. These are needed as R's dynamic datatypes contain concepts which are not readily represented in the primitive java datatypes that are transferred across the JNI. Thus some marshaling is required on both sides to ensure translation is 100% accurate, including for example, conversion of R logical vectors containing NA values, to java `List<Boolean>` via JNI primitive arrays, or support for typed NA values (e.g. `NA_int_` versus `NA_logical_`). 
 
-The doHelloWorld() function returns a character vector, The doSum function expects 2 R numeric values and seamlessly handles both datatype coercion and NA values.
+The `doHelloWorld()` function returns a character vector, The `doSum()` function expects 2 R numeric values and seamlessly handles both datatype coercion and NA values.
 
 ```{r}
 feat1$doHelloWorld()
@@ -113,7 +116,7 @@ J$FeatureTest$demoStatic("Hello, static world.")
 
 ## More complex objects
 
-The generated API has support for the lossless bidirectional transfer of a range of R data types into Java and back to R. Extensive tests are available elsewhere but in general support for vectors, dataframes and lists is mostly complete, including factors, but matrices and arrays are not yet implemented. Dataframes with named rows are also not yet supported. Dataframes as well as other objects can be serialised in Java and deserialised. This serialisation has been done for the ggplot2::diamonds data set, and the resulting deserialisation shown here. Factor levels and ordering are preserved when the factor is part of a vector or dataframe.
+The generated API has support for the loss-less bi-directional transfer of a range of R data types into Java and back to R. Extensive tests are available elsewhere but in general support for vectors, dataframes and lists is mostly complete, including factors, but matrices and arrays are not yet implemented. Dataframes with named rows are also not yet supported. Dataframes as well as other objects can be serialised in Java and de-serialised. This serialisation has been done for the ggplot2::diamonds data set, and the resulting de-serialisation shown here. Factor levels and ordering are preserved when the factor is part of a vector or dataframe.
 
 ```{r results='asis', echo=FALSE}
 codeSnip("java",
@@ -136,14 +139,14 @@ if (identical(J$FeatureTest$diamonds(), ggplot2::diamonds)) {
 
 ## Objects, fluent apis and factory methods
 
-The generated R6 code can handle return of Java objects to R, as long as they are a part of the api and annotated with @RClass. A common use case for this is fluent Apis, where the Java object is manipulated by a method and returns itself. 
+The generated R6 code can handle return of Java objects to R, as long as they are a part of the api and annotated with `@RClass`. A common use case for this is fluent Apis, where the Java object is manipulated by a method and returns itself. 
 
 ```{r results='asis', echo=FALSE}
 codeSnip("java",
          filename="/home/terminological/Git/r6-generator-maven-plugin-test/src/main/java/uk/co/terminological/rjava/test/FeatureTest.java","START_SNIP_3","END_SNIP_3")
 ```
 
-The JavaApi root manages R's perspective on the identity of objects in Java. This allows for fluent api methods, and method chaining. This is not flawless but should work for most common scenarios. It is possible that complex edge cases may appear equal in Java but not identical in R, so true equality should rely on the Java equals method. 
+The `JavaApi` root manages R's perspective on the identity of objects in Java. This allows for fluent api methods, and method chaining. This is not flawless but should work for most common scenarios. It is possible that complex edge cases may appear equal in Java but not identical in R, so true equality should rely on the Java `equals()` method. 
 
 ```{r}
 
@@ -172,19 +175,19 @@ feat2$fluentSetMessage("Hello world. updating message again.")
 feat1$getMessage()
 ```
 
-Factory methods allow java methods to create and return Java objects. This is supported as long as the objects are a part of the api and annotated with @RClass. Arbitrary java objects are not supported as return types and java code that tries to return such objects will throw an exception during the maven packaging phase. This is by design to enforce formal contracts between the Java code and the R api. If you want dynamic manipulation of the Java objects then the jsr223 plugin is more appropriate for you.
+Factory methods allow java methods to create and return Java objects. This is supported as long as the objects are a part of the api and annotated with `@RClass`. Arbitrary java objects are not supported as return types and java code that tries to return such objects will throw an exception during the maven packaging phase. This is by design to enforce formal contracts between the Java code and the R api. If you want dynamic manipulation of the Java objects then the `r cran("jsr223")` plugin is more appropriate for you.
 
 ```{r results='asis', echo=FALSE}
 codeSnip("java",
          filename="/home/terminological/Git/r6-generator-maven-plugin-test/src/main/java/uk/co/terminological/rjava/test/FeatureTest.java","START_SNIP_4","END_SNIP_4")
 ```
-This java code from refers to another class - MoreFeatureTest which has the following basic structure:
+This java code from refers to another class - `MoreFeatureTest` which has the following basic structure:
 
 ```{r results='asis', echo=FALSE}
 codeSnip("java",
          filename="/home/terminological/Git/r6-generator-maven-plugin-test/src/main/java/uk/co/terminological/rjava/test/MoreFeatureTest.java","START_SNIP_1","END_SNIP_1")
 ```
-The `FeatureTest.factoryMethod(a,b)` method allows us to construct instances of another class. This enables builder patterns in the R api. The `MoreFeatureTest.create(message1,message2)` method demonstrates static factory methods, which return instances of the same class. Static methods are implemented as methods in the JavaApi root, as demonstrated here:
+The `FeatureTest.factoryMethod(a,b)` method allows us to construct instances of another class. This enables builder patterns in the R api. The `MoreFeatureTest.create(message1,message2)` method demonstrates static factory methods, which return instances of the same class. Static methods are implemented as methods in the `JavaApi` root, as demonstrated here, and accessed through the root object `J`:
 
 ```{r}
 # factory method from builder class
@@ -197,11 +200,11 @@ feat1$objectAsParameter(moreFeat1)
 
 ## Logging, printing and exceptions
 
-The logging subsytem is based on slf4j with a log4j2 implementation. These are specified in the R6-generator-runtime dependency pom, so anything that imports that will have them as a transitive dependency. These are needed as dynamic alteration of the logging level from R is dependent on implementation details of log4j. This is maybe possible to remove in the future. 
+The logging sub-system is based on `slf4j` with a `log4j2` implementation. These are specified in the `r6-generator-runtime` dependency pom, so anything that imports that will have them as a transitive dependency. These are needed as dynamic alteration of the logging level from R is dependent on implementation details of `log4j`. This is maybe possible to remove in the future. 
 
-Exceptions thrown from Java are handled in the same way as rJava, and printed messages are seen on the R console as expected. However rJava does something strange to messages from `System.out` that means they do not appear in knitr output. To resolve this a unsightly workaround (hack) has been adopted that collects messages from system out and prints them after the java method has completed. This has the potential to cause all sorts of issues.
+Exceptions thrown from Java are handled in the same way as `r cran("rJava")`, and printed messages are seen on the R console as expected. However rJava does something strange to messages from `System.out` that means they do not appear in knitr output. To resolve this a unsightly workaround (hack) has been adopted that collects messages from system out and prints them after the Java method has completed. This has the potential to cause all sorts of issues.
 
-The logging level can be controlled at runtime by a function in the JavaApi root. Logging can be configured dynamically with a log4j properties file (not shown) to enable file based logging, for example.
+The logging level can be controlled at runtime by a function in the `JavaApi` root. Logging can be configured dynamically with a `log4j` properties file (not shown) to enable file based logging, for example.
 
 
 ```{r results='asis', echo=FALSE}
@@ -238,17 +241,20 @@ codeSnip("java",
 ```{r}
 s = tempfile(pattern = "diamonds", fileext = ".ser")
 J$Serialiser$serialiseDataframe(dataframe = ggplot2::diamonds, filename = s)
-J$Serialiser$deserialiseDataframe(filename=s)
+J$Serialiser$deserialiseDataframe(filename=s) %>% glimpse()
 ```
+
 With serialised test data, as dataframes, lists or named lists, development of java functions and unit tests can be created that output values of the correct `RObject` datatype. Correct packaging and integration with R is a question of running `mvn install` to compile the Java into a jar file and generate R library code, then using `devtools::install` to install the generated R library. 
 
-```{r echo=TRUE, eval=FALSE}
-# not run
-
+```{bash echo=TRUE, eval=FALSE}
 # compile Java code and package R library using `mvn install` command
-setwd("~/Git/r6-generator-maven-plugin-test")
-system("mvn install")
+cd ~/Git/r6-generator-maven-plugin-test
+mvn install
+```
 
+
+```{r echo=TRUE, eval=FALSE}
+setwd("~/Git/r6-generator-maven-plugin-test")
 # remove previously installed versions
 try(detach("package:testRapi", unload = TRUE),silent = TRUE)
 remove.packages("testRapi")
@@ -259,14 +265,7 @@ devtools::install("~/Git/r6-generator-maven-plugin-test/r-library/", upgrade = "
 # N.B. devtools::load_all() does not appear to always successfully pick up changes in the compiled java code
 ```
 
-For initial integration testing there is a debug flag in the maven `pom.xml` that enables remote java debugging to the initialized when the library is first loaded in R. When set to true a java debugging session on port 8998 is opened which can be connected to as a remote java application. This allows breakpoints to be set on Java code and the state of the JVM to be inspected when Java code is executed from R, however Java code changes cannot be hot-swapped into the running JVM, and so debugging integration issues is relatively limited. 
+For initial integration testing there is a debug flag in the maven `pom.xml` that enables remote java debugging to the initialized when the library is first loaded in R. When set to true a java debugging session on port 8998 is opened which can be connected to as a remote java application. This allows breakpoints to be set on Java code and the state of the JVM to be inspected when Java code is executed from R, however Java code changes cannot be hot-swapped into the running JVM, and so debugging integration issues is relatively limited. For more details see the [Maven configuration vignette](./R6-generator-maven-config).
 
-```{r results='asis',echo=FALSE}
-codeSnipByLine(type="xml",filename="/home/terminological/Git/r6-generator-maven-plugin-test/pom.xml",
-         starts = c(58),
-         ends = c(72), 
-         sep = "\n...\n")
-```
-
-There are other limitations with enabling java debugging, not least being the potential for port conflicts with multiple running instances of the development library, and caching issues between running and loaded versions of the Java code. Whilst not too painful (compared to the alternatives) this is not a REPL experience and reserved for the last stage of debugging. Part of the purpose of strongly enforcing a datatype conversion contract between Java and R, and extensive use of code generation, is to decouple Java and R development as much as possible (do as I say - not as I do).
+There are other limitations with enabling java debugging, not least being the potential for port conflicts with multiple running instances of the development library, and caching issues between running and loaded versions of the Java code. Whilst not too painful (compared to the alternatives) this is very definitely not a REPL experience and reserved for the last stage of debugging. Part of the purpose of strongly enforcing a datatype conversion contract between Java and R, and extensive use of code generation, is to decouple Java and R development as much as possible (N.B. do as I say - not as I do).
 

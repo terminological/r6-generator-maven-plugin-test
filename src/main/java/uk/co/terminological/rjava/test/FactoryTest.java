@@ -10,6 +10,7 @@ import uk.co.terminological.rjava.MapRule;
 import uk.co.terminological.rjava.RClass;
 import uk.co.terminological.rjava.RConverter;
 import uk.co.terminological.rjava.RMethod;
+import uk.co.terminological.rjava.UnconvertableTypeException;
 import uk.co.terminological.rjava.types.*;
 
 @RClass
@@ -62,8 +63,8 @@ public class FactoryTest {
 	
 	@RMethod
 	public RNumericVector generateNumericVec() {
-		return (RNumericVector) 
-				DoubleStream.of(3.0, 4.3, 2.1, 2.3).boxed()
+		return DoubleStream
+				.of(3.0, 4.3, 2.1, 2.3).boxed()
 				.collect(RConverter.doubleCollector());
 	}
 	
@@ -109,17 +110,22 @@ public class FactoryTest {
 	
 	//SECTION_04
 	
+	/**
+	 * Lists are much harder to type check than vectors hence RList builder methods throw checked exceptions 
+	 * @return a RList containing the supplied Java objects converted into RObjects
+	 * @throws UnconvertableTypeException if those objects are not themselves or cannot be converted into an RObject 
+	 */
 	@RMethod
-	public RList generateList() {
-		return RList.with("one", Test.TWO, 3.0);
+	public RList generateList() throws UnconvertableTypeException {
+		return RList.withRaw("one", Test.TWO, 3.0);
 	}
 	
 	@RMethod
-	public RNamedList generateNamedList() {
+	public RNamedList generateNamedList() throws UnconvertableTypeException {
 		return RNamedList
-				.with("A","one")
-				.and("B", Test.TWO)
-				.and("C", RVector.with(3.0, 4.3, 2.1));
+				.withRaw("A","one")
+				.andRaw("B", Test.TWO)
+				.andRaw("C", RVector.with(3.0, 4.3, 2.1));
 	}
 	
 	//SECTION_05

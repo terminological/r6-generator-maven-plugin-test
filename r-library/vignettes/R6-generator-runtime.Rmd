@@ -1,0 +1,49 @@
+---
+title: 'R6 Generator Runtime: Using R Datatypes in Java'
+author: "Rob Challen"
+date: "28/10/2020"
+output:
+  html_document: 
+    css: draft.css
+header-includes:
+  \usepackage{amsmath}
+  \usepackage{minted}
+  \usemintedstyle{emacs}
+  \setminted[java]{fontsize=\footnotesize,tabsize=3}
+  \setminted[xml]{fontsize=\footnotesize,tabsize=3}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+source("./codeSnip.R")
+```
+
+<div class="watermark">DRAFT</div>
+
+## Imports
+
+
+```{r results='asis', echo=FALSE}
+codeSnip("java",filename="/home/terminological/Git/r6-generator-runtime/src/test/java/uk/co/terminological/rjava/types/TestDatatypes.java",startMatches = "CS01",endMatches = "CE01")
+```
+## Wrapping and unwrapping
+
+```{r results='asis', echo=FALSE}
+codeSnip("java",filename="/home/terminological/Git/r6-generator-runtime/src/test/java/uk/co/terminological/rjava/types/TestDatatypes.java",startMatches = "CS04",endMatches = "CE04")
+```
+
+
+## RVector creation and transformation
+
+`RIntegerVector` examples:
+
+```{r results='asis', echo=FALSE}
+codeSnip("java",filename="/home/terminological/Git/r6-generator-runtime/src/test/java/uk/co/terminological/rjava/types/TestDatatypes.java",startMatches = "CS02",endMatches = "CE02")
+```
+
+Other `RVector<?>` examples:
+
+```{r results='asis', echo=FALSE}
+codeSnip("java",filename="/home/terminological/Git/r6-generator-runtime/src/test/java/uk/co/terminological/rjava/types/TestDatatypes.java",startMatches = "CS03",endMatches = "CE03")
+```
+

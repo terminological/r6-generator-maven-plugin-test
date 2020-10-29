@@ -60,15 +60,16 @@
 						<version>0.01</version>
 						<debug>false</debug>
 						<usePkgdown>true</usePkgdown>
+						<useJavadoc>true</useJavadoc>
 						<rjavaOpts>
 							<rjavaOpt>-Xmx256M</rjavaOpt>
 						</rjavaOpts>
 						<packageName>testRapi</packageName>
 						<license>MIT</license>
 						<description>
-							This package is a feature test of the R6 generator Maven plugin. It is not
+							This package is a feature test of the R6 Generator Maven Plugin. It is not
 							intended to be useful beyond testing, demonstrating and documenting 
-							the features of the Java R6 library generator.
+							the features of the plugin.
 						</description>
 						<maintainerName>Rob</maintainerName>
 						<maintainerFamilyName>Challen</maintainerFamilyName>

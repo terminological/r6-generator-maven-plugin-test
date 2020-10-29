@@ -1,8 +1,10 @@
 ---
-title: "R6-generator-datatypes"
+title: "R6 Generator Maven Plugin: Datatype conversion"
 author: "Rob Challen"
 date: "19/10/2020"
-output: html_document
+output: 
+  html_document:
+    css: draft.css
 header-includes:
   \usepackage{amsmath}
   \usepackage{minted}
@@ -10,6 +12,15 @@ header-includes:
   \setminted[java]{fontsize=\footnotesize,tabsize=3}
   \setminted[xml]{fontsize=\footnotesize,tabsize=3}
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("./codeSnip.R")
+
+# https://stackoverflow.com/questions/32748248/watermark-in-rmarkdown?rq=1
+
+```
+
+<div class="watermark">DRAFT</div>
 
 # Datatype conversion
 
@@ -20,22 +31,20 @@ R and Java have quite different philosophy on datatypes that mean that loss less
 * In R everything can be named. In Java data is not "named" as such unless it is in a Map.
 * Java distinguishes between primitive and boxed data types. R has no primitive type except raw bytes.
 * JNI only really natively supports primitive data types, and arrays thereof.
-* R Dataframes are naturally column based structures. Java is generally written to operate iteratively on streams of objects, which are more like rows.
-* R lists are complex untyped structures with more similarity to JSON trees than to Java Collections.
+* R expects data to be in vector structures containing the same data types, and thus operations on R vectors and dataframes are intrinsically column based operations. Java is generally written to operate on collections of objects which compose different data types into a single structure, and thus operations tend to be intrinsically row based.
+* R lists are complex un-typed structures with more similarity to JSON trees than to Java Collections.
 * R is 1 based, java is 0 based for indexes.
-* R has typed NA values. Java null is untyped.
+* R has typed NA values. Java null is un-typed.
 * Java void and R NULL are not exactly the same conceptually, as an R variable can be NULL but a Java variable can never be void. Boxed Void types in Java are the programming equivalent of Schrodinger's cat.
 
-By inspecting the Java code at compilation time, and by imposing constraints on the types of data transferred between R and Java, it is possible to use a combination of convention, data-type coercion, and type checking to ensure that inputs to Java code from R are type safe, and (almost) 100% faithful copies of their R equivalents and vice versa. This differs in approach from `jsr223` which performs dynamic data conversion from R types to generic R data structures. This is harder to make consistent and requires a degree of introspection, during the marshalling and unmarshalling process. Enforcing rigid type systems on the interface between R and Java allows the simpler transformation to be made, based on the strongly typed Java code at compile time, which should result in faster but less flexible data transfer.
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-source("./codeSnip.R")
-```
+By inspecting the Java code at compilation time, and by imposing constraints on the types of data transferred between R and Java, it is possible to use a combination of convention, data-type coercion, and type checking to ensure that inputs to Java code from R are type safe, and (almost) 100% faithful copies of their R equivalents and vice-versa. This differs in approach from `r cran("jsr223")` which performs dynamic data conversion from R types to generic R data structures. This is harder to make consistent and requires a degree of introspection, during the marshaling and un-marshaling process. Enforcing rigid type systems on the interface between R and Java allows the simpler transformation to be made, based on the strongly typed Java code at compile time, which should result in faster but less flexible data transfer.
 
 ## Round tripping data from R to Java to R
 
-![class-hierarchy](./RClass.png){#id .class width=80% height=50%}
+```{r out.width="100%"}
+knitr::include_graphics("./RClass.png")
+```
+
 
 ### Nulls and voids
 
@@ -84,9 +93,8 @@ b$bounceDouble(1.23)
 try(b$bounceDouble(NA_real_))
 
 b$bounceNumeric(4.6)
-# This works and is correctly round tripped but Java thinks the value is a NaN rather than a NA. This is a bug but has limited impact.
-b$bounceNumeric(NA_real_)
 
+b$bounceNumeric(NA_real_)
 b$bounceNumeric(Inf)
 b$bounceNumeric(-Inf)
 b$bounceNumeric(0/0)

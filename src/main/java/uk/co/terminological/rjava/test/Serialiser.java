@@ -53,10 +53,10 @@ public class Serialiser {
 	}
 	
 	@RMethod
-	public static RDataframe deserialiseList(String filename) throws IOException {
+	public static RList deserialiseList(String filename) throws IOException {
 		InputStream is = Files.newInputStream(Paths.get(filename));
 		if(is==null) throw new IOException("Could not locate "+filename);
-		return RObject.readRDS(RDataframe.class, is);
+		return RObject.readRDS(RList.class, is);
 	}
 	
 	//SNIPPET_3
@@ -69,11 +69,19 @@ public class Serialiser {
 	}
 	
 	@RMethod
-	public static RDataframe deserialiseNamedList(String filename) throws IOException {
+	public static RNamedList deserialiseNamedList(String filename) throws IOException {
 		InputStream is = Files.newInputStream(Paths.get(filename));
 		if(is==null) throw new IOException("Could not locate "+filename);
-		return RObject.readRDS(RDataframe.class, is);
+		return RObject.readRDS(RNamedList.class, is);
 	}
 	
 	//SNIPPET_4
+	
+//	TODO: We don't support arbitary content unless it is a list, but we probably should for just this kind of situtation
+//	@RMethod
+//	public static void serialise(RObject anything, String filename) throws IOException {
+//		FileOutputStream fos = new FileOutputStream(filename);
+//		anything.writeRDS(fos);
+//		log.info("named list written to: "+filename);
+//	}
 }

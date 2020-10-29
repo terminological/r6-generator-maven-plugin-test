@@ -94,7 +94,7 @@ public class FeatureTest {
 	/**
 	 * Static methods are also supported. These are accessed through the
 	 * root of the R api.
-	 * @param message
+	 * @param message a message
 	 */
 	@RMethod(examples = {
 			"J$FeatureTest$demoStatic('Ola, el mundo')",
@@ -153,7 +153,7 @@ public class FeatureTest {
 	
 	/**
 	 * Consumes a data frame and logs its length
-	 * @param dataframe
+	 * @param dataframe a dataframe
 	 */
 	@RMethod
 	public void doSomethingWithDataFrame(RDataframe dataframe) {
@@ -162,6 +162,7 @@ public class FeatureTest {
 	
 	/**
 	 * Creates a basic dataframe and returns it
+	 * @return a daatframe
 	 */
 	@RMethod
 	public RDataframe generateDataFrame() {
@@ -180,6 +181,8 @@ public class FeatureTest {
 	 * A copy of the ggplot2::diamonds dataframe serialised into java, using
 	 * RObject.writeRDS, saved within the jar file of the package, and exposed here
 	 * using RObject.readRDS. 
+	 * @return the ggplot2::diamonds dataframe
+	 * @throws IOException if the serialised data file could not be found 
 	 */
 	@RMethod(examples = {
 			"J$FeatureTest$diamonds()",

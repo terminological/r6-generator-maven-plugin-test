@@ -1,8 +1,9 @@
 /R6-generator-intro.R
-/R6-generator-intro.tex
-/RJwrapper.pdf
-/RJwrapper.tex
-/RJournal.sty
-/Rlogo.pdf
+/*.tex
+/*.pdf
+/*.tex
+/*.sty
+/*.pdf
 /_minted-*/
 /RClassModel/
+/*.html

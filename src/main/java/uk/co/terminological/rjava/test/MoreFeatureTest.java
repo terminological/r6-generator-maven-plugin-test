@@ -32,9 +32,9 @@ public class MoreFeatureTest {
 	}
 	
 	/** A static object constructor
-	 * @param message1
-	 * @param message2
-	 * @return
+	 * @param message1 - the message to be printed 
+	 * @param message2 - will be used for toString
+	 * @return A MoreFeatureTest R6 object
 	 */
 	@RMethod(examples = {
 		"J$MoreFeatureTest$create('Hello,',' World')",
