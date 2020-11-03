@@ -105,9 +105,21 @@ DRAFT
 <div class="sourceCode"><table class="table sourceCode java number-lines"><tr class="sourceCode">
 <td class="lineNumbers"><pre>1
 2
+3
+4
+5
+6
+7
+8
 </pre></td>
 <td class="sourceCode"><pre><code class="sourceCode java"><span class="kw">import uk.co.terminological.rjava.types.*;</span>
-<span class="kw">import static uk.co.terminological.rjava.RConverter.*;</span></code></pre></td>
+<span class="kw">import static uk.co.terminological.rjava.RConverter.*;</span>
+<span class="kw">import static uk.co.terminological.rjava.MapRule.*;</span>
+
+<span class="kw">import uk.co.terminological.rjava.IncompatibleTypeException;</span>
+<span class="kw">import uk.co.terminological.rjava.NameNotFoundException;</span>
+<span class="kw">import uk.co.terminological.rjava.RConverter;</span>
+<span class="kw">import uk.co.terminological.rjava.RName;</span></code></pre></td>
 </tr></table></div>
 </div>
 <div id="wrapping-and-unwrapping" class="section level2">
@@ -296,7 +308,7 @@ DRAFT
 
 
       <footer><div class="copyright">
-  <p>Developed by Rob Challen, r-jsr223-maven-plugin terminological, given family, terminological.</p>
+  <p>Developed by Rob Challen, terminological, given family.</p>
 </div>
 
 <div class="pkgdown">

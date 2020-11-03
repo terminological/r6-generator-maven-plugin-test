@@ -6,9 +6,8 @@ c(
 		note = "R package version 0.01",
 		author = c(
 			person(given = "Rob",family = "Challen",email = "rc538@exeter.ac.uk",role = c("aut", "cre")),
-			person(given = "r-jsr223-maven-plugin",family = "terminological",role = "aut"),
-			person(given = "terminological",role = "aut"),
-			person(given = "given",family = "family",email = "email@example.com",comment = structure("ORCIDID", .Names = "ORCID"),role = "aut")		)
+			person(given = "given",family = "family",email = "email@example.com",comment = structure("ORCIDID", .Names = "ORCID"),role = "aut"),
+			person(given = "terminological",role = "aut")		)
 	),
 	bibentry(bibtype = "Manual",
 		title = "R6 generator maven plugin",

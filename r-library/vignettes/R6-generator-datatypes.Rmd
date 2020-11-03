@@ -175,10 +175,14 @@ codeSnip("java",filename="/home/terminological/Git/r6-generator-maven-plugin-tes
 ```
 
 ```{r}
-b$bounceDataframe(tibble::tibble(
-  x=c(0,1,2),
-  y=c(3L,2L,1L)
-))
+testDf = tibble::tibble(
+  grp = c("A","A","A","B","B","B"),
+  x=c(0,1,2,4,5,6),
+  y=c(3L,2L,1L,-1L,-2L,-3L)
+)
+testDf = dplyr::group_by(testDf,grp,x)
+
+b$bounceDataframe(testDf)
 
 b$bounceDataframe(tibble::tibble(
   u=factorVec[1:3],
@@ -188,6 +192,18 @@ b$bounceDataframe(tibble::tibble(
   y=c(3L,2L,1L),
   z=as.Date(c("2001-02-03",NA,"2001-02-05"))
 ))
+```
+
+### Arrays
+
+```{r}
+test2DArr = matrix(seq(0,9.9,0.1),c(10,10))
+b$bounceArray(test2DArr)
+
+test3DArr = array(seq(0,63),c(8,4,2))
+b$bounceArray(test3DArr)
+
+
 ```
 
 ### Lists
@@ -207,6 +223,7 @@ if (!identical(input,output)) stop("FAIL")
 
 b$bounceNamedList(list(x="a",b=c("a",NA,"c"),c=1))
 ```
+
 
 ## Generating data in Java
 

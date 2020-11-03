@@ -13,7 +13,7 @@ missing description
 
 Version: 0.01
 
-Generated: 2020-10-29T21:13:41.608
+Generated: 2020-11-03T21:33:22.937
 }
 
 \details{
@@ -104,6 +104,10 @@ instance = J$BounceTest$new()
 ## Method `BounceTest$bounceNamedList`
 ## -----------------------------------
 
+## -----------------------------------
+## Method `BounceTest$bounceArray`
+## -----------------------------------
+
 }}
 
 \keyword{java api}
@@ -141,6 +145,7 @@ instance = J$BounceTest$new()
 			\item \href{#method-bounceDataframe}{\code{instance$bounceDataframe(x)}}
 			\item \href{#method-bounceList}{\code{instance$bounceList(x)}}
 			\item \href{#method-bounceNamedList}{\code{instance$bounceNamedList(x)}}
+			\item \href{#method-bounceArray}{\code{instance$bounceArray(x)}}
 			\item \code{instance$clone()}
 			\item \code{instance$print()}
 		}
@@ -912,6 +917,43 @@ instance$bounceNamedList(x)
 
 		\subsection{Returns}{
 			RNamedList: 
+		}
+
+		\subsection{Examples}{
+			\if{html}{\out{<div class="r example copy">}}
+			\preformatted{
+not available
+			}
+			\if{html}{\out{</div>}}
+		}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-bounceArray"></a>}}
+	
+	\subsection{Method \code{bounceArray()}}{
+		no description
+	
+
+		\subsection{Usage}{
+			\if{html}{\out{<div class="r">}}
+			\preformatted{
+J = testRapi::JavaApi$get()
+instance = J$BounceTest$new(...);
+instance$bounceArray(x)
+  			}
+			\if{html}{\out{</div>}}
+		}
+	
+		\subsection{Arguments}{
+			\if{html}{\out{<div class="arguments">}}
+			\itemize{
+				\item{x}{ - (java expects a RNumericArray)}
+			}
+			\if{html}{\out{</div>}}
+		}
+
+		\subsection{Returns}{
+			RNumericArray: 
 		}
 
 		\subsection{Examples}{

@@ -43,14 +43,14 @@ public class BounceTest {
 	@RMethod
 	public RCharacter bounceCharacter(RCharacter x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
 	@RMethod
 	public RCharacterVector bounceCharacterVector(RCharacterVector x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
@@ -65,14 +65,14 @@ public class BounceTest {
 	@RMethod
 	public RNumeric bounceNumeric(RNumeric x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
 	@RMethod
 	public RNumericVector bounceNumericVector(RNumericVector x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
@@ -87,14 +87,14 @@ public class BounceTest {
 	@RMethod
 	public RInteger bounceInteger(RInteger x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
 	@RMethod
 	public RIntegerVector bounceIntegerVector(RIntegerVector x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
@@ -103,14 +103,14 @@ public class BounceTest {
 	@RMethod
 	public RFactor bounceFactor(RFactor x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
 	@RMethod
 	public RFactorVector bounceFactorVector(RFactorVector x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
@@ -119,14 +119,14 @@ public class BounceTest {
 	@RMethod
 	public RDate bounceDate(RDate x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
 	@RMethod
 	public RDateVector bounceDateVector(RDateVector x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
@@ -136,14 +136,14 @@ public class BounceTest {
 	@RMethod
 	public RLogical bounceLogical(RLogical x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
 	@RMethod
 	public RLogicalVector bounceLogicalVector(RLogicalVector x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
+		//System.out.println(x.rCode());
 		return x;
 	}
 	
@@ -152,8 +152,8 @@ public class BounceTest {
 	@RMethod
 	public RDataframe bounceDataframe(RDataframe x) {
 		log.info("java: "+x);
-		System.out.println(x.rCode());
-		System.out.println(x.rConversion());
+		//System.out.println(x.rCode());
+		//System.out.println(x.rConversion());
 		return x;
 	}
 	
@@ -174,11 +174,13 @@ public class BounceTest {
 	}
 	
 	//SECTION_10
-//	
-//	@RMethod
-//	public RMatrix<?> bounceMatrix(RMatrix<?> x) {
-//		log.info("java: "+x);
-//		return x;
-//	}
+	
+	@RMethod
+	public RNumericArray bounceArray(RNumericArray x) {
+		log.info("java: "+x);
+		return x;
+	}
+	
+	//SECTION_11
 	
 }

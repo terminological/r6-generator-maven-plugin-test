@@ -3,7 +3,7 @@
 #
 # A test library
 # Version: 0.01
-# Generated: 2020-10-29T21:13:41.585
+# Generated: 2020-11-03T21:33:22.911
 # Contact: rc538@exeter.ac.uk
 JavaApi = R6::R6Class("JavaApi", public=list( 
 	#### fields ----
@@ -53,12 +53,20 @@ JavaApi = R6::R6Class("JavaApi", public=list(
     	self$.log = .jcall("org/slf4j/LoggerFactory", returnSig = "Lorg/slf4j/Logger;", method = "getLogger", "testRapi");
     	.jcall(self$.log,returnSig = "V",method = "info","Initialised testRapi");
 		.jcall(self$.log,returnSig = "V",method = "debug","Version: 0.01");
-		.jcall(self$.log,returnSig = "V",method = "debug","Generated: 2020-10-29T21:13:41.585");
+		.jcall(self$.log,returnSig = "V",method = "debug","Generated: 2020-11-03T21:33:22.911");
 		.jcall(self$.log,returnSig = "V",method = "debug","Contact: rc538@exeter.ac.uk");
 		self$printMessages()
 		# initialise type conversion functions
 		
 		self$.toJava = list(
+			RNumericArray=function(rObj) {
+				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RNumericArray'))
+				if (!is.numeric(rObj)) stop('expected a numeric')
+				if (!is.array(rObj)) stop('expected an array')
+				tmpVec = as.vector(as.numeric(rObj))
+				tmpDim = dim(rObj)
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RNumericArray',rJava::.jarray(tmpVec),rJava::.jarray(tmpDim)))
+			},
 			RDateVector=function(rObj) {
 				if (is.null(rObj)) return(rJava::.new('uk/co/terminological/rjava/types/RDateVector'))
 				tmp = as.character(rObj)
@@ -97,14 +105,14 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp = as.integer(rObj)[[1]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RLogical',tmp))
 			},
+			RNull=function(rObj) {
+				if (!is.null(rObj)) stop('input expected to be NULL')
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RNull'))
+			},
 			RCharacter=function(rObj) {
 				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter'))
 				tmp = as.character(rObj)[[1]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter',tmp))
-			},
-			RNull=function(rObj) {
-				if (!is.null(rObj)) stop('input expected to be NULL')
-				return(rJava::.jnew('uk/co/terminological/rjava/types/RNull'))
 			},
 			RLogicalVector=function(rObj) {
 				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogicalVector'))
@@ -132,6 +140,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 					else if (is.data.frame(x)) tmp = self$.toJava$RDataframe(x)
 					else if (is.list(x) & !is.null(names(x))) tmp = self$.toJava$RNamedList(x)
 					else if (is.list(x)) tmp = self$.toJava$RList(x)
+					else if (is.array(x) & is.numeric(x)) tmp = self$.toJava$RNumericArray(x)
 					else if (length(x) == 1 & is.character(x)) tmp = self$.toJava$RCharacter(x)
 					else if (length(x) == 1 & is.integer(x)) tmp = self$.toJava$RInteger(x)
 					else if (length(x) == 1 & is.factor(x)) tmp = self$.toJava$RFactor(x)
@@ -175,6 +184,22 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				if (rObj[[1]]!=tmp) stop('cannot cast to integer: ',rObj)
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RInteger',tmp))
 			},
+			RBoundDataframe=function(rObj) {
+				jout = rJava::.jnew('uk/co/terminological/rjava/types/RDataframe')
+				lapply(colnames(rObj), function(x) {
+					rcol = rObj[[x]]
+					if(is.character(rcol)) jvec = self$.toJava$RCharacterVector(rcol)
+					else if(is.integer(rcol)) jvec = self$.toJava$RIntegerVector(rcol)
+					else if(is.factor(rcol)) jvec = self$.toJava$RFactorVector(rcol)
+					else if(is.logical(rcol)) jvec = self$.toJava$RLogicalVector(rcol)
+					else if(is.numeric(rcol)) jvec = self$.toJava$RNumericVector(rcol)
+					else if(inherits(rcol,c('Date','POSIXt'))) jvec = self$.toJava$RDateVector(rcol)
+					else stop('unsupported data type in column: ',x)
+					rJava::.jcall(jout,returnSig='V',method='addCol',x,rJava::.jcast(jvec,new.class='uk/co/terminological/rjava/types/RVector'))
+				})
+				rJava::.jcall(jout,returnSig='Luk/co/terminological/rjava/types/RDataframe;',method='groupBy',rJava::.jarray(dplyr::group_vars(rObj)))
+				return(jout)
+			},
 			RDataframe=function(rObj) {
 				jout = rJava::.jnew('uk/co/terminological/rjava/types/RDataframe')
 				lapply(colnames(rObj), function(x) {
@@ -188,6 +213,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 					else stop('unsupported data type in column: ',x)
 					rJava::.jcall(jout,returnSig='V',method='addCol',x,rJava::.jcast(jvec,new.class='uk/co/terminological/rjava/types/RVector'))
 				})
+				rJava::.jcall(jout,returnSig='Luk/co/terminological/rjava/types/RDataframe;',method='groupBy',rJava::.jarray(dplyr::group_vars(rObj)))
 				return(jout)
 			},
 			RFactorVector=function(rObj) {
@@ -211,6 +237,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 					else if (is.data.frame(x)) tmp = self$.toJava$RDataframe(x)
 					else if (is.list(x) & !is.null(names(x))) tmp = self$.toJava$RNamedList(x)
 					else if (is.list(x)) tmp = self$.toJava$RList(x)
+					else if (is.array(x) & is.numeric(x)) tmp = self$.toJava$RNumericArray(x)
 					else if (length(x) == 1 & is.character(x)) tmp = self$.toJava$RCharacter(x)
 					else if (length(x) == 1 & is.integer(x)) tmp = self$.toJava$RInteger(x)
 					else if (length(x) == 1 & is.factor(x)) tmp = self$.toJava$RFactor(x)
@@ -231,6 +258,12 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 			MoreFeatureTest=function(rObj) return(rObj$.jobj)		)
 		
 		self$.fromJava = list(
+			RNumericArray=function(jObj) {
+				tmpVec = as.numeric(rJava::.jcall(jObj,returnSig='[D',method='rPrimitive'))
+				tmpDim = as.integer(rJava::.jcall(jObj,returnSig='[I',method='rDim'))
+			   if (length(tmpDim)==2) return(matrix(tmpVec,tmpDim))
+				return(array(tmpVec,tmpDim))
+			},
 			RDateVector=function(jObj) as.Date(rJava::.jcall(jObj,returnSig='[Ljava/lang/String;',method='rPrimitive'),'%Y-%m-%d'),
 			RDate=function(jObj) as.Date(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rPrimitive'),'%Y-%m-%d'),
 			RCharacterVector=function(jObj) as.character(rJava::.jcall(jObj,returnSig='[Ljava/lang/String;',method='rPrimitive')),
@@ -238,8 +271,8 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 			RNumeric=function(jObj) as.numeric(rJava::.jcall(jObj,returnSig='D',method='rPrimitive')),
 			RFactor=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rLabel')),
 			RLogical=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='I',method='rPrimitive')),
-			RCharacter=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rPrimitive')),
 			RNull=function(jObj) return(NULL),
+			RCharacter=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rPrimitive')),
 			RLogicalVector=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='[I',method='rPrimitive')),
 			Serialiser=function(jObj) return(jObj),
 			String=function(jObj) return(as.character(jObj)),
@@ -256,9 +289,15 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 			int=function(jObj) return(as.integer(jObj)),
 			boolean=function(jObj) return(as.logical(jObj)),
 			RInteger=function(jObj) as.integer(rJava::.jcall(jObj,returnSig='I',method='rPrimitive')),
+			RBoundDataframe=function(jObj) {
+				convDf = eval(parse(text=rJava::.jcall(jObj,'rConversion', returnSig='Ljava/lang/String;')))
+				groups = rJava::.jcall(jObj,returnSig='[Ljava/lang/String;',method='getGroups')
+				return(dplyr::group_by(convDf(jObj),!!!sapply(groups,as.symbol)))
+			},
 			RDataframe=function(jObj) {
 				convDf = eval(parse(text=rJava::.jcall(jObj,'rConversion', returnSig='Ljava/lang/String;')))
-				return(convDf(jObj))
+				groups = rJava::.jcall(jObj,returnSig='[Ljava/lang/String;',method='getGroups')
+				return(dplyr::group_by(convDf(jObj),!!!sapply(groups,as.symbol)))
 			},
 			RFactorVector=function(jObj) ordered(
 				x = rJava::.jcall(jObj,returnSig='[I',method='rValues'),

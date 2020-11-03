@@ -3,7 +3,7 @@
 #
 # A test library
 # Version: 0.01
-# Generated: 2020-10-29T21:13:41.611
+# Generated: 2020-11-03T21:33:22.939
 # Contact: rc538@exeter.ac.uk
 BounceTest = R6::R6Class("BounceTest", public=list(
 	.api = NULL,
@@ -228,6 +228,17 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNamedList;", method="bounceNamedList" , tmp_x); 
 		# convert java object back to R
 		out = self$.api$.fromJava$RNamedList(tmp_out);
+		self$.api$printMessages()
+		if(is.null(out)) return(invisible(out))
+		return(out);
+	},
+	bounceArray = function(x) {
+		# copy parameters
+		tmp_x = self$.api$.toJava$RNumericArray(x);
+		#execute method call
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumericArray;", method="bounceArray" , tmp_x); 
+		# convert java object back to R
+		out = self$.api$.fromJava$RNumericArray(tmp_out);
 		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
