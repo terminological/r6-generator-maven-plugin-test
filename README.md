@@ -33,4 +33,4 @@ tmp$doHelloWorld()
 
 ```
 
-
+see the [full docs](./r-library/docs)
