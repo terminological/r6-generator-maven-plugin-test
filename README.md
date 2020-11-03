@@ -33,4 +33,7 @@ tmp$doHelloWorld()
 
 ```
 
-see the [full docs](./r-library/docs)
+see the [full docs](https://terminological.github.io/r6-generator-maven-plugin-test/)
+see the [r package](https://terminological.github.io/r6-generator-maven-plugin-test/r-library/docs/)
+see the [javadoc](https://terminological.github.io/r6-generator-maven-plugin-test/r-library/docs/javadoc/)
+
