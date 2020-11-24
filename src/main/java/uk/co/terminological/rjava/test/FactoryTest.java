@@ -99,11 +99,11 @@ public class FactoryTest {
 			Arrays.asList("Hello","World","Stream","Support","in","Java")
 			.stream()
 			.collect(RConverter.dataframeCollector(
-				MapRule.mapping("original", s-> s),
-				MapRule.mapping("lowercase", s-> s.toLowerCase()),
-				MapRule.mapping("uppercase", s-> s.toUpperCase()),
-				MapRule.mapping("subst", s-> s.substring(0,Math.min(3,s.length()))),
-				MapRule.mapping("length", s-> s.length())
+				RConverter.mapping("original", s-> s),
+				RConverter.mapping("lowercase", s-> s.toLowerCase()),
+				RConverter.mapping("uppercase", s-> s.toUpperCase()),
+				RConverter.mapping("subst", s-> s.substring(0,Math.min(3,s.length()))),
+				RConverter.mapping("length", s-> s.length())
 			));
 		
 	}

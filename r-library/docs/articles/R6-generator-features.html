@@ -81,7 +81,8 @@
 
       
 
-      </header><div class="row">
+      </header><link href="R6-generator-features_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="R6-generator-features_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>R6 Generator Maven Plugin: Key features</h1>
@@ -139,9 +140,19 @@ DRAFT
 33
 34
 35
+36
+37
+38
+39
+40
 </pre></td>
 <td class="sourceCode"><pre><code class="sourceCode java"><span class="co">/**</span>
 <span class="co"> * A test of the R6 generator templating</span>
+<span class="co"> * </span>
+<span class="co"> * The feature test should allow mathjax in javadoc</span>
+<span class="co"> * </span>
+<span class="co"> * $$e = mc^2$$</span>
+<span class="co"> * </span>
 <span class="co"> * </span>
 <span class="co"> * this is a details comment </span>
 <span class="co"> * </span><span class="kw">@author </span><span class="co">given family email@example.com ORCIDID</span>
@@ -197,19 +208,19 @@ DRAFT
 <span class="co"># submitted to CRAN</span>
 <span class="co"># install.packages("testRapi")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"./codeSnip.R"</span><span class="op">)</span></pre></div>
-<p>The R6 api to the Java classes requires a running instance of the Java Virtual Machine and JNI bridge provided by <em>rJava</em>. It also requires Java classpath dependencies to be loaded and application logging to be initialised. This is all managed by a specific generated R6 class called <code>JavaApi</code> and creating a singleton instance of this is the first step to using the library in R. In these examples the singleton instance <code>J</code> is referred to as the “root” of the api, as all the functions of the API stem from it.</p>
+<p>The R6 api to the Java classes requires a running instance of the Java Virtual Machine and JNI bridge provided by <em>rJava</em>. It also requires Java classpath dependencies to be loaded and application logging to be initialised. This is all managed by a specific generated R6 class called <code>JavaApi</code> and creating a singleton instance of this is the first step to using the library in R. In these examples the singleton instance <code>J</code> is referred to as the "root" of the api, as all the functions of the API stem from it.</p>
 <div class="sourceCode"><pre class="downlit">
 <span class="va">J</span> <span class="op">=</span> <span class="fu">testRapi</span><span class="fu">::</span><span class="va"><a href="../reference/JavaApi.html">JavaApi</a></span><span class="op">$</span><span class="fu">get</span><span class="op">(</span>logLevel <span class="op">=</span> <span class="st">"WARN"</span><span class="op">)</span></pre></div>
-<pre><code>## Adding to classpath: /tmp/RtmpYMvatE/temp_libpath353773ef1598/testRapi/java/r6-generator-maven-plugin-test-master-SNAPSHOT-jar-with-dependencies.jar</code></pre>
+<pre><code>## Adding to classpath: /tmp/RtmpO8Dbfy/temp_libpath15b61b6b7322/testRapi/java/r6-generator-maven-plugin-test-master-SNAPSHOT-jar-with-dependencies.jar</code></pre>
 <div class="sourceCode"><pre class="downlit">
 <span class="va">J</span><span class="op">$</span><span class="fu">changeLogLevel</span><span class="op">(</span><span class="st">"DEBUG"</span><span class="op">)</span>
 <span class="va">J</span><span class="op">$</span><span class="va">.log</span><span class="op">$</span><span class="fu">debug</span><span class="op">(</span><span class="st">"prove the logger is working and outputting debug statements..."</span><span class="op">)</span>
 <span class="va">J</span><span class="op">$</span><span class="fu">printMessages</span><span class="op">(</span><span class="op">)</span></pre></div>
-<pre><code>## 2020-11-03 21:33:38,154 DEBUG testRapi [main] prove the logger is working and outputting debug statements...</code></pre>
-<p>Using the <code>FeatureTest</code> class above requires a creating a new instance of the class. This is done through the root of the api as follows, and the <code>FeatureTest</code> constructor simply logs the <code>logMessage</code> parameter’s value.</p>
+<pre><code>## 2020-11-24 17:18:16,024 DEBUG testRapi [main] prove the logger is working and outputting debug statements...</code></pre>
+<p>Using the <code>FeatureTest</code> class above requires a creating a new instance of the class. This is done through the root of the api as follows, and the <code>FeatureTest</code> constructor simply logs the <code>logMessage</code> parameter's value.</p>
 <div class="sourceCode"><pre class="downlit">
 <span class="va">feat1</span> <span class="op">=</span> <span class="va">J</span><span class="op">$</span><span class="va">FeatureTest</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>logMessage <span class="op">=</span> <span class="st">"Hello world. Creating a new object"</span><span class="op">)</span></pre></div>
-<pre><code>## 2020-11-03 21:33:38,231 INFO uk.co.terminological.rjava.test.FeatureTest [main] Hello world. Creating a new object</code></pre>
+<pre><code>## 2020-11-24 17:18:16,093 INFO uk.co.terminological.rjava.test.FeatureTest [main] Hello world. Creating a new object</code></pre>
 </div>
 <div id="predictable-data-type-conversion" class="section level2">
 <h2 class="hasAnchor">
@@ -315,7 +326,7 @@ DRAFT
     }
     </code></pre></td>
 </tr></table></div>
-<p>The <code>FeatureClass.doHelloWorld()</code> method takes no arguments and returns a value to R. A detailed discussion of R and Java data types is to be found elsewhere but our approach has involved developing a specific set of Java datatypes that have close relationships to the native R datatypes. This enables loss-less round tripping of data from R to Java and back again, but requires the mapping of Java data types to R. This is handled by the <code>uk.co.terminological.rjava.RConverter</code> class which provides a range of datatype transformers, and the <code>uk.co.terminological.rjava.types.*</code> classes which specify Java equivalents to R data types. These are needed as R’s dynamic datatypes contain concepts which are not readily represented in the primitive java datatypes that are transferred across the JNI. Thus some marshaling is required on both sides to ensure translation is 100% accurate, including for example, conversion of R logical vectors containing NA values, to java <code>List&lt;Boolean&gt;</code> via JNI primitive arrays, or support for typed NA values (e.g. <code>NA_int_</code> versus <code>NA_logical_</code>).</p>
+<p>The <code>FeatureClass.doHelloWorld()</code> method takes no arguments and returns a value to R. A detailed discussion of R and Java data types is to be found elsewhere but our approach has involved developing a specific set of Java datatypes that have close relationships to the native R datatypes. This enables loss-less round tripping of data from R to Java and back again, but requires the mapping of Java data types to R. This is handled by the <code>uk.co.terminological.rjava.RConverter</code> class which provides a range of datatype transformers, and the <code>uk.co.terminological.rjava.types.*</code> classes which specify Java equivalents to R data types. These are needed as R's dynamic datatypes contain concepts which are not readily represented in the primitive java datatypes that are transferred across the JNI. Thus some marshaling is required on both sides to ensure translation is 100% accurate, including for example, conversion of R logical vectors containing NA values, to java <code>List&lt;Boolean&gt;</code> via JNI primitive arrays, or support for typed NA values (e.g. <code>NA_int_</code> versus <code>NA_logical_</code>).</p>
 <p>The <code>doHelloWorld()</code> function returns a character vector, The <code>doSum()</code> function expects 2 R numeric values and seamlessly handles both datatype coercion and NA values.</p>
 <div class="sourceCode"><pre class="downlit">
 <span class="va">feat1</span><span class="op">$</span><span class="fu">doHelloWorld</span><span class="op">(</span><span class="op">)</span></pre></div>
@@ -360,7 +371,7 @@ DRAFT
 <p>Static java methods are also supported. R6 does not have a concept of static methods, so we use the root of the JavaApi as a place to hold the static methods, which in this case returns nothing (an R NULL is invisibly returned), but logs its input.</p>
 <div class="sourceCode"><pre class="downlit">
 <span class="va">J</span><span class="op">$</span><span class="va">FeatureTest</span><span class="op">$</span><span class="fu">demoStatic</span><span class="op">(</span><span class="st">"Hello, static world."</span><span class="op">)</span></pre></div>
-<pre><code>## 2020-11-03 21:33:38,524 INFO uk.co.terminological.rjava.test.FeatureTest [main] Hello, static world.</code></pre>
+<pre><code>## 2020-11-24 17:18:16,385 INFO uk.co.terminological.rjava.test.FeatureTest [main] Hello, static world.</code></pre>
 </div>
 <div id="more-complex-objects" class="section level2">
 <h2 class="hasAnchor">
@@ -458,7 +469,7 @@ DRAFT
 <p>The basic smoke tests of this are as follows</p>
 <div class="sourceCode"><pre class="downlit">
 <span class="va">feat1</span><span class="op">$</span><span class="fu">doSomethingWithDataFrame</span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span><span class="op">)</span></pre></div>
-<pre><code>## 2020-11-03 21:33:38,713 INFO uk.co.terminological.rjava.test.FeatureTest [main] dataframe length: 53940</code></pre>
+<pre><code>## 2020-11-24 17:18:16,569 INFO uk.co.terminological.rjava.test.FeatureTest [main] dataframe length: 53940</code></pre>
 <div class="sourceCode"><pre class="downlit">
 <span class="va">feat1</span><span class="op">$</span><span class="fu">generateDataFrame</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>## Rows: 10
@@ -542,7 +553,7 @@ DRAFT
     }
     </code></pre></td>
 </tr></table></div>
-<p>The <code>JavaApi</code> root manages R’s perspective on the identity of objects in Java. This allows for fluent api methods, and method chaining. This is not flawless but should work for most common scenarios. It is possible that complex edge cases may appear equal in Java but not identical in R, so true equality should rely on the Java <code>equals()</code> method.</p>
+<p>The <code>JavaApi</code> root manages R's perspective on the identity of objects in Java. This allows for fluent api methods, and method chaining. This is not flawless but should work for most common scenarios. It is possible that complex edge cases may appear equal in Java but not identical in R, so true equality should rely on the Java <code>equals()</code> method.</p>
 <div class="sourceCode"><pre class="downlit">
 <span class="va">feat1</span><span class="op">$</span><span class="fu">getMessage</span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>## [1] "Hello world. Creating a new object"</code></pre>
@@ -691,11 +702,11 @@ DRAFT
 <div class="sourceCode"><pre class="downlit">
 <span class="co"># factory method from builder class</span>
 <span class="va">moreFeat1</span> <span class="op">=</span> <span class="va">feat1</span><span class="op">$</span><span class="fu">factoryMethod</span><span class="op">(</span><span class="st">"Hello"</span>,<span class="st">"World"</span><span class="op">)</span></pre></div>
-<pre><code>## 2020-11-03 21:33:40,510 INFO uk.co.terminological.rjava.test.MoreFeatureTest [main] constuctor: Hello, World</code></pre>
+<pre><code>## 2020-11-24 17:18:18,640 INFO uk.co.terminological.rjava.test.MoreFeatureTest [main] constuctor: Hello, World</code></pre>
 <div class="sourceCode"><pre class="downlit">
 <span class="co"># static factory method accessed through the root of the API</span>
 <span class="va">moreFeat2</span> <span class="op">=</span> <span class="va">J</span><span class="op">$</span><span class="va">MoreFeatureTest</span><span class="op">$</span><span class="fu">create</span><span class="op">(</span><span class="st">"Ola"</span>,<span class="st">"El Mundo"</span><span class="op">)</span></pre></div>
-<pre><code>## 2020-11-03 21:33:40,515 INFO uk.co.terminological.rjava.test.MoreFeatureTest [main] constuctor: Ola, El Mundo</code></pre>
+<pre><code>## 2020-11-24 17:18:18,644 INFO uk.co.terminological.rjava.test.MoreFeatureTest [main] constuctor: Ola, El Mundo</code></pre>
 <div class="sourceCode"><pre class="downlit">
 <span class="co"># either of these can be passed as a parameter</span>
 <span class="va">feat1</span><span class="op">$</span><span class="fu">objectAsParameter</span><span class="op">(</span><span class="va">moreFeat1</span><span class="op">)</span></pre></div>
@@ -775,11 +786,11 @@ DRAFT
 <span class="co"># Testing logging levels</span>
 <span class="va">J</span><span class="op">$</span><span class="fu">changeLogLevel</span><span class="op">(</span><span class="st">"ALL"</span><span class="op">)</span>
 <span class="va">moreFeat1</span><span class="op">$</span><span class="fu">testLogging</span><span class="op">(</span><span class="op">)</span></pre></div>
-<pre><code>## 2020-11-03 21:33:40,644 ERROR uk.co.terminological.rjava.test.MoreFeatureTest [main] An error
-## 2020-11-03 21:33:40,645 WARN uk.co.terminological.rjava.test.MoreFeatureTest [main] A warning
-## 2020-11-03 21:33:40,645 INFO uk.co.terminological.rjava.test.MoreFeatureTest [main] A info
-## 2020-11-03 21:33:40,645 DEBUG uk.co.terminological.rjava.test.MoreFeatureTest [main] A debug
-## 2020-11-03 21:33:40,645 TRACE uk.co.terminological.rjava.test.MoreFeatureTest [main] A trace</code></pre>
+<pre><code>## 2020-11-24 17:18:18,779 ERROR uk.co.terminological.rjava.test.MoreFeatureTest [main] An error
+## 2020-11-24 17:18:18,779 WARN uk.co.terminological.rjava.test.MoreFeatureTest [main] A warning
+## 2020-11-24 17:18:18,779 INFO uk.co.terminological.rjava.test.MoreFeatureTest [main] A info
+## 2020-11-24 17:18:18,779 DEBUG uk.co.terminological.rjava.test.MoreFeatureTest [main] A debug
+## 2020-11-24 17:18:18,779 TRACE uk.co.terminological.rjava.test.MoreFeatureTest [main] A trace</code></pre>
 <div class="sourceCode"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">moreFeat1</span><span class="op">$</span><span class="fu">throwCatchable</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>## Error in .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;",  : 
@@ -791,7 +802,7 @@ DRAFT
 <div class="sourceCode"><pre class="downlit">
 <span class="va">J</span><span class="op">$</span><span class="fu">changeLogLevel</span><span class="op">(</span><span class="st">"ERROR"</span><span class="op">)</span>
 <span class="va">moreFeat1</span><span class="op">$</span><span class="fu">testLogging</span><span class="op">(</span><span class="op">)</span></pre></div>
-<pre><code>## 2020-11-03 21:33:40,649 ERROR uk.co.terminological.rjava.test.MoreFeatureTest [main] An error</code></pre>
+<pre><code>## 2020-11-24 17:18:18,783 ERROR uk.co.terminological.rjava.test.MoreFeatureTest [main] An error</code></pre>
 <div class="sourceCode"><pre class="downlit">
 <span class="co"># J$reconfigureLog("/path/to/log4j.prop")</span></pre></div>
 </div>
@@ -878,7 +889,7 @@ DRAFT
 
 
       <footer><div class="copyright">
-  <p>Developed by Rob Challen, terminological, given family.</p>
+  <p>Developed by Rob Challen, given family, terminological.</p>
 </div>
 
 <div class="pkgdown">

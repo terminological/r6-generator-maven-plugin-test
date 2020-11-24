@@ -4,4 +4,6 @@
 # The precise result of this is a little uncertain as it depends on whether rJava has already been
 # initialised and what other libraries are using it.
 .onLoad <- function(libname, pkgname) {
-	}
+		# add in specific java options from the maven file
+	options(java.parameters = c(getOption("java.parameters"),"-Xmx256M"))
+}

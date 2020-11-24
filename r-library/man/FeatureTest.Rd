@@ -18,11 +18,16 @@ A test of the R6 generator templating
 
 Version: 0.01
 
-Generated: 2020-11-03T21:33:22.944
+Generated: 2020-11-24T17:17:58.153
 }
 
 \details{
 	
+
+The feature test should allow mathjax in javadoc
+
+$$e = mc^2$$
+
 
 this is a details comment
 }

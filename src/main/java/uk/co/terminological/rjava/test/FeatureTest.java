@@ -22,6 +22,11 @@ import uk.co.terminological.rjava.types.RObject;
 /**
  * A test of the R6 generator templating
  * 
+ * The feature test should allow mathjax in javadoc
+ * 
+ * $$e = mc^2$$
+ * 
+ * 
  * this is a details comment 
  * @author given family email@example.com ORCIDID
  * 

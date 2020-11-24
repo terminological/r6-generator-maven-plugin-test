@@ -81,7 +81,8 @@
 
       
 
-      </header><div class="row">
+      </header><link href="R6-generator-maven-config_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="R6-generator-maven-config_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>R6 Generator Maven Plugin: Metadata and Maven configuration</h1>
@@ -339,7 +340,7 @@ DRAFT
 <li><code>rjavaOpts\rjavaOpt</code></li>
 <li>A list of JVM flags can be provided that will be provided during the initialization of the Java Virtual Machine (JVM). In the example here the JVM is given 256Mb of heap space (<code>-Xmx256M</code>). Only one JVM is initialised regardless of how many different Java based R packages are used, and only the first one gets to decide the initial parameters. As such these options may be ignored by R if a JVM has already been created. Javadoc documentation will not be generated if the project is in debug mode.</li>
 <li><code>packageName</code></li>
-<li>the most important entry - the desired name of the package forms the name space for the package so it is best that it is short and has not already been used for a R package - e.g. don’t call it “stats”.</li>
+<li>the most important entry - the desired name of the package forms the name space for the package so it is best that it is short and has not already been used for a R package - e.g. don't call it "stats".</li>
 <li><code>license</code></li>
 <li>a license specification - it is best to use a <a href="https://cran.r-project.org/web/licenses/">CRAN friendly license</a>. N.B. This should be <code>MIT</code> rather than <code>MIT + file LICENSE</code>
 </li>
@@ -353,7 +354,7 @@ DRAFT
 <div id="goals" class="section level2">
 <h2 class="hasAnchor">
 <a href="#goals" class="anchor"></a>Goals</h2>
-<p>The plugin only has a single goal - “generate-r-library”</p>
+<p>The plugin only has a single goal - "generate-r-library"</p>
 </div>
   </div>
 
@@ -368,7 +369,7 @@ DRAFT
 
 
       <footer><div class="copyright">
-  <p>Developed by Rob Challen, terminological, given family.</p>
+  <p>Developed by Rob Challen, given family, terminological.</p>
 </div>
 
 <div class="pkgdown">
