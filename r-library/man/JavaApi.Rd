@@ -29,7 +29,7 @@ This package is a feature test of the R6 Generator Maven Plugin. It is not
 
 Version: 0.01
 
-Generated: 2020-11-24T17:17:58.094
+Generated: 2020-11-25T09:46:10.290
 }
 
 \author{\email{rc538@exeter.ac.uk}}

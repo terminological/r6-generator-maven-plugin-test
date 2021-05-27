@@ -74,13 +74,19 @@ public class FeatureTest {
 		
 	/**
 	 * The doSum function description = it adds two numerics
-	 * @param a the A parameter
+	 * @param a the A parameter, can be NA
 	 * @param b the B parameter
-	 * @return A+B of course
+	 * @return A+B of course, NAs in inputs are converted to null in Java. This catches the resulting NPE in java idiom and returns an explicit NA. 
+	 * This only matters if you care about the difference between NA_real_ and NaN in R. 
 	 */
 	@RMethod
 	public RNumeric doSum(RNumeric a, RNumeric b) {
-		return RConverter.convert(a.get()+b.get());
+		try {
+			return RConverter.convert(a.get()+b.get());
+		} catch (NullPointerException e) {
+			log.info("Java threw a NPE - could have had a NA input?");
+			return RNumeric.NA;
+		}
 	}
 	
 	

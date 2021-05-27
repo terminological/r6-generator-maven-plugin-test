@@ -3,7 +3,7 @@
 #
 # A test library
 # Version: 0.01
-# Generated: 2020-11-24T17:17:58.120
+# Generated: 2020-11-25T09:46:10.312
 # Contact: rc538@exeter.ac.uk
 JavaApi = R6::R6Class("JavaApi", public=list( 
 	#### fields ----
@@ -53,7 +53,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
     	self$.log = .jcall("org/slf4j/LoggerFactory", returnSig = "Lorg/slf4j/Logger;", method = "getLogger", "testRapi");
     	.jcall(self$.log,returnSig = "V",method = "info","Initialised testRapi");
 		.jcall(self$.log,returnSig = "V",method = "debug","Version: 0.01");
-		.jcall(self$.log,returnSig = "V",method = "debug","Generated: 2020-11-24T17:17:58.120");
+		.jcall(self$.log,returnSig = "V",method = "debug","Generated: 2020-11-25T09:46:10.312");
 		.jcall(self$.log,returnSig = "V",method = "debug","Contact: rc538@exeter.ac.uk");
 		self$printMessages()
 		# initialise type conversion functions
@@ -91,13 +91,6 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp = as.numeric(rObj)[[1]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RNumeric',tmp))
 			},
-			RFactor=function(rObj) {
-				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RFactor'))
-				if (length(rObj) > 1) stop('input too long')
-				tmp = as.integer(rObj)[[1]]
-				tmpLabel = levels(rObj)[[tmp]]
-				return(rJava::.jnew('uk/co/terminological/rjava/types/RFactor',tmp, tmpLabel))
-			},
 			RLogical=function(rObj) {
 				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogical'))
 				if (length(rObj) > 1) stop('input too long')
@@ -105,9 +98,12 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp = as.integer(rObj)[[1]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RLogical',tmp))
 			},
-			RNull=function(rObj) {
-				if (!is.null(rObj)) stop('input expected to be NULL')
-				return(rJava::.jnew('uk/co/terminological/rjava/types/RNull'))
+			RFactor=function(rObj) {
+				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RFactor'))
+				if (length(rObj) > 1) stop('input too long')
+				tmp = as.integer(rObj)[[1]]
+				tmpLabel = levels(rObj)[[tmp]]
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RFactor',tmp, tmpLabel))
 			},
 			RLogicalVector=function(rObj) {
 				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogicalVector'))
@@ -119,6 +115,10 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter'))
 				tmp = as.character(rObj)[[1]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter',tmp))
+			},
+			RNull=function(rObj) {
+				if (!is.null(rObj)) stop('input expected to be NULL')
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RNull'))
 			},
 			Serialiser=function(rObj) return(rObj$.jobj),
 			String=function(rObj) return(as.character(rObj)),
@@ -269,11 +269,11 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 			RCharacterVector=function(jObj) as.character(rJava::.jcall(jObj,returnSig='[Ljava/lang/String;',method='rPrimitive')),
 			FeatureTest=function(jObj) return(jObj),
 			RNumeric=function(jObj) as.numeric(rJava::.jcall(jObj,returnSig='D',method='rPrimitive')),
-			RFactor=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rLabel')),
 			RLogical=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='I',method='rPrimitive')),
-			RNull=function(jObj) return(NULL),
+			RFactor=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rLabel')),
 			RLogicalVector=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='[I',method='rPrimitive')),
 			RCharacter=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rPrimitive')),
+			RNull=function(jObj) return(NULL),
 			Serialiser=function(jObj) return(jObj),
 			String=function(jObj) return(as.character(jObj)),
 			MinimalExample=function(jObj) return(jObj),

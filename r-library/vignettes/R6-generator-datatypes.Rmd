@@ -43,6 +43,7 @@ By inspecting the Java code at compilation time, and by imposing constraints on 
 
 ```{r out.width="100%"}
 knitr::include_graphics("./RClass.png")
+# TODO: https://github.com/rstudio/nomnoml
 ```
 
 
