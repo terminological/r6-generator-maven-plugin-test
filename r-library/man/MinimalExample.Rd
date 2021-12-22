@@ -13,7 +13,7 @@ This class is a very basic example of the features of the rJava maven plugin. <b
 
 Version: 0.02
 
-Generated: 2021-06-18T23:43:44.615
+Generated: 2021-12-22T09:37:35.996
 }
 
 \details{

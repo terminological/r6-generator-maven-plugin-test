@@ -3,7 +3,7 @@
 #
 # A test library
 # Version: 0.02
-# Generated: 2021-06-18T23:43:44.616
+# Generated: 2021-12-22T09:37:35.997
 # Contact: rc538@exeter.ac.uk
 MinimalExample = R6::R6Class("MinimalExample", public=list(
 	.api = NULL,
