@@ -150,6 +150,9 @@ b$bounceDate(as.Date("2001-02-03"))
 class(b$bounceDate(as.Date("2001-02-03")))
 b$bounceDateVector(as.Date(c("2001-02-03","2001-02-04","2001-02-05")))
 b$bounceDateVector(as.Date(c("2001-02-03",NA,"2001-02-05")))
+b$bounceDate(as.Date("0000-01-01")-5)
+b$bounceDateVector(as.Date(c("0000-01-01","1-01-01","11-01-01","101-01-01","1001-01-01")))
+
 ```
 
 ### Logicals

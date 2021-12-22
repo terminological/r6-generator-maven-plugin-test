@@ -1,6 +1,6 @@
 Package: testRapi
 Title: A test library
-Version: 0.01
+Version: 0.02
 Authors@R: c(
     person(given = "Rob",family = "Challen",email = "rc538@exeter.ac.uk",role = c("aut", "cre")),
     person(given = "given",family = "family",email = "email@example.com",comment = structure("ORCIDID", .Names = "ORCID"),role = "aut"),

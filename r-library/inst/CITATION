@@ -2,8 +2,8 @@
 c(
 	bibentry(bibtype = "Manual",
 		title = "A test library",
-		year = 2020,
-		note = "R package version 0.01",
+		year = 2021,
+		note = "R package version 0.02",
 		author = c(
 			person(given = "Rob",family = "Challen",email = "rc538@exeter.ac.uk",role = c("aut", "cre")),
 			person(given = "given",family = "family",email = "email@example.com",comment = structure("ORCIDID", .Names = "ORCID"),role = "aut"),

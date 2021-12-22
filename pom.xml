@@ -57,7 +57,7 @@
 				<configuration>
 					<packageData>
 						<title>A test library</title>
-						<version>0.01</version>
+						<version>0.02</version>
 						<debug>false</debug>
 						<usePkgdown>true</usePkgdown>
 						<useJavadoc>true</useJavadoc>
