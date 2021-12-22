@@ -27,8 +27,8 @@ Classes:
 \author{
 \itemize{ 
    \item Rob Challen rc538@exeter.ac.uk 
-   \item terminological   
    \item given family email@example.com ORCIDID
+   \item terminological   
 }
 }
 

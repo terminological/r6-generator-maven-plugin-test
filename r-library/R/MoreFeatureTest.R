@@ -3,7 +3,7 @@
 #
 # A test library
 # Version: 0.02
-# Generated: 2021-12-22T09:37:35.983
+# Generated: 2021-12-22T09:44:13.610
 # Contact: rc538@exeter.ac.uk
 MoreFeatureTest = R6::R6Class("MoreFeatureTest", public=list(
 	.api = NULL,

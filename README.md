@@ -4,6 +4,8 @@ A test of the r-jsr223-maven-plugin
 
 This test demonstrates some of the major features of the maven plugin by creating a minimal R plugin from a set of annotated java classes.
 
+?export LD_LIBRARY_PATH="/usr/lib/jvm/oracle-9-java/..../server" required to make this compile
+
 ```R
 library(devtools)
 # assuming you have cloned this repository locally:
