@@ -3,4 +3,4 @@ mvn install
 cd ~/Git/r6-generator-maven-plugin
 mvn install
 cd ~/Git/r6-generator-maven-plugin-test
-mvn install
+mvn install -e

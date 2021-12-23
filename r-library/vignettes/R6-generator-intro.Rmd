@@ -35,8 +35,8 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
 source("./codeSnip.R")
+here::i_am("vignettes/R6-generator-intro.Rmd")
 ```
 
 <div class="watermark">DRAFT</div>
@@ -96,13 +96,13 @@ Maven is a Java dependency management and build tool, which is one of the corner
 ## Minimal example
 
 ```{r results='asis',echo=FALSE}
-codeSnip("java",filename="/home/terminological/Git/r6-generator-maven-plugin-test/src/main/java/uk/co/terminological/rjava/test/MinimalExample.java")
+codeSnip("java",filename=here::here("../src/main/java/uk/co/terminological/rjava/test/MinimalExample.java"))
 ```
 
 
 
 ```{r results='asis',echo=FALSE}
-codeSnipByLine(type="xml",filename="/home/terminological/Git/r6-generator-maven-plugin-test/pom.xml",
+codeSnipByLine(type="xml",filename=here::here("../pom.xml"),
          starts = c(5,19,27,43,53),
          ends = c(10,25,41,44,Inf), 
          sep = "\n...\n")
@@ -112,7 +112,7 @@ codeSnipByLine(type="xml",filename="/home/terminological/Git/r6-generator-maven-
 ## R6 class generation
 
 ```{r, include=FALSE}
-fs::dir_tree(path = "/home/terminological/Git/r6-generator-maven-plugin-test/r-library/", recurse = TRUE)
+fs::dir_tree(path = here::here("../r-library/"), recurse = TRUE)
 ```
 ## Maven packaging
 ## Generated R6 documentation

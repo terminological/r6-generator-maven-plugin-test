@@ -6,9 +6,7 @@
 \title{testRapi: A test library}
 \description{
 \if{html}{\figure{logo.png}{options: align='right'}}
-This package is a feature test of the R6 Generator Maven Plugin. It is not
-							intended to be useful beyond testing, demonstrating and documenting 
-							the features of the plugin.
+This package is a feature test of the R6 Generator Maven Plugin. It is not intended to be useful beyond testing, demonstrating and documenting the features of the plugin.
 
 Version: 0.02
 
@@ -16,10 +14,10 @@ Classes:
 \itemize{ 
 	\item \code{JavaApi}
 	\item \code{MoreFeatureTest}
-	\item \code{BounceTest}
-	\item \code{FeatureTest}
-	\item \code{FactoryTest}
 	\item \code{Serialiser}
+	\item \code{FeatureTest}
+	\item \code{BounceTest}
+	\item \code{FactoryTest}
 	\item \code{MinimalExample}
 }
 }

@@ -5,6 +5,7 @@ remove.packages("testRapi")
 
 # locally compiled
 devtools::install("~/Git/r6-generator-maven-plugin-test/r-library/", upgrade = "never")
+here::i_am("vignettes/UpdateDatasets.R")
+
 J = testRapi::JavaApi$get(logLevel = "WARN")
-J$Serialiser$serialiseDataframe(dataframe = ggplot2::diamonds, filename = "/home/terminological/Git/r6-generator-maven-plugin-test/src/main/resources/diamonds.ser")
-J$Serialiser$serialiseDataframe(dataframe = ggplot2::diamonds, filename = "/home/terminological/Git/r6-generator-runtime/src/test/resources/diamonds.ser")
+J$Serialiser$serialiseDataframe(dataframe = ggplot2::diamonds, filename = here::here("../src/main/resources/diamonds.ser"))

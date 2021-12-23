@@ -3,11 +3,9 @@ Title: A test library
 Version: 0.02
 Authors@R: c(
     person(given = "Rob",family = "Challen",email = "rc538@exeter.ac.uk",role = c("aut", "cre")),
-    person(given = "given",family = "family",email = "email@example.com",comment = structure("ORCIDID", .Names = "ORCID"),role = "aut"),
-    person(given = "terminological",role = "aut"))
-Description: This package is a feature test of the R6 Generator Maven Plugin. It is not
-							intended to be useful beyond testing, demonstrating and documenting 
-							the features of the plugin.
+    person(given = "terminological",role = "aut"),
+    person(given = "given",family = "family",email = "email@example.com",comment = structure("ORCIDID", .Names = "ORCID"),role = "aut"))
+Description: This package is a feature test of the R6 Generator Maven Plugin. It is not intended to be useful beyond testing, demonstrating and documenting the features of the plugin.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -21,3 +19,4 @@ Imports:
 	rJava,
 	R6,
 	xptr
+RoxygenNote: 7.0.2
