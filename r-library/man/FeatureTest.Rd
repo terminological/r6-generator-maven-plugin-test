@@ -18,7 +18,7 @@ A test of the R6 generator templating
 
 Version: 0.02
 
-Generated: 2021-12-24T16:47:44.001043
+Generated: 2021-12-27T18:17:36.647
 }
 
 \details{
