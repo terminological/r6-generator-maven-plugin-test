@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2021-12-27T18:17:36.652
+#' Generated: 2022-02-14T17:20:14.948
 #'
 #' @details
 	#' #' 
@@ -87,12 +87,13 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' @description 
 	#' doSum2: 
 	#' Do sum 2 uses native ints rather than RNumerics
-	#' It should throw an error if given something that cannot be coerced to an integer
+	#' It should throw an error if given something that cannot be coerced to an integer. 
+	#' This also demonstrated the use of the `@RDefault` annotation
 	#' @param a the A parameter - (java expects a int)
-	#' @param b the B parameter - (java expects a int)
+	#' @param b the B parameter- (defaults to "10") - (java expects a int)
 	#' @return int: 
 	#' A+B of course
-	doSum2 = function(a, b) {
+	doSum2 = function(a, b=10) {
 		# copy parameters
 		tmp_a = self$.api$.toJava$int(a);
 		tmp_b = self$.api$.toJava$int(b);
@@ -125,10 +126,11 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' same object. This is differentiated from factory methods which produce a new
 	#' instance of the same class by checking to see if the returned Java object is equal
 	#' to the calling Java object.
-	#' @param message the message is a string - (java expects a RCharacter)
+	#' @param message the message is a string- (defaults to "\"hello\nworld\"") - (java expects a RCharacter)
 	#' @return R6 FeatureTest object: 
 	#' this should return exactly the same R6 object.
-	fluentSetMessage = function(message) {
+	fluentSetMessage = function(message="hello
+world") {
 		# copy parameters
 		tmp_message = self$.api$.toJava$RCharacter(message);
 		# execute method call
@@ -153,10 +155,10 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' factoryMethod: 
 	#' A factory or builder method which constructs an object of another class from some parameters
 	#' @param a the first parameter - (java expects a RCharacter)
-	#' @param b the second parameter - (java expects a RCharacter)
+	#' @param b the second parameter- (defaults to "as.character(Sys.Date())") - (java expects a RCharacter)
 	#' @return R6 MoreFeatureTest object: 
 	#' A MoreFeatureTest R6 reference
-	factoryMethod = function(a, b) {
+	factoryMethod = function(a, b=as.character(Sys.Date())) {
 		# copy parameters
 		tmp_a = self$.api$.toJava$RCharacter(a);
 		tmp_b = self$.api$.toJava$RCharacter(b);

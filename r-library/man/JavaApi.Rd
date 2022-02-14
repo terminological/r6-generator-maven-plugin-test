@@ -27,7 +27,7 @@ This package is a feature test of the R6 Generator Maven Plugin. It is not inten
 
 Version: 0.02
 
-Generated: 2021-12-27T18:17:36.488
+Generated: 2022-02-14T17:20:14.887
 }
 
 \author{\email{rc538@exeter.ac.uk}}
@@ -40,6 +40,11 @@ Generated: 2021-12-27T18:17:36.488
 		\item \href{#method-MoreFeatureTest-new}{\code{J$MoreFeatureTest$new(message1, message2)}}
 		\item \href{#method-MoreFeatureTest-create}{\code{J$MoreFeatureTest$create(message1, message2)}}
 		\item \href{#method-MoreFeatureTest-concat}{\code{J$MoreFeatureTest$concat(message1, message2)}}
+		\item \href{#method-BounceTest-new}{\code{J$BounceTest$new()}}
+		\item \href{#method-FeatureTest-new}{\code{J$FeatureTest$new(logMessage)}}
+		\item \href{#method-FeatureTest-demoStatic}{\code{J$FeatureTest$demoStatic(message)}}
+		\item \href{#method-FeatureTest-diamonds}{\code{J$FeatureTest$diamonds()}}
+		\item \href{#method-FactoryTest-new}{\code{J$FactoryTest$new()}}
 		\item \href{#method-Serialiser-new}{\code{J$Serialiser$new()}}
 		\item \href{#method-Serialiser-serialiseDataframe}{\code{J$Serialiser$serialiseDataframe(dataframe, filename)}}
 		\item \href{#method-Serialiser-deserialiseDataframe}{\code{J$Serialiser$deserialiseDataframe(filename)}}
@@ -47,11 +52,6 @@ Generated: 2021-12-27T18:17:36.488
 		\item \href{#method-Serialiser-deserialiseList}{\code{J$Serialiser$deserialiseList(filename)}}
 		\item \href{#method-Serialiser-serialiseNamedList}{\code{J$Serialiser$serialiseNamedList(dataframe, filename)}}
 		\item \href{#method-Serialiser-deserialiseNamedList}{\code{J$Serialiser$deserialiseNamedList(filename)}}
-		\item \href{#method-FeatureTest-new}{\code{J$FeatureTest$new(logMessage)}}
-		\item \href{#method-FeatureTest-demoStatic}{\code{J$FeatureTest$demoStatic(message)}}
-		\item \href{#method-FeatureTest-diamonds}{\code{J$FeatureTest$diamonds()}}
-		\item \href{#method-BounceTest-new}{\code{J$BounceTest$new()}}
-		\item \href{#method-FactoryTest-new}{\code{J$FactoryTest$new()}}
 		\item \href{#method-MinimalExample-new}{\code{J$MinimalExample$new()}}
 	}
 	
@@ -146,6 +146,164 @@ J$MoreFeatureTest$concat(message1, message2)
 
 		\subsection{Returns}{
 			RCharacter: 
+		}
+	}
+
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-BounceTest-new"></a>}}
+	
+	\subsection{Method \code{BounceTest$new()}}{
+		the default no-args constructor
+	
+		\subsection{Usage}{
+			\if{html}{\out{<div class="r">}}
+			\preformatted{
+J = testRapi::JavaApi$get()
+J$BounceTest$new()
+	  		}
+			\if{html}{\out{</div>}}
+		}
+	
+		\subsection{Arguments}{
+			\if{html}{\out{<div class="arguments">}}
+			\describe{
+				\itemize{
+					\item{none}
+				}
+			}
+			\if{html}{\out{</div>}}
+		}
+
+		\subsection{Returns}{
+			R6 BounceTest object: 
+		}
+	}
+
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-FeatureTest-new"></a>}}
+	
+	\subsection{Method \code{FeatureTest$new()}}{
+		A maximum of one constructor of any signature can be used. <br>
+
+If different constructors are needed then they may be used but not 
+included in the R Api (i.e. not annotated with @RMethod.) <br>
+
+Static factory methods can be used instead.
+	
+		\subsection{Usage}{
+			\if{html}{\out{<div class="r">}}
+			\preformatted{
+J = testRapi::JavaApi$get()
+J$FeatureTest$new(logMessage)
+	  		}
+			\if{html}{\out{</div>}}
+		}
+	
+		\subsection{Arguments}{
+			\if{html}{\out{<div class="arguments">}}
+			\describe{
+				\itemize{
+					\item{logMessage - a message which will be logged}{ - (java expects a String)}
+				}
+			}
+			\if{html}{\out{</div>}}
+		}
+
+		\subsection{Returns}{
+			R6 FeatureTest object: 
+		}
+	}
+
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-FeatureTest-demoStatic"></a>}}
+	
+	\subsection{Method \code{FeatureTest$demoStatic()}}{
+		Static methods are also supported. These are accessed through the
+root of the R api.
+	
+		\subsection{Usage}{
+			\if{html}{\out{<div class="r">}}
+			\preformatted{
+J = testRapi::JavaApi$get()
+J$FeatureTest$demoStatic(message)
+	  		}
+			\if{html}{\out{</div>}}
+		}
+	
+		\subsection{Arguments}{
+			\if{html}{\out{<div class="arguments">}}
+			\describe{
+				\itemize{
+					\item{message a message}{ - (java expects a String)}
+				}
+			}
+			\if{html}{\out{</div>}}
+		}
+
+		\subsection{Returns}{
+			void: 
+		}
+	}
+
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-FeatureTest-diamonds"></a>}}
+	
+	\subsection{Method \code{FeatureTest$diamonds()}}{
+		A copy of the ggplot2::diamonds dataframe serialised into java, using
+RObject.writeRDS, saved within the jar file of the package, and exposed here
+using RObject.readRDS.
+	
+		\subsection{Usage}{
+			\if{html}{\out{<div class="r">}}
+			\preformatted{
+J = testRapi::JavaApi$get()
+J$FeatureTest$diamonds()
+	  		}
+			\if{html}{\out{</div>}}
+		}
+	
+		\subsection{Arguments}{
+			\if{html}{\out{<div class="arguments">}}
+			\describe{
+				\itemize{
+					\item{none}
+				}
+			}
+			\if{html}{\out{</div>}}
+		}
+
+		\subsection{Returns}{
+			RDataframe: the ggplot2::diamonds dataframe
+		}
+	}
+
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-FactoryTest-new"></a>}}
+	
+	\subsection{Method \code{FactoryTest$new()}}{
+		the default no-args constructor
+	
+		\subsection{Usage}{
+			\if{html}{\out{<div class="r">}}
+			\preformatted{
+J = testRapi::JavaApi$get()
+J$FactoryTest$new()
+	  		}
+			\if{html}{\out{</div>}}
+		}
+	
+		\subsection{Arguments}{
+			\if{html}{\out{<div class="arguments">}}
+			\describe{
+				\itemize{
+					\item{none}
+				}
+			}
+			\if{html}{\out{</div>}}
+		}
+
+		\subsection{Returns}{
+			R6 FactoryTest object: 
 		}
 	}
 
@@ -359,164 +517,6 @@ J$Serialiser$deserialiseNamedList(filename)
 
 		\subsection{Returns}{
 			RNamedList: 
-		}
-	}
-
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-FeatureTest-new"></a>}}
-	
-	\subsection{Method \code{FeatureTest$new()}}{
-		A maximum of one constructor of any signature can be used. <br>
-
-If different constructors are needed then they may be used but not 
-included in the R Api (i.e. not annotated with @RMethod.) <br>
-
-Static factory methods can be used instead.
-	
-		\subsection{Usage}{
-			\if{html}{\out{<div class="r">}}
-			\preformatted{
-J = testRapi::JavaApi$get()
-J$FeatureTest$new(logMessage)
-	  		}
-			\if{html}{\out{</div>}}
-		}
-	
-		\subsection{Arguments}{
-			\if{html}{\out{<div class="arguments">}}
-			\describe{
-				\itemize{
-					\item{logMessage - a message which will be logged}{ - (java expects a String)}
-				}
-			}
-			\if{html}{\out{</div>}}
-		}
-
-		\subsection{Returns}{
-			R6 FeatureTest object: 
-		}
-	}
-
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-FeatureTest-demoStatic"></a>}}
-	
-	\subsection{Method \code{FeatureTest$demoStatic()}}{
-		Static methods are also supported. These are accessed through the
-root of the R api.
-	
-		\subsection{Usage}{
-			\if{html}{\out{<div class="r">}}
-			\preformatted{
-J = testRapi::JavaApi$get()
-J$FeatureTest$demoStatic(message)
-	  		}
-			\if{html}{\out{</div>}}
-		}
-	
-		\subsection{Arguments}{
-			\if{html}{\out{<div class="arguments">}}
-			\describe{
-				\itemize{
-					\item{message a message}{ - (java expects a String)}
-				}
-			}
-			\if{html}{\out{</div>}}
-		}
-
-		\subsection{Returns}{
-			void: 
-		}
-	}
-
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-FeatureTest-diamonds"></a>}}
-	
-	\subsection{Method \code{FeatureTest$diamonds()}}{
-		A copy of the ggplot2::diamonds dataframe serialised into java, using
-RObject.writeRDS, saved within the jar file of the package, and exposed here
-using RObject.readRDS.
-	
-		\subsection{Usage}{
-			\if{html}{\out{<div class="r">}}
-			\preformatted{
-J = testRapi::JavaApi$get()
-J$FeatureTest$diamonds()
-	  		}
-			\if{html}{\out{</div>}}
-		}
-	
-		\subsection{Arguments}{
-			\if{html}{\out{<div class="arguments">}}
-			\describe{
-				\itemize{
-					\item{none}
-				}
-			}
-			\if{html}{\out{</div>}}
-		}
-
-		\subsection{Returns}{
-			RDataframe: the ggplot2::diamonds dataframe
-		}
-	}
-
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-BounceTest-new"></a>}}
-	
-	\subsection{Method \code{BounceTest$new()}}{
-		the default no-args constructor
-	
-		\subsection{Usage}{
-			\if{html}{\out{<div class="r">}}
-			\preformatted{
-J = testRapi::JavaApi$get()
-J$BounceTest$new()
-	  		}
-			\if{html}{\out{</div>}}
-		}
-	
-		\subsection{Arguments}{
-			\if{html}{\out{<div class="arguments">}}
-			\describe{
-				\itemize{
-					\item{none}
-				}
-			}
-			\if{html}{\out{</div>}}
-		}
-
-		\subsection{Returns}{
-			R6 BounceTest object: 
-		}
-	}
-
-	\if{html}{\out{<hr>}}
-	\if{html}{\out{<a id="method-FactoryTest-new"></a>}}
-	
-	\subsection{Method \code{FactoryTest$new()}}{
-		the default no-args constructor
-	
-		\subsection{Usage}{
-			\if{html}{\out{<div class="r">}}
-			\preformatted{
-J = testRapi::JavaApi$get()
-J$FactoryTest$new()
-	  		}
-			\if{html}{\out{</div>}}
-		}
-	
-		\subsection{Arguments}{
-			\if{html}{\out{<div class="arguments">}}
-			\describe{
-				\itemize{
-					\item{none}
-				}
-			}
-			\if{html}{\out{</div>}}
-		}
-
-		\subsection{Returns}{
-			R6 FactoryTest object: 
 		}
 	}
 

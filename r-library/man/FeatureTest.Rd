@@ -18,7 +18,7 @@ A test of the R6 generator templating
 
 Version: 0.02
 
-Generated: 2021-12-27T18:17:36.647
+Generated: 2022-02-14T17:20:14.946
 }
 
 \details{
@@ -240,7 +240,8 @@ not available
 	
 	\subsection{Method \code{doSum2()}}{
 		Do sum 2 uses native ints rather than RNumerics
-It should throw an error if given something that cannot be coerced to an integer
+It should throw an error if given something that cannot be coerced to an integer. 
+This also demonstrated the use of the `@RDefault` annotation
 	
 
 		\subsection{Usage}{
@@ -257,7 +258,7 @@ instance$doSum2(a, b)
 			\if{html}{\out{<div class="arguments">}}
 			\itemize{
 				\item{a the A parameter}{ - (java expects a int)}
-				\item{b the B parameter}{ - (java expects a int)}
+				\item{b the B parameter- (defaults to "10")}{ - (java expects a int)}
 			}
 			\if{html}{\out{</div>}}
 		}
@@ -371,7 +372,7 @@ instance$fluentSetMessage(message)
 		\subsection{Arguments}{
 			\if{html}{\out{<div class="arguments">}}
 			\itemize{
-				\item{message the message is a string}{ - (java expects a RCharacter)}
+				\item{message the message is a string- (defaults to "\"hello\nworld\"")}{ - (java expects a RCharacter)}
 			}
 			\if{html}{\out{</div>}}
 		}
@@ -409,7 +410,7 @@ instance$factoryMethod(a, b)
 			\if{html}{\out{<div class="arguments">}}
 			\itemize{
 				\item{a the first parameter}{ - (java expects a RCharacter)}
-				\item{b the second parameter}{ - (java expects a RCharacter)}
+				\item{b the second parameter- (defaults to "as.character(Sys.Date())")}{ - (java expects a RCharacter)}
 			}
 			\if{html}{\out{</div>}}
 		}

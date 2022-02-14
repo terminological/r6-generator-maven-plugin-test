@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import uk.co.terminological.rjava.RClass;
 import uk.co.terminological.rjava.RConverter;
+import uk.co.terminological.rjava.RDefault;
 import uk.co.terminological.rjava.RMethod;
 import uk.co.terminological.rjava.types.RCharacter;
 import uk.co.terminological.rjava.types.RDataframe;
@@ -92,13 +93,14 @@ public class FeatureTest {
 	
 	/**
 	 * Do sum 2 uses native ints rather than RNumerics
-	 * It should throw an error if given something that cannot be coerced to an integer 
+	 * It should throw an error if given something that cannot be coerced to an integer. 
+	 * This also demonstrated the use of the `@RDefault` annotation
 	 * @param a the A parameter
 	 * @param b the B parameter
 	 * @return A+B of course
 	 */
 	@RMethod
-	public int doSum2(int a, int b) {
+	public int doSum2(int a, @RDefault(rCode = "10") int b) {
 		return a+b;
 	}
 	
@@ -135,7 +137,7 @@ public class FeatureTest {
 	 * @return this should return exactly the same R6 object.
 	 */
 	@RMethod
-	public FeatureTest fluentSetMessage(RCharacter message) {
+	public FeatureTest fluentSetMessage(@RDefault(rCode = "\"hello\nworld\"") RCharacter message) {
 		this.message = message.toString();
 		return this;
 	}
@@ -150,7 +152,7 @@ public class FeatureTest {
 	 * @return A MoreFeatureTest R6 reference
 	 */
 	@RMethod
-	public MoreFeatureTest factoryMethod(RCharacter a, RCharacter b) {
+	public MoreFeatureTest factoryMethod(RCharacter a, @RDefault(rCode = "as.character(Sys.Date())") RCharacter b) {
 		return new MoreFeatureTest(a,b);
 	}
 	

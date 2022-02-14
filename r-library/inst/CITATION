@@ -2,12 +2,12 @@
 c(
 	bibentry(bibtype = "Manual",
 		title = "A test library",
-		year = 2021,
+		year = 2022,
 		note = "R package version 0.02",
 		author = c(
 			person(given = "Rob",family = "Challen",email = "rc538@exeter.ac.uk",role = c("aut", "cre")),
-			person(given = "given",family = "family",email = "email@example.com",comment = structure("ORCIDID", .Names = "ORCID"),role = "aut"),
-			person(given = "terminological",role = "aut")		)
+			person(given = "terminological",role = "aut"),
+			person(given = "given",family = "family",email = "email@example.com",comment = structure("ORCIDID", .Names = "ORCID"),role = "aut")		)
 	),
 	bibentry(bibtype = "Manual",
 		title = "R6 generator maven plugin",

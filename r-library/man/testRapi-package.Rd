@@ -14,10 +14,10 @@ Classes:
 \itemize{ 
 	\item \code{JavaApi}
 	\item \code{MoreFeatureTest}
-	\item \code{Serialiser}
-	\item \code{FeatureTest}
 	\item \code{BounceTest}
+	\item \code{FeatureTest}
 	\item \code{FactoryTest}
+	\item \code{Serialiser}
 	\item \code{MinimalExample}
 }
 }
@@ -25,8 +25,8 @@ Classes:
 \author{
 \itemize{ 
    \item Rob Challen rc538@exeter.ac.uk 
-   \item terminological   
    \item given family email@example.com ORCIDID
+   \item terminological   
 }
 }
 
