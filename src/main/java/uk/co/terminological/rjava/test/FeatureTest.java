@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import uk.co.terminological.rjava.RClass;
 import uk.co.terminological.rjava.RConverter;
 import uk.co.terminological.rjava.RDefault;
+import uk.co.terminological.rjava.RFinalize;
 import uk.co.terminological.rjava.RMethod;
 import uk.co.terminological.rjava.types.RCharacter;
 import uk.co.terminological.rjava.types.RDataframe;
@@ -208,5 +209,11 @@ public class FeatureTest {
 	
 	//END_SNIP_5
 	//START_SNIP_1
+	
+	@RFinalize
+	public void close() {
+		log.info("The FeatureTest finalizer is called when the R6 object goes out of scope");
+		throw new RuntimeException("Errors from the finalizer are ignored");
+	}
 }
 //END_SNIP_1

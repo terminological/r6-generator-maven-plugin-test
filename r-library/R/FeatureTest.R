@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-02-14T17:20:14.948
+#' Generated: 2022-02-15T12:33:53.057
 #'
 #' @details
 	#' #' 
@@ -90,7 +90,7 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' It should throw an error if given something that cannot be coerced to an integer. 
 	#' This also demonstrated the use of the `@RDefault` annotation
 	#' @param a the A parameter - (java expects a int)
-	#' @param b the B parameter- (defaults to "10") - (java expects a int)
+	#' @param b the B parameter - (defaulting to "10") - (java expects a int)
 	#' @return int: 
 	#' A+B of course
 	doSum2 = function(a, b=10) {
@@ -126,7 +126,7 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' same object. This is differentiated from factory methods which produce a new
 	#' instance of the same class by checking to see if the returned Java object is equal
 	#' to the calling Java object.
-	#' @param message the message is a string- (defaults to "\"hello\nworld\"") - (java expects a RCharacter)
+	#' @param message the message is a string - (defaulting to "\"hello\nworld\"") - (java expects a RCharacter)
 	#' @return R6 FeatureTest object: 
 	#' this should return exactly the same R6 object.
 	fluentSetMessage = function(message="hello
@@ -155,7 +155,7 @@ world") {
 	#' factoryMethod: 
 	#' A factory or builder method which constructs an object of another class from some parameters
 	#' @param a the first parameter - (java expects a RCharacter)
-	#' @param b the second parameter- (defaults to "as.character(Sys.Date())") - (java expects a RCharacter)
+	#' @param b the second parameter - (defaulting to "as.character(Sys.Date())") - (java expects a RCharacter)
 	#' @return R6 MoreFeatureTest object: 
 	#' A MoreFeatureTest R6 reference
 	factoryMethod = function(a, b=as.character(Sys.Date())) {
@@ -247,6 +247,7 @@ world") {
 	
 	#' @description Allow this object to be garbage collected.
 	finalize = function() {
+		try(.jcall(self$.jobj, returnSig = "V", method="close"))
 		self$.jobj = .jnull("uk/co/terminological/rjava/test/FeatureTest")
 		self$.jobj = NULL
 		.jgc(R.gc = FALSE)

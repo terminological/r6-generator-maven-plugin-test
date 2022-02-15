@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-02-14T17:20:14.958
+#' Generated: 2022-02-15T12:33:53.068
 #'
 #' @details
 	#' no details
@@ -266,6 +266,7 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	
 	#' @description Allow this object to be garbage collected.
 	finalize = function() {
+		
 		self$.jobj = .jnull("uk/co/terminological/rjava/test/FactoryTest")
 		self$.jobj = NULL
 		.jgc(R.gc = FALSE)

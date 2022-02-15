@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-02-14T17:20:14.938
+#' Generated: 2022-02-15T12:33:53.045
 #'
 #' @details
 	#' This has no documentation
@@ -116,6 +116,7 @@ MoreFeatureTest = R6::R6Class("MoreFeatureTest", public=list(
 	
 	#' @description Allow this object to be garbage collected.
 	finalize = function() {
+		
 		self$.jobj = .jnull("uk/co/terminological/rjava/test/MoreFeatureTest")
 		self$.jobj = NULL
 		.jgc(R.gc = FALSE)
