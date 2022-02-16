@@ -6,7 +6,7 @@
 #'
 #' Version: 0.02
 #'
-#' Generated: 2022-02-15T12:33:53.014
+#' Generated: 2022-02-16T15:04:09.186
 #'
 #' Contact: rc538@exeter.ac.uk
 #' @import ggplot2
@@ -71,7 +71,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
  	
  		message("Initialising A test library")
  		message("Version: 0.02")
-		message("Generated: 2022-02-15T12:33:53.014")
+		message("Generated: 2022-02-16T15:04:09.187")
  	
 		if (!.jniInitialized) 
 	        .jinit(parameters=getOption("java.parameters"),silent = TRUE, force.init = FALSE)
@@ -92,7 +92,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
     	self$.log = .jcall("org/slf4j/LoggerFactory", returnSig = "Lorg/slf4j/Logger;", method = "getLogger", "testRapi");
     	.jcall(self$.log,returnSig = "V",method = "info","Initialised testRapi");
 		.jcall(self$.log,returnSig = "V",method = "debug","Version: 0.02");
-		.jcall(self$.log,returnSig = "V",method = "debug","R package generated: 2022-02-15T12:33:53.014");
+		.jcall(self$.log,returnSig = "V",method = "debug","R package generated: 2022-02-16T15:04:09.187");
 		# .jcall(self$.log,returnSig = "V",method = "debug",paste0("Java library compiled: ",buildDate));
 		.jcall(self$.log,returnSig = "V",method = "debug","Contact: rc538@exeter.ac.uk");
 		self$printMessages()

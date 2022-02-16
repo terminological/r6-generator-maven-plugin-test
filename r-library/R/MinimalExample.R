@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-02-15T12:33:53.073
+#' Generated: 2022-02-16T15:04:09.248
 #'
 #' @details
 	#' #' The class is annotated with an @RClass to identify it as part of the R API. <br>
