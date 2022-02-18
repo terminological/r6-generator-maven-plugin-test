@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-02-16T15:04:09.248
+#' Generated: 2022-02-17T17:33:50.451
 #'
 #' @details
 	#' #' The class is annotated with an @RClass to identify it as part of the R API. <br>
@@ -80,7 +80,6 @@ MinimalExample = R6::R6Class("MinimalExample", public=list(
 	
 	#' @description Allow this object to be garbage collected.
 	finalize = function() {
-		
 		self$.jobj = .jnull("uk/co/terminological/rjava/test/MinimalExample")
 		self$.jobj = NULL
 		.jgc(R.gc = FALSE)

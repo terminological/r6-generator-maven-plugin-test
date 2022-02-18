@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-02-16T15:04:09.226
+#' Generated: 2022-02-17T17:33:50.430
 #'
 #' @details
 	#' no details
@@ -411,7 +411,6 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 	
 	#' @description Allow this object to be garbage collected.
 	finalize = function() {
-		
 		self$.jobj = .jnull("uk/co/terminological/rjava/test/BounceTest")
 		self$.jobj = NULL
 		.jgc(R.gc = FALSE)

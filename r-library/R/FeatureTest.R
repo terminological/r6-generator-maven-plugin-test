@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-02-16T15:04:09.233
+#' Generated: 2022-02-17T17:33:50.437
 #'
 #' @details
 	#' #' 
@@ -247,7 +247,11 @@ world") {
 	
 	#' @description Allow this object to be garbage collected.
 	finalize = function() {
-		try(.jcall(self$.jobj, returnSig = "V", method="close"))
+		if(!is.null(self$.jobj)) {
+			try({
+				.jcall(self$.jobj, returnSig = "V", method="close")
+			})
+		}
 		self$.jobj = .jnull("uk/co/terminological/rjava/test/FeatureTest")
 		self$.jobj = NULL
 		.jgc(R.gc = FALSE)

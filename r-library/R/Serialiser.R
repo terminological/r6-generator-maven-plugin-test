@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-02-16T15:04:09.247
+#' Generated: 2022-02-17T17:33:50.450
 #'
 #' @details
 	#' #' string and serialises the dataframe so it can be used natively in java
@@ -57,7 +57,6 @@ Serialiser = R6::R6Class("Serialiser", public=list(
 	
 	#' @description Allow this object to be garbage collected.
 	finalize = function() {
-		
 		self$.jobj = .jnull("uk/co/terminological/rjava/test/Serialiser")
 		self$.jobj = NULL
 		.jgc(R.gc = FALSE)
