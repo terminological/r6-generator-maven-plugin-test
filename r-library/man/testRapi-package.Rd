@@ -14,10 +14,10 @@ Classes:
 \itemize{ 
 	\item \code{JavaApi}
 	\item \code{MoreFeatureTest}
-	\item \code{BounceTest}
-	\item \code{FeatureTest}
-	\item \code{FactoryTest}
 	\item \code{Serialiser}
+	\item \code{FeatureTest}
+	\item \code{BounceTest}
+	\item \code{FactoryTest}
 	\item \code{MinimalExample}
 }
 }

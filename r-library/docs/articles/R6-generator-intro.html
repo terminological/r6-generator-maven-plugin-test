@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">testRapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.02</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.02</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -89,14 +85,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>R6 Generator Maven Plugin: Bridging Java and R6 for Package Development</h1>
-                        <h4 class="author">Robert Challen</h4>
+                        <h4 data-toc-skip class="author">Robert Challen</h4>
             <address class="author_afil">
-      University of Exeter<br><a class="author_email" href="mailto:#"><script type="text/javascript">
-<!--
-h='&#x65;&#120;&#x65;&#116;&#x65;&#114;&#46;&#x61;&#x63;&#46;&#x75;&#x6b;';a='&#64;';n='&#114;&#x63;&#x35;&#x33;&#56;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
-// -->
-</script><noscript>rc538 at exeter dot ac dot uk</noscript></a>
+      University of Exeter<br><a class="author_email" href="mailto:#"></a><a href="mailto:rc538@exeter.ac.uk">rc538@exeter.ac.uk</a>
       </address>
                   
       
@@ -114,34 +105,34 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
 <div class="watermark">
 DRAFT
 </div>
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
+<div class="section level1">
+<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h1>
 <p>The R6 Generator Maven Plugin<span class="citation">(<em>Terminological/R6-Generator-Maven-Plugin</em> [2020] 2020)</span> provides a low friction route to integrating Java code into R programs. <em>rJava</em><span class="citation">(Urbanek 2020)</span> is a low level interface for using Java libraries in R via the Java Native Interface (JNI). However use of this low level interface has a steep learning curve for both R and Java programmers, as it requires an in-depth understanding of the limitations of the JNI interface between R and Java. The <em>jsr223</em><span class="citation">(Gilbert and Dahl 2020b)</span> package aims to made to reduce this friction in the situation where dynamic interaction between R and Java is needed, by integration of Java based scripting languages, such as Kotlin or Groovy, and an ancillary package that manages dynamic data-type translation - <em>jdx</em><span class="citation">(Gilbert and Dahl 2020a)</span>. Although simplifying data type conversion, this is still a relatively complex solution for the situation where a developer wishes to package Java based functions for use in R programs, for native R use as a library. The <em>R6</em><span class="citation">(Chang 2019)</span> package brings class structures to R. This article describes a novel approach to integrating Java code with R, involving compile time R code generation, which results in an R6 class library that provides a native R interface to the Java library. This offers a range of benefits for the simple case of package development over existing approaches.</p>
-<div id="strengths-and-weaknesses-of-java-and-r" class="section level2">
-<h2 class="hasAnchor">
-<a href="#strengths-and-weaknesses-of-java-and-r" class="anchor"></a>Strengths and weaknesses of Java and R</h2>
+<div class="section level2">
+<h2 id="strengths-and-weaknesses-of-java-and-r">Strengths and weaknesses of Java and R<a class="anchor" aria-label="anchor" href="#strengths-and-weaknesses-of-java-and-r"></a>
+</h2>
 <p>R and Java are two very different languages and each have specific strengths and weaknesses. * R ease of data import and integration, spatial support * R visualization * R data wrangling * R REPL * Java ease of multithreaded processing. * Java strongly typed versus R dynamically typed * Java complex dependency and classpath management. * Maven build tools as solution to this * Java VM debugging versus R debugging</p>
 </div>
-<div id="existing-integration-of-r-and-java" class="section level2">
-<h2 class="hasAnchor">
-<a href="#existing-integration-of-r-and-java" class="anchor"></a>Existing integration of R and Java</h2>
+<div class="section level2">
+<h2 id="existing-integration-of-r-and-java">Existing integration of R and Java<a class="anchor" aria-label="anchor" href="#existing-integration-of-r-and-java"></a>
+</h2>
 <p>Integration between Java and R has existed since the release of <em>rJava</em> in 2003, which uses JNI to transfer data between a Java process and R process running on same machine, however successful use of Java libraries within R has remained difficult as JNI interface operates at a low level on primitive data structures. rJava provides infrastructure allowing execution of compiled Java code on a running JVM process, with data from R, but to do so requires an in depth knowledge of the behaviour of JNI in transferring data to on from Java. Writing R code to use Java libraries via JNI provides limited support for code completion, type analysis, and debugging of the state of variables within the Java Virtual Machine. In most applications of rJava, a native R library is provided that encapsulates the R code managing communication across the JNI and state, thus protecting the regular R user from the complexity. This is the case for libraries such as RMallet which provides a wrapper around the Java Mallet library. The problem with this is that Java integration in R is limited by the interest of the few people who have been through the learning curve required to create such wrappers, let alone maintain them as the Java libraries evolve.</p>
 <p>As an alternative to this there have been recent developments in the R jsr223 package. This provides a high level interface to Java by providing access to a middle layer provided by any of a number of Java based scripting languages, such as Kotlin, Groovy and Javascript. R code can interact directly with these scripting languages and pass variables back and forwards with relative ease and the java based scripting languages can communicate with native Java code running on the same JVM. This has a number of benefits</p>
-<p>A third approach is data only integration, e.g. Apache Arrow.</p>
+<p>A third approach is data only integration, e.g. Apache Arrow.</p>
 </div>
 </div>
-<div id="use-cases" class="section level1">
-<h1 class="hasAnchor">
-<a href="#use-cases" class="anchor"></a>Use cases</h1>
+<div class="section level1">
+<h1 id="use-cases">Use cases<a class="anchor" aria-label="anchor" href="#use-cases"></a>
+</h1>
 <ul>
 <li>Java library development for R use</li>
 <li>Adaption of java library for R use</li>
 </ul>
 </div>
-<div id="desiderata-design-rationale" class="section level1">
-<h1 class="hasAnchor">
-<a href="#desiderata-design-rationale" class="anchor"></a>Desiderata / Design rationale</h1>
+<div class="section level1">
+<h1 id="desiderata-design-rationale">Desiderata / Design rationale<a class="anchor" aria-label="anchor" href="#desiderata-design-rationale"></a>
+</h1>
 <ul>
 <li>R as REPL, Java as backend</li>
 <li>No knowledge of JNI, rJava or intermediate languages required.</li>
@@ -155,51 +146,51 @@ DRAFT
 <li>CRAN ready submission from Java library</li>
 </ul>
 </div>
-<div id="terminology-and-concepts" class="section level1">
-<h1 class="hasAnchor">
-<a href="#terminology-and-concepts" class="anchor"></a>Terminology and concepts</h1>
+<div class="section level1">
+<h1 id="terminology-and-concepts">Terminology and concepts<a class="anchor" aria-label="anchor" href="#terminology-and-concepts"></a>
+</h1>
 <p>Maven plugin - Runtime dependency - R types for java</p>
 </div>
-<div id="feature-documentation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#feature-documentation" class="anchor"></a>Feature documentation</h1>
-<p>Maven is a Java dependency management and build tool, which is one of the cornerstones of the Java development ecosystem. It has a flexible plugin mechanism which the R6 Generator Maven Plugin is based on, and allows us to write code that is executed during the Java compilation process, and allows for code generation basd on the structure of the Java code. When Maven is appropriately configured to build an R6 Generator enabled Java project, the project is compiled into a Java archive (jar) with all required dependencies, and an R6 class structure is created that mirrors the Java library structure in a specified sub-directory of the Maven Java project (in this case "r-library"). This sub-directory contains all of the components of a R package, including a set of R source files defining a set of R6 classes, DESCRIPTION and NAMESCAPE files, LICENSE and CITATION files and a set of Rd documentation files.</p>
-<div id="minimal-example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#minimal-example" class="anchor"></a>Minimal example</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import org.slf4j.Logger;</span>
-<span class="kw">import org.slf4j.LoggerFactory;</span>
+<div class="section level1">
+<h1 id="feature-documentation">Feature documentation<a class="anchor" aria-label="anchor" href="#feature-documentation"></a>
+</h1>
+<p>Maven is a Java dependency management and build tool, which is one of the cornerstones of the Java development ecosystem. It has a flexible plugin mechanism which the R6 Generator Maven Plugin is based on, and allows us to write code that is executed during the Java compilation process, and allows for code generation basd on the structure of the Java code. When Maven is appropriately configured to build an R6 Generator enabled Java project, the project is compiled into a Java archive (jar) with all required dependencies, and an R6 class structure is created that mirrors the Java library structure in a specified sub-directory of the Maven Java project (in this case “r-library”). This sub-directory contains all of the components of a R package, including a set of R source files defining a set of R6 classes, DESCRIPTION and NAMESCAPE files, LICENSE and CITATION files and a set of Rd documentation files.</p>
+<div class="section level2">
+<h2 id="minimal-example">Minimal example<a class="anchor" aria-label="anchor" href="#minimal-example"></a>
+</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import</span><span class="im"> org.slf4j.Logger;</span>
+<span class="kw">import</span><span class="im"> org.slf4j.LoggerFactory;</span>
 
-<span class="kw">import uk.co.terminological.rjava.RClass;</span>
-<span class="kw">import uk.co.terminological.rjava.RMethod;</span>
-<span class="kw">import uk.co.terminological.rjava.types.RDataframe;</span>
+<span class="kw">import</span><span class="im"> uk.co.terminological.rjava.RClass;</span>
+<span class="kw">import</span><span class="im"> uk.co.terminological.rjava.RMethod;</span>
+<span class="kw">import</span><span class="im"> uk.co.terminological.rjava.types.RDataframe;</span>
 
 <span class="co">/**</span>
-<span class="co"> * This class is a very basic example of the features of the rJava maven plugin. &lt;br</span>&gt;
-<span class="er"> * The class is annotated with an @RClass to identify it as part of the R API. &lt;br&gt;</span>
-<span class="er"> */</span>
-<span class="fu">@RClass</span>
-<span class="er">public class MinimalExample {</span>
+ <span class="co">*</span> This class is a very basic example of the features of the rJava maven plugin<span class="co">. </span><span class="kw">&lt;br&gt;</span>
+ <span class="co">*</span> The class is annotated with an <span class="co">@</span>RClass to identify it as part of the R API<span class="co">.</span> <span class="kw">&lt;br&gt;</span>
+ <span class="co">*/</span>
+<span class="at">@RClass</span>
+<span class="kw">public</span> <span class="kw">class</span> MinimalExample {
 
-<span class="er">    static Logger log = LoggerFactory.getLogger(MinimalExample.class);</span>
-<span class="er">    </span>
-<span class="er">    @RMethod(examples = {</span>
-<span class="er">        "minExample = J$MinimalExample$new()",</span>
-<span class="er">        "minExample$demo(dataframe=tibble::tibble(input=c(1,2,3)), message='Hello world')"</span>
-<span class="er">    })</span>
-<span class="er">    /**</span>
-<span class="er">     * Documentation of the method can be done in JavaDoc and these will be present in the R documentation </span>
-<span class="er">     * @param dataframe - a dataframe with an arbitrary number of columns</span>
-<span class="er">     * @param message - a message</span>
-<span class="er">     * @return the dataframe unchanged</span>
-<span class="er">     *  </span>
-<span class="er">     */</span>
-<span class="er">    public RDataframe demo(RDataframe dataframe, String message) {</span>
-<span class="er">        log.info("this dataframe has nrow="+dataframe.nrow());</span>
-<span class="er">        log.info(message);</span>
-<span class="er">        return dataframe;</span>
-<span class="er">    }</span>
-<span class="er">    </span>
+    <span class="dt">static</span> <span class="bu">Logger</span> log = LoggerFactory.<span class="fu">getLogger</span>(MinimalExample.<span class="fu">class</span>);
+    
+    <span class="at">@RMethod</span>(examples = {
+        <span class="st">"minExample = J$MinimalExample$new()"</span>,
+        <span class="st">"minExample$demo(dataframe=tibble::tibble(input=c(1,2,3)), message='Hello world')"</span>
+    })
+    <span class="co">/**</span>
+     <span class="co">*</span> Documentation of the method can be done in JavaDoc and these will be present in the R documentation 
+     <span class="co">* </span><span class="kw">@param dataframe </span><span class="co">-</span> a dataframe with an arbitrary number of columns
+     <span class="co">*</span> <span class="kw">@param message </span><span class="co">-</span> a message
+     <span class="co">*</span> <span class="kw">@return </span>the dataframe unchanged
+     <span class="co">*</span>  
+     <span class="co">*/</span>
+    <span class="kw">public</span> RDataframe <span class="fu">demo</span>(RDataframe dataframe, <span class="bu">String</span> message) {
+        log.<span class="fu">info</span>(<span class="st">"this dataframe has nrow="</span>+dataframe.<span class="fu">nrow</span>());
+        log.<span class="fu">info</span>(message);
+        <span class="kw">return</span> dataframe;
+    }
+    
 }</code></pre></div>
 <div class="sourceCode"><table class="table sourceCode xml number-lines"><tr class="sourceCode">
 <td class="lineNumbers"><pre>1
@@ -367,43 +358,43 @@ DRAFT
 <span class="er">&lt;</span>/project&gt;</code></pre></td>
 </tr></table></div>
 </div>
-<div id="r6-class-generation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#r6-class-generation" class="anchor"></a>R6 class generation</h2>
+<div class="section level2">
+<h2 id="r6-class-generation">R6 class generation<a class="anchor" aria-label="anchor" href="#r6-class-generation"></a>
+</h2>
 </div>
-<div id="maven-packaging" class="section level2">
-<h2 class="hasAnchor">
-<a href="#maven-packaging" class="anchor"></a>Maven packaging</h2>
+<div class="section level2">
+<h2 id="maven-packaging">Maven packaging<a class="anchor" aria-label="anchor" href="#maven-packaging"></a>
+</h2>
 </div>
-<div id="generated-r6-documentation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#generated-r6-documentation" class="anchor"></a>Generated R6 documentation</h2>
+<div class="section level2">
+<h2 id="generated-r6-documentation">Generated R6 documentation<a class="anchor" aria-label="anchor" href="#generated-r6-documentation"></a>
+</h2>
 <p><img src="screenshots.png" width="100%"></p>
 </div>
-<div id="datatype-transformation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#datatype-transformation" class="anchor"></a>Datatype transformation</h2>
-<div id="java-to-r" class="section level3">
-<h3 class="hasAnchor">
-<a href="#java-to-r" class="anchor"></a>Java to R</h3>
+<div class="section level2">
+<h2 id="datatype-transformation">Datatype transformation<a class="anchor" aria-label="anchor" href="#datatype-transformation"></a>
+</h2>
+<div class="section level3">
+<h3 id="java-to-r">Java to R<a class="anchor" aria-label="anchor" href="#java-to-r"></a>
+</h3>
 </div>
-<div id="r-to-java---runtime-library" class="section level3">
-<h3 class="hasAnchor">
-<a href="#r-to-java---runtime-library" class="anchor"></a>R to Java - runtime library</h3>
+<div class="section level3">
+<h3 id="r-to-java---runtime-library">R to Java - runtime library<a class="anchor" aria-label="anchor" href="#r-to-java---runtime-library"></a>
+</h3>
 </div>
 </div>
-<div id="debugging-java-code" class="section level2">
-<h2 class="hasAnchor">
-<a href="#debugging-java-code" class="anchor"></a>Debugging Java code</h2>
+<div class="section level2">
+<h2 id="debugging-java-code">Debugging Java code<a class="anchor" aria-label="anchor" href="#debugging-java-code"></a>
+</h2>
 <ul>
 <li>Datasets for testing Java code / serialisation of inputs</li>
 <li>Debugging flag</li>
 </ul>
 </div>
 </div>
-<div id="benefits" class="section level1">
-<h1 class="hasAnchor">
-<a href="#benefits" class="anchor"></a>Benefits</h1>
+<div class="section level1">
+<h1 id="benefits">Benefits<a class="anchor" aria-label="anchor" href="#benefits"></a>
+</h1>
 <ul>
 <li>Low friction</li>
 <li>Minimal dependencies introduced.</li>
@@ -417,9 +408,9 @@ DRAFT
 <li>Maintenance</li>
 </ul>
 </div>
-<div id="limitations" class="section level1">
-<h1 class="hasAnchor">
-<a href="#limitations" class="anchor"></a>Limitations</h1>
+<div class="section level1">
+<h1 id="limitations">Limitations<a class="anchor" aria-label="anchor" href="#limitations"></a>
+</h1>
 <ul>
 <li>Fat Jar bloat</li>
 <li>Recompilation and iterative development</li>
@@ -428,9 +419,9 @@ DRAFT
 <li>Java class caching</li>
 </ul>
 </div>
-<div id="future-development" class="section level1">
-<h1 class="hasAnchor">
-<a href="#future-development" class="anchor"></a>Future development</h1>
+<div class="section level1">
+<h1 id="future-development">Future development<a class="anchor" aria-label="anchor" href="#future-development"></a>
+</h1>
 <ul>
 <li>Tighter integration of multithreading and promises.</li>
 <li>Matrix support</li>
@@ -440,28 +431,28 @@ DRAFT
 <li>Purrr style lists in data frames</li>
 </ul>
 </div>
-<div id="introduction-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction-1" class="anchor"></a>Introduction</h1>
+<div class="section level1">
+<h1 id="introduction-1">Introduction<a class="anchor" aria-label="anchor" href="#introduction-1"></a>
+</h1>
 </div>
-<div id="references" class="section level1">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<div class="section level1">
+<h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h1>
 <div id="refs">
 <div id="ref-changR6EncapsulatedClasses2019">
-<p>Chang, Winston. 2019. <em>R6: Encapsulated Classes with Reference Semantics</em> (version 2.4.1). <a href="https://CRAN.R-project.org/package=R6" class="uri">https://CRAN.R-project.org/package=R6</a>.</p>
+<p>Chang, Winston. 2019. <em>R6: Encapsulated Classes with Reference Semantics</em> (version 2.4.1). <a href="https://CRAN.R-project.org/package=R6" class="external-link uri">https://CRAN.R-project.org/package=R6</a>.</p>
 </div>
 <div id="ref-gilbertJdxJavaData2020">
-<p>Gilbert, Floid R., and David B. Dahl. 2020a. <em>Jdx: ’Java’ Data Exchange for ’R’ and ’RJava’</em> (version 0.1.4). <a href="https://CRAN.R-project.org/package=jdx" class="uri">https://CRAN.R-project.org/package=jdx</a>.</p>
+<p>Gilbert, Floid R., and David B. Dahl. 2020a. <em>Jdx: ’Java’ Data Exchange for ’R’ and ’rJava’</em> (version 0.1.4). <a href="https://CRAN.R-project.org/package=jdx" class="external-link uri">https://CRAN.R-project.org/package=jdx</a>.</p>
 </div>
 <div id="ref-gilbertJsr223JavaPlatform2020">
-<p>———. 2020b. <em>Jsr223: A ’Java’ Platform Integration for ’R’ with Programming Languages ’Groovy’, ’JavaScript’, ’JRuby’ (’Ruby’), ’Jython’ (’Python’), and ’Kotlin’</em> (version 0.3.4). <a href="https://CRAN.R-project.org/package=jsr223" class="uri">https://CRAN.R-project.org/package=jsr223</a>.</p>
+<p>———. 2020b. <em>Jsr223: A ’Java’ Platform Integration for ’R’ with Programming Languages ’Groovy’, ’JavaScript’, ’JRuby’ (’Ruby’), ’Jython’ (’Python’), and ’Kotlin’</em> (version 0.3.4). <a href="https://CRAN.R-project.org/package=jsr223" class="external-link uri">https://CRAN.R-project.org/package=jsr223</a>.</p>
 </div>
 <div id="ref-TerminologicalR6generatormavenplugin2020">
-<p><em>Terminological/R6-Generator-Maven-Plugin</em>. (2020) 2020. terminological. <a href="https://github.com/terminological/r6-generator-maven-plugin" class="uri">https://github.com/terminological/r6-generator-maven-plugin</a>.</p>
+<p><em>Terminological/R6-Generator-Maven-Plugin</em>. (2020) 2020. terminological. <a href="https://github.com/terminological/r6-generator-maven-plugin" class="external-link uri">https://github.com/terminological/r6-generator-maven-plugin</a>.</p>
 </div>
 <div id="ref-urbanekRJavaLowLevelJava2020">
-<p>Urbanek, Simon. 2020. <em>RJava: Low-Level R to Java Interface</em> (version 0.9-13). <a href="https://CRAN.R-project.org/package=rJava" class="uri">https://CRAN.R-project.org/package=rJava</a>.</p>
+<p>Urbanek, Simon. 2020. <em>rJava: Low-Level R to Java Interface</em> (version 0.9-13). <a href="https://CRAN.R-project.org/package=rJava" class="external-link uri">https://CRAN.R-project.org/package=rJava</a>.</p>
 </div>
 </div>
 </div>
@@ -478,11 +469,13 @@ DRAFT
 
 
       <footer><div class="copyright">
-  <p>Developed by Rob Challen, given family, terminological.</p>
+  <p></p>
+<p>Developed by Rob Challen, given family, terminological.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -490,6 +483,8 @@ DRAFT
 
   
 
+
+  
 
   </body>
 </html>
