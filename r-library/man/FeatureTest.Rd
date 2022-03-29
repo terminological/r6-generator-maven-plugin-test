@@ -8,7 +8,7 @@
 
 \arguments{
 	\if{html}{\out{<div class="arguments">}}
-	\item{logMessage}{logMessage - a message which will be logged - (java expects a String)}
+	\item{logMessage}{logMessage - a message which will be logged - (defaulting to "'hello world'") - (java expects a String)}
 	\if{html}{\out{</div>}}
 }
 
@@ -18,7 +18,7 @@ A test of the R6 generator templating
 
 Version: 0.02
 
-Generated: 2022-03-28T15:15:39.665
+Generated: 2022-03-29T00:47:33.522
 }
 
 \details{
@@ -140,7 +140,7 @@ J$FeatureTest$new(logMessage)
 		\subsection{Arguments}{
 			\if{html}{\out{<div class="arguments">}}
 			\itemize{
-				\item{logMessage - a message which will be logged}{ - (java expects a String)}
+				\item{logMessage - a message which will be logged - (defaulting to "'hello world'")}{ - (java expects a String)}
 			}
 			\if{html}{\out{</div>}}
 		}

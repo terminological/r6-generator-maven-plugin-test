@@ -54,7 +54,7 @@ public class FeatureTest {
 	@RMethod(examples = {
 			"minExample = J$FeatureTest$new('Hello from Java constructor!')",
 		})
-	public FeatureTest(String logMessage) {
+	public FeatureTest(@RDefault(rCode = "'hello world'") String logMessage) {
 		log.info(logMessage);
 		this.message = logMessage;
 	}

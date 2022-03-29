@@ -27,7 +27,7 @@ This package is a feature test of the R6 Generator Maven Plugin. It is not inten
 
 Version: 0.02
 
-Generated: 2022-03-28T15:15:39.485
+Generated: 2022-03-29T00:47:33.337
 }
 
 \author{\email{rc538@exeter.ac.uk}}
@@ -386,7 +386,7 @@ J$FeatureTest$new(logMessage)
 			\if{html}{\out{<div class="arguments">}}
 			\describe{
 				\itemize{
-					\item{logMessage - a message which will be logged}{ - (java expects a String)}
+					\item{logMessage - a message which will be logged - (defaulting to "'hello world'")}{ - (java expects a String)}
 				}
 			}
 			\if{html}{\out{</div>}}

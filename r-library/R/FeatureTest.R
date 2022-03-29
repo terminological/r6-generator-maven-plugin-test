@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-03-28T15:15:39.673
+#' Generated: 2022-03-29T00:47:33.531
 #'
 #' @details
 	#' #' 
@@ -38,7 +38,7 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' @return A new FeatureTest object.
 	#' @examples
 	#' J = testRapi::JavaApi$get();
-	#' instance = J$FeatureTest$new(logMessage)
+	#' instance = J$FeatureTest$new(logMessage='hello world')
 	initialize = function(jobj,api){
 		self$.jobj = jobj;
 		self$.api = api;
@@ -93,7 +93,7 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' @param b the B parameter - (defaulting to "10") - (java expects a int)
 	#' @return int: 
 	#' A+B of course
-	doSum2 = function(a, b) {
+	doSum2 = function(a, b=10) {
 		# copy parameters
 		tmp_a = self$.api$.toJava$int(a);
 		tmp_b = self$.api$.toJava$int(b);
@@ -129,7 +129,8 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' @param message the message is a string - (defaulting to "\"hello\nworld\"") - (java expects a RCharacter)
 	#' @return R6 FeatureTest object: 
 	#' this should return exactly the same R6 object.
-	fluentSetMessage = function(message) {
+	fluentSetMessage = function(message="hello
+world") {
 		# copy parameters
 		tmp_message = self$.api$.toJava$RCharacter(message);
 		# execute method call
@@ -157,7 +158,7 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' @param b the second parameter - (defaulting to "as.character(Sys.Date())") - (java expects a RCharacter)
 	#' @return R6 MoreFeatureTest object: 
 	#' A MoreFeatureTest R6 reference
-	factoryMethod = function(a, b) {
+	factoryMethod = function(a, b=as.character(Sys.Date())) {
 		# copy parameters
 		tmp_a = self$.api$.toJava$RCharacter(a);
 		tmp_b = self$.api$.toJava$RCharacter(b);
@@ -246,6 +247,11 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	
 	#' @description Allow this object to be garbage collected.
 	finalize = function() {
+		if(!is.null(self$.jobj)) {
+			try({
+				.jcall(self$.jobj, returnSig = "V", method="close")
+			})
+		}
 		self$.jobj = .jnull("uk/co/terminological/rjava/test/FeatureTest")
 		self$.jobj = NULL
 		.jgc(R.gc = FALSE)
