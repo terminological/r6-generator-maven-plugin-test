@@ -6,7 +6,7 @@
 #'
 #' Version: 0.02
 #'
-#' Generated: 2022-02-17T17:33:50.393
+#' Generated: 2022-04-26T13:20:40.736
 #'
 #' Contact: rc538@exeter.ac.uk
 #' @import ggplot2
@@ -71,7 +71,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
  	
  		message("Initialising A test library")
  		message("Version: 0.02")
-		message("Generated: 2022-02-17T17:33:50.394")
+		message("Generated: 2022-04-26T13:20:40.736")
  	
 		if (!.jniInitialized) 
 	        .jinit(parameters=getOption("java.parameters"),silent = TRUE, force.init = FALSE)
@@ -92,7 +92,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
     	self$.log = .jcall("org/slf4j/LoggerFactory", returnSig = "Lorg/slf4j/Logger;", method = "getLogger", "testRapi");
     	.jcall(self$.log,returnSig = "V",method = "info","Initialised testRapi");
 		.jcall(self$.log,returnSig = "V",method = "debug","Version: 0.02");
-		.jcall(self$.log,returnSig = "V",method = "debug","R package generated: 2022-02-17T17:33:50.394");
+		.jcall(self$.log,returnSig = "V",method = "debug","R package generated: 2022-04-26T13:20:40.736");
 		# .jcall(self$.log,returnSig = "V",method = "debug",paste0("Java library compiled: ",buildDate));
 		.jcall(self$.log,returnSig = "V",method = "debug","Contact: rc538@exeter.ac.uk");
 		self$printMessages()
@@ -147,12 +147,6 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmp = as.integer(rObj)[[1]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RLogical',tmp))
 			},
-			RLogicalVector=function(rObj) {
-				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogicalVector'))
-				if (!is.logical(rObj)) stop('expected a vector of logicals')
-				tmp = as.integer(rObj)
-				return(rJava::.jnew('uk/co/terminological/rjava/types/RLogicalVector',rJava::.jarray(tmp)))
-			},
 			RNull=function(rObj) {
 				if (!is.null(rObj)) stop('input expected to be NULL')
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RNull'))
@@ -161,6 +155,12 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter'))
 				tmp = as.character(rObj)[[1]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter',tmp))
+			},
+			RLogicalVector=function(rObj) {
+				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogicalVector'))
+				if (!is.logical(rObj)) stop('expected a vector of logicals')
+				tmp = as.integer(rObj)
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RLogicalVector',rJava::.jarray(tmp)))
 			},
 			Serialiser=function(rObj) return(rObj$.jobj),
 			String=function(rObj) return(as.character(rObj)),
@@ -320,9 +320,9 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 			RNumeric=function(jObj) as.numeric(rJava::.jcall(jObj,returnSig='D',method='rPrimitive')),
 			RFactor=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rLabel')),
 			RLogical=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='I',method='rPrimitive')),
-			RLogicalVector=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='[I',method='rPrimitive')),
 			RNull=function(jObj) return(NULL),
 			RCharacter=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rPrimitive')),
+			RLogicalVector=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='[I',method='rPrimitive')),
 			Serialiser=function(jObj) return(jObj),
 			String=function(jObj) return(as.character(jObj)),
 			MinimalExample=function(jObj) return(jObj),
