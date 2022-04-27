@@ -10,10 +10,10 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-04-26T13:20:40.821
+#' Generated: 2022-04-27T17:18:38.553
 #'
 #' @details
-	#' #' The class is annotated with an @RClass to identify it as part of the R API. <br>
+	#' The class is annotated with an @RClass to identify it as part of the R API. <br>
 #' @export
 MinimalExample = R6::R6Class("MinimalExample", public=list(
 
@@ -47,7 +47,7 @@ MinimalExample = R6::R6Class("MinimalExample", public=list(
 	#' the dataframe unchanged
 	#' @examples
 	#' \dontrun{
-	#' #' 		minExample = J$MinimalExample$new()
+	#' minExample = J$MinimalExample$new()
 	#' minExample$demo(dataframe=tibble::tibble(input=c(1,2,3)), message='Hello world')
 	#' }
 	demo = function(dataframe, message) {
