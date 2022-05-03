@@ -15,7 +15,7 @@ load_all("~/Git/r6-generator-maven-plugin-test/r-library")
 
 # a basic smoke test
 library(testRapi)
-J <- JavaApi$new()
+J <- JavaApi$get()
 
 # exploring the API using autocomplete in RStudio
 # is a matter of typing J$<ctrl-space> 

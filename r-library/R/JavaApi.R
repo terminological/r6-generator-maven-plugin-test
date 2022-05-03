@@ -6,7 +6,7 @@
 #'
 #' Version: 0.02
 #'
-#' Generated: 2022-05-02T21:30:23.558
+#' Generated: 2022-05-03T11:15:31.643
 #'
 #' Contact: rc538@exeter.ac.uk
 #' @import ggplot2
@@ -60,18 +60,18 @@ JavaApi = R6::R6Class("JavaApi", public=list(
  	#### constructor ----
  	#' @description
  	#' Create the R6 api library class. This is the entry point to all Java related classes and methods in this package.
-    #' @param logLevel A string such as "DEBUG", "INFO", "WARN" (defaults to "INFO")
+    #' @param logLevel One of "OFF", "FATAL", "ERROR", "WARN", "INFO", "DEBUG", "TRACE", "ALL". (defaults to "INFO") 
     #' @examples
     #' \dontrun{
     #' J = testRapi::JavaApi$get();
 	#' }
     #' @return nothing
  	initialize = function(logLevel = "INFO") {
- 		if (!is.null(JavaApi$singleton)) stop("Startup the java api with JavaApi$get() rather than using this constructor directly")
+ 		if (is.null(JavaApi$singleton)) stop("Startup the java api with JavaApi$get() rather than using this constructor directly")
  	
  		message("Initialising A test library")
  		message("Version: 0.02")
-		message("Generated: 2022-05-02T21:30:23.559")
+		message("Generated: 2022-05-03T11:15:31.643")
  	
 		if (!.jniInitialized) 
 	        .jinit(parameters=getOption("java.parameters"),silent = TRUE, force.init = FALSE)
@@ -84,18 +84,20 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 	        message(paste0("Adding to classpath: ",jars,collapse='\n'))
 	        .jaddClassPath(jars)
 	    }
- 	
+	    
+	    # configure logging
  		.jcall("uk/co/terminological/rjava/LogController", returnSig = "V", method = "setupRConsole")
  		.jcall("uk/co/terminological/rjava/LogController", returnSig = "V", method = "configureLog" , logLevel)
  		# TODO: this is the library build date code byut it requires testing
- 		# buildDate = .jcall("uk/co/terminological/rjava/LogController", returnSig = "S", method = "getClassBuildTime")
+ 		buildDate = .jcall("uk/co/terminological/rjava/LogController", returnSig = "S", method = "getClassBuildTime")
     	self$.log = .jcall("org/slf4j/LoggerFactory", returnSig = "Lorg/slf4j/Logger;", method = "getLogger", "testRapi");
     	.jcall(self$.log,returnSig = "V",method = "info","Initialised testRapi");
 		.jcall(self$.log,returnSig = "V",method = "debug","Version: 0.02");
-		.jcall(self$.log,returnSig = "V",method = "debug","R package generated: 2022-05-02T21:30:23.559");
-		# .jcall(self$.log,returnSig = "V",method = "debug",paste0("Java library compiled: ",buildDate));
+		.jcall(self$.log,returnSig = "V",method = "debug","R package generated: 2022-05-03T11:15:31.643");
+		.jcall(self$.log,returnSig = "V",method = "debug",paste0("Java library compiled: ",buildDate));
 		.jcall(self$.log,returnSig = "V",method = "debug","Contact: rc538@exeter.ac.uk");
 		self$printMessages()
+		
 		# initialise type conversion functions
 		
 		self$.toJava = list(
@@ -576,6 +578,8 @@ JavaApi$singleton = NULL
 
 JavaApi$get = function(logLevel = "INFO") {
 	if (is.null(JavaApi$singleton)) {
+		# set to non-null so that R6 constructor will work
+		JavaApi$singleton = FALSE 
 		JavaApi$singleton = JavaApi$new(logLevel)
 	}
 	return(JavaApi$singleton)

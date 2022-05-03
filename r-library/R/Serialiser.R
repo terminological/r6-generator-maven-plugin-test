@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.02
 #' 
-#' Generated: 2022-05-02T21:30:23.624
+#' Generated: 2022-05-03T11:15:31.707
 #'
 #' @details
 	#' string and serialises the dataframe so it can be used natively in java
