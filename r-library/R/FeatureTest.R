@@ -8,9 +8,9 @@
 #' 
 #' This is a class of the testRapi generated R library.
 #' 
-#' Version: 0.02
+#' Version: 0.2.0.9000
 #' 
-#' Generated: 2022-05-03T14:14:58.367
+#' Generated: 2022-05-18T16:00:31.476252
 #'
 #' @details
 	#' The feature test should allow mathjax in javadoc
@@ -89,7 +89,7 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' It should throw an error if given something that cannot be coerced to an integer. 
 	#' This also demonstrated the use of the `@RDefault` annotation
 	#' @param a the A parameter - (java expects a int)
-	#' @param b the B parameter - (defaulting to "10") - (java expects a int)
+	#' @param b the B parameter - (defaulting to 10) - (java expects a int)
 	#' @return int: 
 	#' A+B of course
 	doSum2 = function(a, b=10) {
@@ -125,7 +125,7 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	#' same object. This is differentiated from factory methods which produce a new
 	#' instance of the same class by checking to see if the returned Java object is equal
 	#' to the calling Java object.
-	#' @param message the message is a string - (defaulting to "\"hello\nworld\"") - (java expects a RCharacter)
+	#' @param message the message is a string - (defaulting to \\"hello\\nworld\\") - (java expects a RCharacter)
 	#' @return R6 FeatureTest object: 
 	#' this should return exactly the same R6 object.
 	fluentSetMessage = function(message="hello
@@ -154,7 +154,7 @@ world") {
 	#' factoryMethod: 
 	#' A factory or builder method which constructs an object of another class from some parameters
 	#' @param a the first parameter - (java expects a RCharacter)
-	#' @param b the second parameter - (defaulting to "as.character(Sys.Date())") - (java expects a RCharacter)
+	#' @param b the second parameter - (defaulting to as.character(Sys.Date())) - (java expects a RCharacter)
 	#' @return R6 MoreFeatureTest object: 
 	#' A MoreFeatureTest R6 reference
 	factoryMethod = function(a, b=as.character(Sys.Date())) {

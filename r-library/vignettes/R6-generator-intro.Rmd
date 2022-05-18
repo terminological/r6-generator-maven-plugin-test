@@ -35,8 +35,8 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-source("./codeSnip.R")
 here::i_am("vignettes/R6-generator-intro.Rmd")
+source(here::here("vignettes/codeSnip.R"))
 ```
 
 <div class="watermark">DRAFT</div>

@@ -14,8 +14,9 @@ header-includes:
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("./codeSnip.R")
+
 here::i_am("vignettes/R6-generator-datatypes.Rmd")
+source(here::here("vignettes/codeSnip.R"))
 # https://stackoverflow.com/questions/32748248/watermark-in-rmarkdown?rq=1
 
 ```

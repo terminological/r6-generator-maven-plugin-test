@@ -17,8 +17,8 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = TRUE, warning = TRUE, error = TRUE)
 library(tidyverse)
-source("./codeSnip.R")
 here::i_am("vignettes/R6-generator-features.Rmd")
+source(here::here("vignettes/codeSnip.R"))
 ```
 
 <div class="watermark">DRAFT</div>
@@ -54,7 +54,7 @@ devtools::install("~/Git/r6-generator-maven-plugin-test/r-library/", upgrade = "
 # devtools::install_github("terminological/r6-generator-maven-plugin-test", subdir = "r-library", upgrade = "never")
 # submitted to CRAN
 # install.packages("testRapi")
-source("./codeSnip.R")
+source(here::here("vignettes/codeSnip.R"))
 ```
 
 The R6 api to the Java classes requires a running instance of the Java Virtual Machine and JNI bridge provided by `r cran("rJava")`. It also requires Java classpath dependencies to be loaded and application logging to be initialised. This is all managed by a specific generated R6 class called `JavaApi` and creating a singleton instance of this is the first step to using the library in R. In these examples the singleton instance `J` is referred to as the "root" of the api, as all the functions of the API stem from it.

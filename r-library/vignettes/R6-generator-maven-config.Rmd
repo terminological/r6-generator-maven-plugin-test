@@ -16,8 +16,8 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-source("./codeSnip.R")
 here::i_am("vignettes/R6-generator-maven-config.Rmd")
+source(here::here("vignettes/codeSnip.R"))
 ```
 
 <div class="watermark">DRAFT</div>

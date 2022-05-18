@@ -63,7 +63,7 @@
 				<configuration>
 					<packageData>
 						<title>A test library</title>
-						<version>0.02</version>
+						<version>0.2.0.9000</version>
 						<debug>false</debug>
 						<usePkgdown>true</usePkgdown>
 <!-- 						<useRoxygen2>true</useRoxygen2> -->

@@ -16,9 +16,9 @@
 \description{
 A test of the R6 generator templating
 
-Version: 0.02
+Version: 0.2.0.9000
 
-Generated: 2022-05-03T14:14:58.365
+Generated: 2022-05-18T16:00:31.472962
 }
 
 \details{
@@ -258,7 +258,7 @@ instance$doSum2(a, b)
 			\if{html}{\out{<div class="arguments">}}
 			\itemize{
 				\item{a the A parameter}{ - (java expects a int)}
-				\item{b the B parameter - (defaulting to "10")}{ - (java expects a int)}
+				\item{b the B parameter - (defaulting to 10)}{ - (java expects a int)}
 			}
 			\if{html}{\out{</div>}}
 		}
@@ -372,7 +372,7 @@ instance$fluentSetMessage(message)
 		\subsection{Arguments}{
 			\if{html}{\out{<div class="arguments">}}
 			\itemize{
-				\item{message the message is a string - (defaulting to "\"hello\nworld\"")}{ - (java expects a RCharacter)}
+				\item{message the message is a string - (defaulting to \\"hello\\nworld\\")}{ - (java expects a RCharacter)}
 			}
 			\if{html}{\out{</div>}}
 		}
@@ -410,7 +410,7 @@ instance$factoryMethod(a, b)
 			\if{html}{\out{<div class="arguments">}}
 			\itemize{
 				\item{a the first parameter}{ - (java expects a RCharacter)}
-				\item{b the second parameter - (defaulting to "as.character(Sys.Date())")}{ - (java expects a RCharacter)}
+				\item{b the second parameter - (defaulting to as.character(Sys.Date()))}{ - (java expects a RCharacter)}
 			}
 			\if{html}{\out{</div>}}
 		}
