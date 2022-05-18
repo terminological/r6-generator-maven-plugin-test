@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.2.0.9000
 #' 
-#' Generated: 2022-05-18T16:00:31.465722
+#' Generated: 2022-05-18T23:19:53.160875
 #'
 #' @details
 	#' no details
@@ -48,10 +48,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RNull(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNull;", method="bounceNull" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNull;", method="bounceNull" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RNull(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -63,10 +65,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 	bounceVoid = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "V", method="bounceVoid" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "V", method="bounceVoid" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$void(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -80,10 +84,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$String(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Ljava/lang/String;", method="bounceString" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Ljava/lang/String;", method="bounceString" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$String(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -97,10 +103,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RCharacter(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="bounceCharacter" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="bounceCharacter" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RCharacter(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -114,10 +122,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RCharacterVector(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacterVector;", method="bounceCharacterVector" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacterVector;", method="bounceCharacterVector" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RCharacterVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -131,10 +141,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$double(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "D", method="bounceDouble" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "D", method="bounceDouble" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$double(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -148,10 +160,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RNumeric(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumeric;", method="bounceNumeric" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumeric;", method="bounceNumeric" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RNumeric(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -165,10 +179,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RNumericVector(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumericVector;", method="bounceNumericVector" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumericVector;", method="bounceNumericVector" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RNumericVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -182,10 +198,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$int(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "I", method="bounceInt" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "I", method="bounceInt" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$int(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -199,10 +217,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RInteger(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RInteger;", method="bounceInteger" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RInteger;", method="bounceInteger" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RInteger(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -216,10 +236,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RIntegerVector(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RIntegerVector;", method="bounceIntegerVector" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RIntegerVector;", method="bounceIntegerVector" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RIntegerVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -233,10 +255,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RFactor(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RFactor;", method="bounceFactor" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RFactor;", method="bounceFactor" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RFactor(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -250,10 +274,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RFactorVector(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RFactorVector;", method="bounceFactorVector" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RFactorVector;", method="bounceFactorVector" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RFactorVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -267,10 +293,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RDate(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDate;", method="bounceDate" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDate;", method="bounceDate" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RDate(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -284,10 +312,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RDateVector(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDateVector;", method="bounceDateVector" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDateVector;", method="bounceDateVector" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RDateVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -301,10 +331,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RLogical(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RLogical;", method="bounceLogical" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RLogical;", method="bounceLogical" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RLogical(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -318,10 +350,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RLogicalVector(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RLogicalVector;", method="bounceLogicalVector" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RLogicalVector;", method="bounceLogicalVector" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RLogicalVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -335,10 +369,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RDataframe(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="bounceDataframe" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="bounceDataframe" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RDataframe(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -352,10 +388,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RList(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RList;", method="bounceList" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RList;", method="bounceList" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RList(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -369,10 +407,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RNamedList(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNamedList;", method="bounceNamedList" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNamedList;", method="bounceNamedList" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RNamedList(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -386,10 +426,12 @@ BounceTest = R6::R6Class("BounceTest", public=list(
 		# copy parameters
 		tmp_x = self$.api$.toJava$RNumericArray(x);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumericArray;", method="bounceArray" , tmp_x); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumericArray;", method="bounceArray" , tmp_x, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RNumericArray(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},

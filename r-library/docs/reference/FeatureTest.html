@@ -42,7 +42,7 @@
 <meta property="og:title" content="FeatureTest — FeatureTest" />
 <meta property="og:description" content="A test of the R6 generator templating
 Version: 0.2.0.9000
-Generated: 2022-05-18T16:00:31.472962" />
+Generated: 2022-05-18T23:19:53.167905" />
 
 
 
@@ -137,7 +137,7 @@ Generated: 2022-05-18T16:00:31.472962" />
     <div class="ref-description">
     <p>A test of the R6 generator templating</p>
 <p>Version: 0.2.0.9000</p>
-<p>Generated: 2022-05-18T16:00:31.472962</p>
+<p>Generated: 2022-05-18T23:19:53.167905</p>
     </div>
 
 
@@ -179,6 +179,7 @@ Generated: 2022-05-18T16:00:31.472962" />
 <li><p><a href='#method-objectAsParameter'><code>instance$objectAsParameter(otherObj)</code></a></p></li>
 <li><p><a href='#method-doSomethingWithDataFrame'><code>instance$doSomethingWithDataFrame(dataframe)</code></a></p></li>
 <li><p><a href='#method-generateDataFrame'><code>instance$generateDataFrame()</code></a></p></li>
+<li><p><a href='#method-errorThrower'><code>instance$errorThrower()</code></a></p></li>
 <li><p><code>instance$clone()</code></p></li>
 <li><p><code>instance$print()</code></p></li>
 </ul><p></p>
@@ -473,7 +474,30 @@ using RObject.readRDS.</p>
 <p></p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Examples</h4>
 <p><div class="r example copy"></p><pre>
 <span class='va'>J</span><span class='op'>$</span><span class='va'>FeatureTest</span><span class='op'>$</span><span class='fu'>diamonds</span><span class='op'>(</span><span class='op'>)</span>
-      </pre><p></div></p><p></p>
+      </pre><p></div></p><p></p><p><hr>
+	<a id="method-errorThrower"></a></p>	
+<p></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>errorThrower()</code></h3>
+<p>just throws an error</p>	
+
+<p></p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre>
+<span class='va'>J</span> <span class='op'>=</span> <span class='fu'>testRapi</span><span class='fu'>::</span><span class='va'><a href='JavaApi.html'>JavaApi</a></span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>instance</span> <span class='op'>=</span> <span class='va'>J</span><span class='op'>$</span><span class='va'>FeatureTest</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>;
+<span class='va'>instance</span><span class='op'>$</span><span class='fu'>errorThrower</span><span class='op'>(</span><span class='op'>)</span>
+        </pre><p></div></p>
+	
+<p></p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><ul>
+<li><p>none</p></li>
+</ul><p></div></p>
+
+<p></p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Returns</h4>
+<p>void:</p>
+
+<p></p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Examples</h4>
+<p><div class="r example copy"></p><pre>
+not available
+			</pre><p></div></p><p></p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -529,6 +553,10 @@ using RObject.readRDS.</p>
 <span class='co'>## -----------------------------------</span>
 <span class='va'>J</span><span class='op'>$</span><span class='va'>FeatureTest</span><span class='op'>$</span><span class='fu'>diamonds</span><span class='op'>(</span><span class='op'>)</span>
 
+<span class='co'>## -----------------------------------</span>
+<span class='co'>## Method `FeatureTest$errorThrower`</span>
+<span class='co'>## -----------------------------------</span>
+
 <span class='op'>}</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -541,7 +569,7 @@ using RObject.readRDS.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rob Challen, terminological, given family.</p>
+  <p>Developed by Rob Challen, given family, terminological.</p>
 </div>
 
 <div class="pkgdown">

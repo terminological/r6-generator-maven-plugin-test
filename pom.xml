@@ -66,7 +66,7 @@
 						<version>0.2.0.9000</version>
 						<debug>false</debug>
 						<usePkgdown>true</usePkgdown>
-<!-- 						<useRoxygen2>true</useRoxygen2> -->
+						<useRoxygen2>true</useRoxygen2>
 						<useJavadoc>true</useJavadoc>
 						<rjavaOpts>
 							<rjavaOpt>-Xmx256M</rjavaOpt>

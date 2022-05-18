@@ -11,13 +11,22 @@ header-includes:
   \usemintedstyle{emacs}
   \setminted[java]{fontsize=\footnotesize,tabsize=3}
   \setminted[xml]{fontsize=\footnotesize,tabsize=3}
+vignette: >
+  %\VignetteIndexEntry{R6 Generator Maven Plugin: Key features}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = TRUE, warning = TRUE, error = TRUE)
 library(tidyverse)
+
+#stop(getwd())
+#stop(rprojroot::find_root(rprojroot::is_git_root))
+
 here::i_am("vignettes/R6-generator-features.Rmd")
+#stop(here::here())
 source(here::here("vignettes/codeSnip.R"))
 ```
 
@@ -203,7 +212,7 @@ feat1$objectAsParameter(moreFeat1)
 
 The logging sub-system is based on `slf4j` with a `log4j2` implementation. These are specified in the `r6-generator-runtime` dependency pom, so anything that imports that will have them as a transitive dependency. These are needed as dynamic alteration of the logging level from R is dependent on implementation details of `log4j`. This is maybe possible to remove in the future. 
 
-Exceptions thrown from Java are handled in the same way as `r cran("rJava")`, and printed messages are seen on the R console as expected. However rJava does something strange to messages from `System.out` that means they do not appear in knitr output. To resolve this a unsightly workaround (hack) has been adopted that collects messages from system out and prints them after the Java method has completed. This has the potential to cause all sorts of issues.
+Exceptions thrown from Java are handled in the same way as `r cran("rJava")`, and printed messages are seen on the R console as expected. However rJava does something strange to messages from `System.out` that means they do not appear in knitr output. To resolve this a unsightly workaround (hack) has been adopted that collects messages from system out and prints them after the Java method has completed. This has the potential to cause all sorts of issues, which I think I have mostly resolved.
 
 The logging level can be controlled at runtime by a function in the `JavaApi` root. Logging can be configured dynamically with a `log4j` properties file (not shown) to enable file based logging, for example.
 
@@ -214,21 +223,57 @@ codeSnip("java",
 ```
 
 ```{r}
-# 
 # System.out printing
 moreFeat1$printMessage()
+
 # Testing logging levels
 J$changeLogLevel("ALL")
 moreFeat1$testLogging()
 
-try(moreFeat1$throwCatchable())
-try(moreFeat1$throwRuntime())
+# Suppressing errors
+try(moreFeat1$throwCatchable(),silent = TRUE)
+
+# Handling errors
+tryCatch(
+  {
+    moreFeat1$throwRuntime()
+  }, 
+  error = function(e) {
+    message("the error object has a set of classes: ",paste0(class(e),collapse=";"))
+    warning("error: ",e$message)
+    # the e$jobj entry gives native access to the throwable java object thanks to rJava.
+    e$jobj$printStackTrace()
+  }, 
+  finally = print("finally")
+)
 
 J$changeLogLevel("ERROR")
 moreFeat1$testLogging()
 
 # J$reconfigureLog("/path/to/log4j.prop")
 ```
+
+## Finalising and clean up
+
+The java objects bound to R instances will stay in memory whilst they are needed. When they go out of scope they should automatically be garbage collected as a native feature of `rJava`. R6 object finalizers are also generated when specified by the code and these are triggered during release of the Java objects, and may call any closing code needed in the java library (e.g. closing input streams etc). 
+
+```{r}
+feat1 = J$FeatureTest$new(logMessage = "Hello world. Creating a new object")
+feat1$doHelloWorld()
+```
+
+When an object goes out of scope the finalizer will be called.
+This can happen much later, and any errors thrown by the finaliser code
+could cause issues. Code run in these finalizers can throw unchecked exceptions which are ignored and converted to logged errors.
+
+```{r}
+
+feat1 = NULL
+gc()
+
+```
+
+The finalizer should also be called implicitly when the R6 object goes out of scope in R.
 
 ## Support for debugging
 

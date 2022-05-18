@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.2.0.9000
 #' 
-#' Generated: 2022-05-18T16:00:31.494269
+#' Generated: 2022-05-18T23:19:53.197944
 #'
 #' @details
 	#' The class is annotated with an @RClass to identify it as part of the R API. <br>
@@ -55,10 +55,12 @@ MinimalExample = R6::R6Class("MinimalExample", public=list(
 		tmp_dataframe = self$.api$.toJava$RDataframe(dataframe);
 		tmp_message = self$.api$.toJava$String(message);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="demo" , tmp_dataframe, tmp_message); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="demo" , tmp_dataframe, tmp_message, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RDataframe(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},

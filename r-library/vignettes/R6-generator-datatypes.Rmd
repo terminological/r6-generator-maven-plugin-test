@@ -11,6 +11,10 @@ header-includes:
   \usemintedstyle{emacs}
   \setminted[java]{fontsize=\footnotesize,tabsize=3}
   \setminted[xml]{fontsize=\footnotesize,tabsize=3}
+vignette: >
+  %\VignetteIndexEntry{R6 Generator Maven Plugin: Datatype conversion}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

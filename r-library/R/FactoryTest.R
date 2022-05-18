@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.2.0.9000
 #' 
-#' Generated: 2022-05-18T16:00:31.488811
+#' Generated: 2022-05-18T23:19:53.192475
 #'
 #' @details
 	#' no details
@@ -46,10 +46,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateCharacter = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="generateCharacter" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="generateCharacter" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RCharacter(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -61,10 +63,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateNumeric = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumeric;", method="generateNumeric" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumeric;", method="generateNumeric" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RNumeric(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -76,10 +80,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateInteger = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RInteger;", method="generateInteger" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RInteger;", method="generateInteger" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RInteger(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -91,10 +97,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateFactor = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RFactor;", method="generateFactor" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RFactor;", method="generateFactor" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RFactor(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -106,10 +114,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateLogical = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RLogical;", method="generateLogical" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RLogical;", method="generateLogical" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RLogical(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -121,10 +131,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateCharacterVec = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacterVector;", method="generateCharacterVec" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacterVector;", method="generateCharacterVec" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RCharacterVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -136,10 +148,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateNumericVec = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumericVector;", method="generateNumericVec" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumericVector;", method="generateNumericVec" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RNumericVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -151,10 +165,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateIntegerVec = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RIntegerVector;", method="generateIntegerVec" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RIntegerVector;", method="generateIntegerVec" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RIntegerVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -166,10 +182,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateFactorVec = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RFactorVector;", method="generateFactorVec" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RFactorVector;", method="generateFactorVec" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RFactorVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -181,10 +199,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateLogicalVec = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RLogicalVector;", method="generateLogicalVec" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RLogicalVector;", method="generateLogicalVec" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RLogicalVector(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -196,10 +216,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateDataframe = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="generateDataframe" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="generateDataframe" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RDataframe(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -211,10 +233,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateStreamDataframe = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="generateStreamDataframe" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="generateStreamDataframe" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RDataframe(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -226,10 +250,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateList = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RList;", method="generateList" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RList;", method="generateList" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RList(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -241,10 +267,12 @@ FactoryTest = R6::R6Class("FactoryTest", public=list(
 	generateNamedList = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNamedList;", method="generateNamedList" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNamedList;", method="generateNamedList" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RNamedList(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},

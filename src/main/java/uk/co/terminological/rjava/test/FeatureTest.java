@@ -34,8 +34,8 @@ import uk.co.terminological.rjava.types.RObject;
  * 
  */
 @RClass(
-		imports = {"ggplot2","dplyr"},
-		suggests = {"roxygen2","devtools"}
+		imports = {"ggplot2","dplyr","tibble"},
+		suggests = {"roxygen2","devtools","here"}
 		)
 public class FeatureTest {
 
@@ -208,6 +208,20 @@ public class FeatureTest {
 	}
 	
 	//END_SNIP_5
+	
+	//START_SNIP_6
+	
+	/**
+	 * just throws an error
+	 */
+	@RMethod
+	public void errorThrower() {
+		log.info("and now for an error");
+		throw new RuntimeException("this is a runtime exception");
+	}
+	
+	//END_SNIP_6
+	
 	//START_SNIP_1
 	
 	@RFinalize

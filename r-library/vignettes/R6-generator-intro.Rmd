@@ -31,6 +31,10 @@ header-includes:
   \setminted[java]{fontsize=\footnotesize,tabsize=3}
   \setminted[xml]{fontsize=\footnotesize,tabsize=3}
   \let\proglang=\textsf
+vignette: >
+  %\VignetteIndexEntry{R6 Generator Maven Plugin: Bridging Java and R6 for Package Development}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
@@ -112,13 +116,13 @@ codeSnipByLine(type="xml",filename=here::here("../pom.xml"),
 ## R6 class generation
 
 ```{r, include=FALSE}
-fs::dir_tree(path = here::here("../r-library/"), recurse = TRUE)
+# fs::dir_tree(path = here::here("../"), recurse = TRUE)
 ```
 ## Maven packaging
 ## Generated R6 documentation
 
 ```{r out.width="100%"}
-knitr::include_graphics("./screenshots.png")
+knitr::include_graphics(here::here("vignettes/screenshots.png"))
 ```
 
 ## Datatype transformation

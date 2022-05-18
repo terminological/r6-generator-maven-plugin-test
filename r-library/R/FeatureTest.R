@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.2.0.9000
 #' 
-#' Generated: 2022-05-18T16:00:31.476252
+#' Generated: 2022-05-18T23:19:53.170966
 #'
 #' @details
 	#' The feature test should allow mathjax in javadoc
@@ -56,10 +56,12 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	doHelloWorld = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="doHelloWorld" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="doHelloWorld" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RCharacter(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -76,10 +78,12 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 		tmp_a = self$.api$.toJava$RNumeric(a);
 		tmp_b = self$.api$.toJava$RNumeric(b);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumeric;", method="doSum" , tmp_a, tmp_b); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RNumeric;", method="doSum" , tmp_a, tmp_b, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RNumeric(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -97,10 +101,12 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 		tmp_a = self$.api$.toJava$int(a);
 		tmp_b = self$.api$.toJava$int(b);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "I", method="doSum2" , tmp_a, tmp_b); 
+		tmp_out = .jcall(self$.jobj, returnSig = "I", method="doSum2" , tmp_a, tmp_b, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$int(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -112,10 +118,12 @@ FeatureTest = R6::R6Class("FeatureTest", public=list(
 	getMessage = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="getMessage" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="getMessage" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RCharacter(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -133,12 +141,14 @@ world") {
 		# copy parameters
 		tmp_message = self$.api$.toJava$RCharacter(message);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/test/FeatureTest;", method="fluentSetMessage" , tmp_message); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/test/FeatureTest;", method="fluentSetMessage" , tmp_message, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# is this a fluent method?
 		# if(.jcall(self$.jobj, returnSig="Z", method="equals", .jcast(tmp_out))) {
 		if(self$.jobj$equals(tmp_out)) {
 			# return fluent method
-			self$.api$printMessages()
 			invisible(self)
 		} else {
 			# wrap return java object in R6 class  
@@ -146,7 +156,6 @@ world") {
 				self$.api$.fromJava$FeatureTest(tmp_out),
 				self$.api
 			);
-			self$.api$printMessages()
 			return(out);
 		}
 	},
@@ -162,12 +171,14 @@ world") {
 		tmp_a = self$.api$.toJava$RCharacter(a);
 		tmp_b = self$.api$.toJava$RCharacter(b);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/test/MoreFeatureTest;", method="factoryMethod" , tmp_a, tmp_b); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/test/MoreFeatureTest;", method="factoryMethod" , tmp_a, tmp_b, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# is this a fluent method?
 		# if(.jcall(self$.jobj, returnSig="Z", method="equals", .jcast(tmp_out))) {
 		if(self$.jobj$equals(tmp_out)) {
 			# return fluent method
-			self$.api$printMessages()
 			invisible(self)
 		} else {
 			# wrap return java object in R6 class  
@@ -175,7 +186,6 @@ world") {
 				self$.api$.fromJava$MoreFeatureTest(tmp_out),
 				self$.api
 			);
-			self$.api$printMessages()
 			return(out);
 		}
 	},
@@ -189,10 +199,12 @@ world") {
 		# copy parameters
 		tmp_otherObj = self$.api$.toJava$MoreFeatureTest(otherObj);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Ljava/lang/String;", method="objectAsParameter" , tmp_otherObj); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Ljava/lang/String;", method="objectAsParameter" , tmp_otherObj, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$String(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -206,10 +218,12 @@ world") {
 		# copy parameters
 		tmp_dataframe = self$.api$.toJava$RDataframe(dataframe);
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "V", method="doSomethingWithDataFrame" , tmp_dataframe); 
+		tmp_out = .jcall(self$.jobj, returnSig = "V", method="doSomethingWithDataFrame" , tmp_dataframe, check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$void(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -221,10 +235,29 @@ world") {
 	generateDataFrame = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="generateDataFrame" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RDataframe;", method="generateDataFrame" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RDataframe(tmp_out);
+		if(is.null(out)) return(invisible(out))
+		return(out);
+	},
+	#' @description 
+	#' errorThrower: 
+	#' just throws an error
+	#' @return void: 
+	#' 
+	errorThrower = function() {
+		# copy parameters
+		# execute method call
+		tmp_out = .jcall(self$.jobj, returnSig = "V", method="errorThrower" , check=FALSE);
 		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
+		# convert java object back to R
+		out = self$.api$.fromJava$void(tmp_out);
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -247,9 +280,12 @@ world") {
 	#' @description Allow this object to be garbage collected.
 	finalize = function() {
 		if(!is.null(self$.jobj)) {
-			try({
-				.jcall(self$.jobj, returnSig = "V", method="close")
-			})
+			.jcall(self$.jobj, returnSig = "V", method="close", check=FALSE)
+			e = .jgetEx(clear=TRUE)
+			if (!is.null(e)) {
+				self$.api$.log$error(e$getMessage())
+			}
+			self$.api$printMessages() 
 		}
 		self$.jobj = .jnull("uk/co/terminological/rjava/test/FeatureTest")
 		self$.jobj = NULL

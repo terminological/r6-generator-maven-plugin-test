@@ -18,7 +18,7 @@ A test of the R6 generator templating
 
 Version: 0.2.0.9000
 
-Generated: 2022-05-18T16:00:31.472962
+Generated: 2022-05-18T23:19:53.167905
 }
 
 \details{
@@ -84,6 +84,10 @@ J$FeatureTest$demoStatic('Ola, el mundo')
 ## -----------------------------------
 J$FeatureTest$diamonds()
 
+## -----------------------------------
+## Method `FeatureTest$errorThrower`
+## -----------------------------------
+
 }}
 
 \keyword{java api}
@@ -111,6 +115,7 @@ J$FeatureTest$diamonds()
 			\item \href{#method-objectAsParameter}{\code{instance$objectAsParameter(otherObj)}}
 			\item \href{#method-doSomethingWithDataFrame}{\code{instance$doSomethingWithDataFrame(dataframe)}}
 			\item \href{#method-generateDataFrame}{\code{instance$generateDataFrame()}}
+			\item \href{#method-errorThrower}{\code{instance$errorThrower()}}
 			\item \code{instance$clone()}
 			\item \code{instance$print()}
 		}
@@ -572,6 +577,43 @@ J$FeatureTest$diamonds()
 			\if{html}{\out{<div class="r example copy">}}
 			\preformatted{
 J$FeatureTest$diamonds()
+			}
+			\if{html}{\out{</div>}}
+		}
+	}
+	\if{html}{\out{<hr>}}
+	\if{html}{\out{<a id="method-errorThrower"></a>}}
+	
+	\subsection{Method \code{errorThrower()}}{
+		just throws an error
+	
+
+		\subsection{Usage}{
+			\if{html}{\out{<div class="r">}}
+			\preformatted{
+J = testRapi::JavaApi$get()
+instance = J$FeatureTest$new(...);
+instance$errorThrower()
+  			}
+			\if{html}{\out{</div>}}
+		}
+	
+		\subsection{Arguments}{
+			\if{html}{\out{<div class="arguments">}}
+			\itemize{
+				\item{none}
+			}
+			\if{html}{\out{</div>}}
+		}
+
+		\subsection{Returns}{
+			void: 
+		}
+
+		\subsection{Examples}{
+			\if{html}{\out{<div class="r example copy">}}
+			\preformatted{
+not available
 			}
 			\if{html}{\out{</div>}}
 		}

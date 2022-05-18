@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.2.0.9000
 #' 
-#' Generated: 2022-05-18T16:00:31.457188
+#' Generated: 2022-05-18T23:19:53.155200
 #'
 #' @details
 	#' This has no documentation
@@ -46,10 +46,12 @@ MoreFeatureTest = R6::R6Class("MoreFeatureTest", public=list(
 	testLogging = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "V", method="testLogging" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "V", method="testLogging" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$void(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -61,10 +63,12 @@ MoreFeatureTest = R6::R6Class("MoreFeatureTest", public=list(
 	throwCatchable = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="throwCatchable" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="throwCatchable" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RCharacter(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -76,10 +80,12 @@ MoreFeatureTest = R6::R6Class("MoreFeatureTest", public=list(
 	printMessage = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "V", method="printMessage" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "V", method="printMessage" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$void(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
@@ -91,10 +97,12 @@ MoreFeatureTest = R6::R6Class("MoreFeatureTest", public=list(
 	throwRuntime = function() {
 		# copy parameters
 		# execute method call
-		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="throwRuntime" ); 
+		tmp_out = .jcall(self$.jobj, returnSig = "Luk/co/terminological/rjava/types/RCharacter;", method="throwRuntime" , check=FALSE);
+		self$.api$printMessages()
+		# check for exceptions and rethrow them
+		.jcheck()
 		# convert java object back to R
 		out = self$.api$.fromJava$RCharacter(tmp_out);
-		self$.api$printMessages()
 		if(is.null(out)) return(invisible(out))
 		return(out);
 	},
