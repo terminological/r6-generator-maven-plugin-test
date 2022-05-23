@@ -1,4 +1,7 @@
-# maven-r6-generator-plugin-test
+# r6-generator-maven-plugin-test
+
+[![R-CMD-check](https://github.com/terminological/r6-generator-maven-plugin-test/workflows/R-CMD-check/badge.svg)](https://github.com/terminological/r6-generator-maven-plugin-test/actions)
+
 
 This test demonstrates some of the major features of the maven plugin by creating a minimal R plugin from a set of annotated java classes.
 

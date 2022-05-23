@@ -6,12 +6,25 @@ import java.util.stream.DoubleStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uk.co.terminological.rjava.MapRule;
 import uk.co.terminological.rjava.RClass;
 import uk.co.terminological.rjava.RConverter;
 import uk.co.terminological.rjava.RMethod;
 import uk.co.terminological.rjava.UnconvertableTypeException;
-import uk.co.terminological.rjava.types.*;
+import uk.co.terminological.rjava.types.RCharacter;
+import uk.co.terminological.rjava.types.RCharacterVector;
+import uk.co.terminological.rjava.types.RDataframe;
+import uk.co.terminological.rjava.types.RFactor;
+import uk.co.terminological.rjava.types.RFactorVector;
+import uk.co.terminological.rjava.types.RInteger;
+import uk.co.terminological.rjava.types.RIntegerVector;
+import uk.co.terminological.rjava.types.RList;
+import uk.co.terminological.rjava.types.RLogical;
+import uk.co.terminological.rjava.types.RLogicalVector;
+import uk.co.terminological.rjava.types.RNamedList;
+import uk.co.terminological.rjava.types.RNumeric;
+import uk.co.terminological.rjava.types.RNumericVector;
+import uk.co.terminological.rjava.types.RPrimitive;
+import uk.co.terminological.rjava.types.RVector;
 
 @RClass
 public class FactoryTest {
