@@ -10,7 +10,7 @@
 #' 
 #' Version: 0.2.0.9000
 #' 
-#' Generated: 2022-05-23T15:53:14.163384
+#' Generated: 2022-05-23T15:59:29.657048
 #'
 #' @details
 	#' The feature test should allow mathjax in javadoc
