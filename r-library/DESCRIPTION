@@ -14,7 +14,9 @@ Suggests:
 	here,
 	roxygen2,
 	devtools,
-	knitr
+	knitr,
+	rmarkdown,
+	testthat
 Imports:
 	ggplot2,
 	tibble,
