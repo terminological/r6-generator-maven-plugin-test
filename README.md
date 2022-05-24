@@ -2,6 +2,7 @@
 
 [![R-CMD-check](https://github.com/terminological/r6-generator-maven-plugin-test/workflows/R-CMD-check/badge.svg)](https://github.com/terminological/r6-generator-maven-plugin-test/actions)
 
+[![DOI](https://zenodo.org/badge/304669809.svg)](https://zenodo.org/badge/latestdoi/304669809)
 
 This test demonstrates some of the major features of the maven plugin by creating a minimal R plugin from a set of annotated java classes.
 
