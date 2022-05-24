@@ -64,6 +64,8 @@
 					<packageData>
 						<title>A test library</title>
 						<version>0.2.0.9000</version>
+						<url>https://terminological.github.io/r6-generator-maven-plugin-test/r-library/docs/</url>
+						<doi>10.5281/zenodo.6576058</doi>
 						<debug>false</debug>
 						<usePkgdown>true</usePkgdown>
 						<useRoxygen2>true</useRoxygen2>
