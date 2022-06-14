@@ -8,8 +8,6 @@
 #'
 #' @return a string
 #' @export
-#'
-#' @examples
 manualFunction = function() {
   return("A test manual function")
 }

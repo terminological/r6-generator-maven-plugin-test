@@ -6,7 +6,7 @@
 #'
 #' Version: 0.2.0.9000
 #'
-#' Generated: 2022-06-07T17:08:21.409812
+#' Generated: 2022-06-14T22:55:59.496226
 #'
 #' Contact: rc538@exeter.ac.uk
 #' @import ggplot2
@@ -24,11 +24,17 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 	.toJava = NULL,
 	#' @field .reg the list of references to java objects created by this API 
 	.reg = list(),
+	#' @field MoreFeatureTest the MoreFeatureTest class contructors and static methods
 	MoreFeatureTest = NULL,
+	#' @field BounceTest the BounceTest class contructors and static methods
 	BounceTest = NULL,
+	#' @field FeatureTest the FeatureTest class contructors and static methods
 	FeatureTest = NULL,
+	#' @field FactoryTest the FactoryTest class contructors and static methods
 	FactoryTest = NULL,
+	#' @field Serialiser the Serialiser class contructors and static methods
 	Serialiser = NULL,
+	#' @field MinimalExample the MinimalExample class contructors and static methods
 	MinimalExample = NULL,
 
 	#' @description
@@ -73,7 +79,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
  	
  		message("Initialising A test library")
  		message("Version: 0.2.0.9000")
-		message("Generated: 2022-06-07T17:08:21.411973")
+		message("Generated: 2022-06-14T22:55:59.509721")
  	
  	
 		if (!.jniInitialized) 
@@ -96,7 +102,7 @@ JavaApi = R6::R6Class("JavaApi", public=list(
     	self$.log = .jcall("org/slf4j/LoggerFactory", returnSig = "Lorg/slf4j/Logger;", method = "getLogger", "testRapi");
     	.jcall(self$.log,returnSig = "V",method = "info","Initialised testRapi");
 		.jcall(self$.log,returnSig = "V",method = "debug","Version: 0.2.0.9000");
-		.jcall(self$.log,returnSig = "V",method = "debug","R package generated: 2022-06-07T17:08:21.414089");
+		.jcall(self$.log,returnSig = "V",method = "debug","R package generated: 2022-06-14T22:55:59.510197");
 		.jcall(self$.log,returnSig = "V",method = "debug",paste0("Java library compiled: ",buildDate));
 		.jcall(self$.log,returnSig = "V",method = "debug","Contact: rc538@exeter.ac.uk");
 		self$printMessages()
@@ -152,10 +158,6 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				tmpLabel = levels(rObj)[[tmp]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RFactor',tmp, tmpLabel))
 			},
-			RNull=function(rObj) {
-				if (!is.null(rObj)) stop('input expected to be NULL')
-				return(rJava::.jnew('uk/co/terminological/rjava/types/RNull'))
-			},
 			RLogicalVector=function(rObj) {
 				if (is.null(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RLogicalVector'))
 				if (!is.logical(rObj)) stop('expected a vector of logicals')
@@ -166,6 +168,10 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 				if (is.na(rObj)) return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter'))
 				tmp = as.character(rObj)[[1]]
 				return(rJava::.jnew('uk/co/terminological/rjava/types/RCharacter',tmp))
+			},
+			RNull=function(rObj) {
+				if (!is.null(rObj)) stop('input expected to be NULL')
+				return(rJava::.jnew('uk/co/terminological/rjava/types/RNull'))
 			},
 			Serialiser=function(rObj) return(rObj$.jobj),
 			String=function(rObj) return(as.character(rObj)),
@@ -325,9 +331,9 @@ JavaApi = R6::R6Class("JavaApi", public=list(
 			RNumeric=function(jObj) as.numeric(rJava::.jcall(jObj,returnSig='D',method='rPrimitive')),
 			RLogical=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='I',method='rPrimitive')),
 			RFactor=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rLabel')),
-			RNull=function(jObj) return(NULL),
 			RLogicalVector=function(jObj) as.logical(rJava::.jcall(jObj,returnSig='[I',method='rPrimitive')),
 			RCharacter=function(jObj) as.character(rJava::.jcall(jObj,returnSig='Ljava/lang/String;',method='rPrimitive')),
+			RNull=function(jObj) return(NULL),
 			Serialiser=function(jObj) return(jObj),
 			String=function(jObj) return(as.character(jObj)),
 			MinimalExample=function(jObj) return(jObj),
